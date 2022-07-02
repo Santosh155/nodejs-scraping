@@ -1,0 +1,592 @@
+{
+  "CVE-2017-14722": {
+    "score": "5.0",
+    "type": "Directory traversal",
+    "desc": "Before version 4.8.2, WordPress allowed a Directory Traversal attack in the Customizer component via a crafted theme filename."
+  },
+  "CVE-2017-14990": {
+    "score": "4.0",
+    "type": "Sql Injection",
+    "desc": "WordPress 4.8.2 stores cleartext wp_signups.activation_key values (but stores the analogous wp_users.user_activation_key values as hashes), which might make it easier for remote attackers to hijack unactivated user accounts by leveraging database read access (such as access gained through an unspecified SQL injection vulnerability)."
+  },
+  "CVE-2021-39203": {
+    "score": "6.0",
+    "type": "Bypass a restriction or similar",
+    "desc": "WordPress is a free and open-source content management system written in PHP and paired with a MySQL or MariaDB database. In affected versions authenticated users who don't have permission to view private post types/data can bypass restrictions in the block editor under certain conditions. This affected WordPress 5.8 beta during the testing period. It's fixed in the final 5.8 release."
+  },
+  "CVE-2021-39202": {
+    "score": "3.5",
+    "type": "Cross Site Scripting",
+    "desc": "WordPress is a free and open-source content management system written in PHP and paired with a MySQL or MariaDB database. In affected versions the widgets editor introduced in WordPress 5.8 beta 1 has improper handling of HTML input in the Custom HTML feature. This leads to stored XSS in the custom HTML widget. This has been patched in WordPress 5.8. It was only present during the testing/beta phase of WordPress 5.8."
+  },
+  "CVE-2016-6896": {
+    "score": "5.5",
+    "type": "Denial Of ServiceDirectory traversal",
+    "desc": "Directory traversal vulnerability in the wp_ajax_update_plugin function in wp-admin/includes/ajax-actions.php in WordPress 4.5.3 allows remote authenticated users to cause a denial of service or read certain text files via a .. (dot dot) in the plugin parameter to wp-admin/admin-ajax.php, as demonstrated by /dev/random read operations that deplete the entropy pool."
+  },
+  "CVE-2017-1001000": {
+    "score": "5.0",
+    "type": "",
+    "desc": "The register_routes function in wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php in the REST API in WordPress 4.7.x before 4.7.2 does not require an integer identifier, which allows remote attackers to modify arbitrary pages via a request for wp-json/wp/v2/posts followed by a numeric value and a non-numeric value, as demonstrated by the wp-json/wp/v2/posts/123?id=123helloworld URI."
+  },
+  "CVE-2014-9036": {
+    "score": "4.3",
+    "type": "Cross Site Scripting",
+    "desc": "Cross-site scripting (XSS) vulnerability in WordPress before 3.7.5, 3.8.x before 3.8.5, 3.9.x before 3.9.3, and 4.x before 4.0.1 allows remote attackers to inject arbitrary web script or HTML via a crafted Cascading Style Sheets (CSS) token sequence in a post."
+  },
+  "CVE-2014-9038": {
+    "score": "6.4",
+    "type": "",
+    "desc": "wp-includes/http.php in WordPress before 3.7.5, 3.8.x before 3.8.5, 3.9.x before 3.9.3, and 4.x before 4.0.1 allows remote attackers to conduct server-side request forgery (SSRF) attacks by referring to a 127.0.0.0/8 resource."
+  },
+  "CVE-2014-9031": {
+    "score": "4.3",
+    "type": "Cross Site Scripting",
+    "desc": "Cross-site scripting (XSS) vulnerability in the wptexturize function in WordPress before 3.7.5, 3.8.x before 3.8.5, and 3.9.x before 3.9.3 allows remote attackers to inject arbitrary web script or HTML via crafted use of shortcode brackets in a text field, as demonstrated by a comment or a post."
+  },
+  "CVE-2014-9039": {
+    "score": "4.3",
+    "type": "",
+    "desc": "wp-login.php in WordPress before 3.7.5, 3.8.x before 3.8.5, 3.9.x before 3.9.3, and 4.x before 4.0.1 might allow remote attackers to reset passwords by leveraging access to an e-mail account that received a password-reset message."
+  },
+  "CVE-2012-6635": {
+    "score": "4.0",
+    "type": "Obtain Information",
+    "desc": "wp-admin/includes/class-wp-posts-list-table.php in WordPress before 3.3.3 does not properly restrict excerpt-view access, which allows remote authenticated users to obtain sensitive information by visiting a draft."
+  },
+  "CVE-2021-39201": {
+    "score": "3.5",
+    "type": "Cross Site ScriptingBypass a restriction or similar",
+    "desc": "WordPress is a free and open-source content management system written in PHP and paired with a MySQL or MariaDB database. ### Impact The issue allows an authenticated but low-privileged user (like contributor/author) to execute XSS in the editor. This bypasses the restrictions imposed on users who do not have the permission to post `unfiltered_html`. ### Patches This has been patched in WordPress 5.8, and will be pushed to older versions via minor releases (automatic updates). It's strongly recommended that you keep auto-updates enabled to receive the fix. ### References https://wordpress.org/news/category/releases/ https://hackerone.com/reports/1142140 ### For more information If you have any questions or comments about this advisory: * Open an issue in [HackerOne](https://hackerone.com/wordpress)"
+  },
+  "CVE-2015-3439": {
+    "score": "4.3",
+    "type": "Execute CodeCross Site Scripting",
+    "desc": "Cross-site scripting (XSS) vulnerability in the Ephox (formerly Moxiecode) plupload.flash.swf shim 2.1.2 in Plupload, as used in WordPress 3.9.x, 4.0.x, and 4.1.x before 4.1.2 and other products, allows remote attackers to execute same-origin JavaScript functions via the target parameter, as demonstrated by executing a certain click function, related to _init.as and _fireEvent.as."
+  },
+  "CVE-2016-2222": {
+    "score": "5.0",
+    "type": "",
+    "desc": "The wp_http_validate_url function in wp-includes/http.php in WordPress before 4.4.2 allows remote attackers to conduct server-side request forgery (SSRF) attacks via a zero value in the first octet of an IPv4 address in the u parameter to wp-admin/press-this.php."
+  },
+  "CVE-2014-9034": {
+    "score": "5.0",
+    "type": "Denial Of Service",
+    "desc": "wp-includes/class-phpass.php in WordPress before 3.7.5, 3.8.x before 3.8.5, 3.9.x before 3.9.3, and 4.x before 4.0.1 allows remote attackers to cause a denial of service (CPU consumption) via a long password that is improperly handled during hashing, a similar issue to CVE-2014-9016."
+  },
+  "CVE-2018-14028": {
+    "score": "6.5",
+    "type": "Execute Code",
+    "desc": "In WordPress 4.9.7, plugins uploaded via the admin area are not verified as being ZIP files. This allows for PHP files to be uploaded. Once a PHP file is uploaded, the plugin extraction fails, but the PHP file remains in a predictable wp-content/uploads location, allowing for an attacker to then execute the file. This represents a security risk in limited scenarios where an attacker (who does have the required capabilities for plugin uploads) cannot simply place arbitrary PHP code into a valid plugin ZIP file and upload that plugin, because a machine's wp-content/plugins directory permissions were set up to block all new plugins."
+  },
+  "CVE-2019-8942": {
+    "score": "6.5",
+    "type": "Execute Code",
+    "desc": "WordPress before 4.9.9 and 5.x before 5.0.1 allows remote code execution because an _wp_attached_file Post Meta entry can be changed to an arbitrary string, such as one ending with a .jpg?file.php substring. An attacker with author privileges can execute arbitrary code by uploading a crafted image containing PHP code in the Exif metadata. Exploitation can leverage CVE-2019-8943."
+  },
+  "CVE-2013-2173": {
+    "score": "4.3",
+    "type": "Denial Of Service",
+    "desc": "wp-includes/class-phpass.php in WordPress 3.5.1, when a password-protected post exists, allows remote attackers to cause a denial of service (CPU consumption) via a crafted value of a certain wp-postpass cookie."
+  },
+  "CVE-2012-0937": {
+    "score": "5.0",
+    "type": "Denial Of Service",
+    "desc": "** DISPUTED ** wp-admin/setup-config.php in the installation component in WordPress 3.3.1 and earlier does not limit the number of MySQL queries sent to external MySQL database servers, which allows remote attackers to use WordPress as a proxy for brute-force attacks or denial of service attacks via the dbhost parameter, a different vulnerability than CVE-2011-4898.  NOTE: the vendor disputes the significance of this issue because an incomplete WordPress installation might be present on the network for only a short time."
+  },
+  "CVE-2013-2205": {
+    "score": "4.3",
+    "type": "Cross Site ScriptingBypass a restriction or similar",
+    "desc": "The default configuration of SWFUpload in WordPress before 3.5.2 has an unrestrictive security.allowDomain setting, which allows remote attackers to bypass the Same Origin Policy and conduct cross-site scripting (XSS) attacks via a crafted web site."
+  },
+  "CVE-2013-2204": {
+    "score": "4.3",
+    "type": "",
+    "desc": "moxieplayer.as in Moxiecode moxieplayer, as used in the TinyMCE Media plugin in WordPress before 3.5.2 and other products, does not consider the presence of a # (pound sign) character during extraction of the QUERY_STRING, which allows remote attackers to pass arbitrary parameters to a Flash application, and conduct content-spoofing attacks, via a crafted string after a ? (question mark) character."
+  },
+  "CVE-2013-0237": {
+    "score": "4.3",
+    "type": "Cross Site Scripting",
+    "desc": "Cross-site scripting (XSS) vulnerability in Plupload.as in Moxiecode plupload before 1.5.5, as used in WordPress before 3.5.1 and other products, allows remote attackers to inject arbitrary web script or HTML via the id parameter."
+  },
+  "CVE-2017-14719": {
+    "score": "5.0",
+    "type": "Directory traversal",
+    "desc": "Before version 4.8.2, WordPress was vulnerable to a directory traversal attack during unzip operations in the ZipArchive and PclZip components."
+  },
+  "CVE-2014-5265": {
+    "score": "5.0",
+    "type": "Denial Of Service",
+    "desc": "The Incutio XML-RPC (IXR) Library, as used in WordPress before 3.9.2 and Drupal 6.x before 6.33 and 7.x before 7.31, permits entity declarations without considering recursion during entity expansion, which allows remote attackers to cause a denial of service (memory and CPU consumption) via a crafted XML document containing a large number of nested entity references, a similar issue to CVE-2003-1564."
+  },
+  "CVE-2010-5294": {
+    "score": "4.3",
+    "type": "Cross Site Scripting",
+    "desc": "Multiple cross-site scripting (XSS) vulnerabilities in the request_filesystem_credentials function in wp-admin/includes/file.php in WordPress before 3.0.2 allow remote servers to inject arbitrary web script or HTML by providing a crafted error message for a (1) FTP or (2) SSH connection attempt."
+  },
+  "CVE-2006-4743": {
+    "score": "5.0",
+    "type": "Obtain Information",
+    "desc": "WordPress 2.0.2 through 2.0.5 allows remote attackers to obtain sensitive information via a direct request for (1) 404.php, (2) akismet.php, (3) archive.php, (4) archives.php, (5) attachment.php, (6) blogger.php, (7) comments.php, (8) comments-popup.php, (9) dotclear.php, (10) footer.php, (11) functions.php, (12) header.php, (13) hello.php, (14) wp-content/themes/default/index.php, (15) links.php, (16) livejournal.php, (17) mt.php, (18) page.php, (19) rss.php, (20) searchform.php, (21) search.php, (22) sidebar.php, (23) single.php, (24) textpattern.php, (25) upgrade-functions.php, (26) upgrade-schema.php, or (27) wp-db-backup.php, which reveal the path in various error messages.  NOTE: another researcher has disputed the details of this report, stating that version 2.0.5 does not exist. NOTE: the admin-footer.php, admin-functions.php, default-filters.php, edit-form-advanced.php, edit-link-form.php, edit-page-form.php, kses.php, locale.php, rss-functions.php, template-loader.php, and wp-db.php vectors are already covered by CVE-2006-0986. The edit-form-comment.php, vars.php, and wp-settings.php vectors are already covered by CVE-2005-4463. The menu-header.php vector is already covered by CVE-2005-2110."
+  },
+  "CVE-2012-2404": {
+    "score": "4.3",
+    "type": "Cross Site Scripting",
+    "desc": "wp-comments-post.php in WordPress before 3.3.2 supports offsite redirects, which makes it easier for remote attackers to conduct cross-site scripting (XSS) attacks via unspecified vectors."
+  },
+  "CVE-2014-0165": {
+    "score": "4.0",
+    "type": "",
+    "desc": "WordPress before 3.7.2 and 3.8.x before 3.8.2 allows remote authenticated users to publish posts by leveraging the Contributor role, related to wp-admin/includes/post.php and wp-admin/includes/class-wp-posts-list-table.php."
+  },
+  "CVE-2014-5240": {
+    "score": "2.1",
+    "type": "Cross Site Scripting",
+    "desc": "Cross-site scripting (XSS) vulnerability in wp-includes/pluggable.php in WordPress before 3.9.2, when Multisite is enabled, allows remote authenticated administrators to inject arbitrary web script or HTML, and obtain Super Admin privileges, via a crafted avatar URL."
+  },
+  "CVE-2009-2432": {
+    "score": "5.0",
+    "type": "Obtain Information",
+    "desc": "WordPress and WordPress MU before 2.8.1 allow remote attackers to obtain sensitive information via a direct request to wp-settings.php, which reveals the installation path in an error message."
+  },
+  "CVE-2014-9035": {
+    "score": "4.3",
+    "type": "Cross Site Scripting",
+    "desc": "Cross-site scripting (XSS) vulnerability in Press This in WordPress before 3.7.5, 3.8.x before 3.8.5, 3.9.x before 3.9.3, and 4.x before 4.0.1 allows remote attackers to inject arbitrary web script or HTML via unspecified vectors."
+  },
+  "CVE-2019-16217": {
+    "score": "4.3",
+    "type": "Cross Site Scripting",
+    "desc": "WordPress before 5.2.3 allows XSS in media uploads because wp_ajax_upload_attachment is mishandled."
+  },
+  "CVE-2007-6318": {
+    "score": "6.8",
+    "type": "Execute CodeSql Injection",
+    "desc": "SQL injection vulnerability in wp-includes/query.php in WordPress 2.3.1 and earlier allows remote attackers to execute arbitrary SQL commands via the s parameter, when DB_CHARSET is set to (1) Big5, (2) GBK, or possibly other character set encodings that support a \"\\\" in a multibyte character."
+  },
+  "CVE-2012-6634": {
+    "score": "6.4",
+    "type": "Bypass a restriction or similarObtain Information",
+    "desc": "wp-admin/media-upload.php in WordPress before 3.3.3 allows remote attackers to obtain sensitive information or bypass intended media-attachment restrictions via a post_id value."
+  },
+  "CVE-2011-3126": {
+    "score": "5.0",
+    "type": "Obtain Information",
+    "desc": "WordPress 3.1 before 3.1.3 and 3.2 before Beta 2 allows remote attackers to determine usernames of non-authors via canonical redirects."
+  },
+  "CVE-2008-0193": {
+    "score": "4.3",
+    "type": "Cross Site Scripting",
+    "desc": "Cross-site scripting (XSS) vulnerability in wp-db-backup.php in WordPress 2.0.11 and earlier, and possibly 2.1.x through 2.3.x, allows remote attackers to inject arbitrary web script or HTML via the backup parameter in a wp-db-backup.php action to wp-admin/edit.php."
+  },
+  "CVE-2014-5266": {
+    "score": "5.0",
+    "type": "Denial Of Service",
+    "desc": "The Incutio XML-RPC (IXR) Library, as used in WordPress before 3.9.2 and Drupal 6.x before 6.33 and 7.x before 7.31, does not limit the number of elements in an XML document, which allows remote attackers to cause a denial of service (CPU consumption) via a large document, a different vulnerability than CVE-2014-5265."
+  },
+  "CVE-2012-2403": {
+    "score": "4.3",
+    "type": "Cross Site Scripting",
+    "desc": "wp-includes/formatting.php in WordPress before 3.3.2 attempts to enable clickable links inside attributes, which makes it easier for remote attackers to conduct cross-site scripting (XSS) attacks via unspecified vectors."
+  },
+  "CVE-2012-2402": {
+    "score": "5.5",
+    "type": "Bypass a restriction or similar",
+    "desc": "wp-admin/plugins.php in WordPress before 3.3.2 allows remote authenticated site administrators to bypass intended access restrictions and deactivate network-wide plugins via unspecified vectors."
+  },
+  "CVE-2008-3233": {
+    "score": "4.3",
+    "type": "Cross Site Scripting",
+    "desc": "Cross-site scripting (XSS) vulnerability in WordPress before 2.6, SVN development versions only, allows remote attackers to inject arbitrary web script or HTML via unspecified vectors."
+  },
+  "CVE-2008-0664": {
+    "score": "6.4",
+    "type": "",
+    "desc": "The XML-RPC implementation (xmlrpc.php) in WordPress before 2.3.3, when registration is enabled, allows remote attackers to edit posts of other blog users via unknown vectors."
+  },
+  "CVE-2011-4899": {
+    "score": "7.5",
+    "type": "Execute CodeSql InjectionCross Site Scripting",
+    "desc": "** DISPUTED ** wp-admin/setup-config.php in the installation component in WordPress 3.3.1 and earlier does not ensure that the specified MySQL database service is appropriate, which allows remote attackers to configure an arbitrary database via the dbhost and dbname parameters, and subsequently conduct static code injection and cross-site scripting (XSS) attacks via (1) an HTTP request or (2) a MySQL query.  NOTE: the vendor disputes the significance of this issue; however, remote code execution makes the issue important in many realistic environments."
+  },
+  "CVE-2008-4769": {
+    "score": "9.3",
+    "type": "Directory traversal",
+    "desc": "Directory traversal vulnerability in the get_category_template function in wp-includes/theme.php in WordPress 2.3.3 and earlier, and 2.5, allows remote attackers to include and possibly execute arbitrary PHP files via the cat parameter in index.php.  NOTE: some of these details are obtained from third party information."
+  },
+  "CVE-2008-3747": {
+    "score": "7.5",
+    "type": "",
+    "desc": "The (1) get_edit_post_link and (2) get_edit_comment_link functions in wp-includes/link-template.php in WordPress before 2.6.1 do not force SSL communication in the intended situations, which might allow remote attackers to gain administrative access by sniffing the network for a cookie."
+  },
+  "CVE-2011-4956": {
+    "score": "4.3",
+    "type": "Cross Site Scripting",
+    "desc": "Cross-site scripting (XSS) vulnerability in WordPress before 3.1.1 allows remote attackers to inject arbitrary web script or HTML via unspecified vectors."
+  },
+  "CVE-2013-2203": {
+    "score": "4.3",
+    "type": "Obtain Information",
+    "desc": "WordPress before 3.5.2, when the uploads directory forbids write access, allows remote attackers to obtain sensitive information via an invalid upload request, which reveals the absolute path in an XMLHttpRequest error message."
+  },
+  "CVE-2013-0235": {
+    "score": "6.4",
+    "type": "",
+    "desc": "The XMLRPC API in WordPress before 3.5.1 allows remote attackers to send HTTP requests to intranet servers, and conduct port-scanning attacks, by specifying a crafted source URL for a pingback, related to a Server-Side Request Forgery (SSRF) issue."
+  },
+  "CVE-2010-5297": {
+    "score": "2.1",
+    "type": "Bypass a restriction or similar",
+    "desc": "WordPress before 3.0.1, when a Multisite installation is used, permanently retains the \"site administrators can add users\" option once changed, which might allow remote authenticated administrators to bypass intended access restrictions in opportunistic circumstances via an add action after a temporary change."
+  },
+  "CVE-2012-0782": {
+    "score": "4.3",
+    "type": "Cross Site Scripting",
+    "desc": "** DISPUTED ** Multiple cross-site scripting (XSS) vulnerabilities in wp-admin/setup-config.php in the installation component in WordPress 3.3.1 and earlier allow remote attackers to inject arbitrary web script or HTML via the (1) dbhost, (2) dbname, or (3) uname parameter. NOTE: the vendor disputes the significance of this issue; also, it is unclear whether this specific XSS scenario has security relevance."
+  },
+  "CVE-2011-4957": {
+    "score": "5.0",
+    "type": "Denial Of Service",
+    "desc": "The make_clickable function in wp-includes/formatting.php in WordPress before 3.1.1 does not properly check URLs before passing them to the PCRE library, which allows remote attackers to cause a denial of service (crash) via a comment with a crafted URL that triggers many recursive calls."
+  },
+  "CVE-2013-2201": {
+    "score": "4.3",
+    "type": "Cross Site Scripting",
+    "desc": "Multiple cross-site scripting (XSS) vulnerabilities in WordPress before 3.5.2 allow remote attackers to inject arbitrary web script or HTML via vectors involving (1) uploads of media files, (2) editing of media files, (3) installation of plugins, (4) updates to plugins, (5) installation of themes, or (6) updates to themes."
+  },
+  "CVE-2013-2202": {
+    "score": "4.3",
+    "type": "Obtain Information",
+    "desc": "WordPress before 3.5.2 allows remote attackers to read arbitrary files via an oEmbed XML provider response containing an external entity declaration in conjunction with an entity reference, related to an XML External Entity (XXE) issue."
+  },
+  "CVE-2014-9033": {
+    "score": "6.8",
+    "type": "CSRF",
+    "desc": "Cross-site request forgery (CSRF) vulnerability in wp-login.php in WordPress 3.7.4, 3.8.4, 3.9.2, and 4.0 allows remote attackers to hijack the authentication of arbitrary users for requests that reset passwords."
+  },
+  "CVE-2014-9037": {
+    "score": "6.8",
+    "type": "",
+    "desc": "WordPress before 3.7.5, 3.8.x before 3.8.5, 3.9.x before 3.9.3, and 4.x before 4.0.1 might allow remote attackers to obtain access to an account idle since 2008 by leveraging an improper PHP dynamic type comparison for an MD5 hash."
+  },
+  "CVE-2014-5203": {
+    "score": "7.5",
+    "type": "Execute Code",
+    "desc": "wp-includes/class-wp-customize-widgets.php in the widget implementation in WordPress 3.9.x before 3.9.2 might allow remote attackers to execute arbitrary code via crafted serialized data."
+  },
+  "CVE-2014-5204": {
+    "score": "6.8",
+    "type": "Bypass a restriction or similarCSRF",
+    "desc": "wp-includes/pluggable.php in WordPress before 3.9.2 rejects invalid CSRF nonces with a different timing depending on which characters in the nonce are incorrect, which makes it easier for remote attackers to bypass a CSRF protection mechanism via a brute-force attack."
+  },
+  "CVE-2012-3414": {
+    "score": "4.3",
+    "type": "Cross Site Scripting",
+    "desc": "Cross-site scripting (XSS) vulnerability in swfupload.swf in SWFUpload 2.2.0.1 and earlier, as used in WordPress before 3.3.2, TinyMCE Image Manager 1.1, and other products, allows remote attackers to inject arbitrary web script or HTML via the movieName parameter, related to the \"ExternalInterface.call\" function."
+  },
+  "CVE-2010-5296": {
+    "score": "4.9",
+    "type": "Bypass a restriction or similar",
+    "desc": "wp-includes/capabilities.php in WordPress before 3.0.2, when a Multisite configuration is used, does not require the Super Admin role for the delete_users capability, which allows remote authenticated administrators to bypass intended access restrictions via a delete action."
+  },
+  "CVE-2014-0166": {
+    "score": "6.4",
+    "type": "",
+    "desc": "The wp_validate_auth_cookie function in wp-includes/pluggable.php in WordPress before 3.7.2 and 3.8.x before 3.8.2 does not properly determine the validity of authentication cookies, which makes it easier for remote attackers to obtain access via a forged cookie."
+  },
+  "CVE-2010-5293": {
+    "score": "5.8",
+    "type": "Bypass a restriction or similar",
+    "desc": "wp-includes/comment.php in WordPress before 3.0.2 does not properly whitelist trackbacks and pingbacks in the blogroll, which allows remote attackers to bypass intended spam restrictions via a crafted URL, as demonstrated by a URL that triggers a substring match."
+  },
+  "CVE-2011-4898": {
+    "score": "5.0",
+    "type": "Obtain Information",
+    "desc": "** DISPUTED ** wp-admin/setup-config.php in the installation component in WordPress 3.3.1 and earlier generates different error messages for requests lacking a dbname parameter depending on whether the MySQL credentials are valid, which makes it easier for remote attackers to conduct brute-force attacks via a series of requests with different uname and pwd parameters.  NOTE: the vendor disputes the significance of this issue; also, it is unclear whether providing intentionally vague error messages during installation would be reasonable from a usability perspective."
+  },
+  "CVE-2012-2399": {
+    "score": "10.0",
+    "type": "Cross Site Scripting",
+    "desc": "Cross-site scripting (XSS) vulnerability in swfupload.swf in SWFupload 2.2.0.1 and earlier, as used in WordPress before 3.5.2, TinyMCE Image Manager 1.1 and earlier, and other products allows remote attackers to inject arbitrary web script or HTML via the buttonText parameter, a different vulnerability than CVE-2012-3414."
+  },
+  "CVE-2013-0236": {
+    "score": "4.3",
+    "type": "Cross Site Scripting",
+    "desc": "Multiple cross-site scripting (XSS) vulnerabilities in WordPress before 3.5.1 allow remote attackers to inject arbitrary web script or HTML via vectors involving (1) gallery shortcodes or (2) the content of a post."
+  },
+  "CVE-2010-0682": {
+    "score": "4.0",
+    "type": "",
+    "desc": "WordPress 2.9 before 2.9.2 allows remote authenticated users to read trash posts from other authors via a direct request with a modified p parameter."
+  },
+  "CVE-2013-2200": {
+    "score": "4.0",
+    "type": "Bypass a restriction or similar",
+    "desc": "WordPress before 3.5.2 does not properly check the capabilities of roles, which allows remote authenticated users to bypass intended restrictions on publishing and authorship reassignment via unspecified vectors."
+  },
+  "CVE-2009-2334": {
+    "score": "4.9",
+    "type": "Denial Of ServiceCross Site ScriptingObtain Information",
+    "desc": "wp-admin/admin.php in WordPress and WordPress MU before 2.8.1 does not require administrative authentication to access the configuration of a plugin, which allows remote attackers to specify a configuration file in the page parameter to obtain sensitive information or modify this file, as demonstrated by the (1) collapsing-archives/options.txt, (2) akismet/readme.txt, (3) related-ways-to-take-action/options.php, (4) wp-security-scan/securityscan.php, and (5) wp-ids/ids-admin.php files. NOTE: this can be leveraged for cross-site scripting (XSS) and denial of service."
+  },
+  "CVE-2012-3384": {
+    "score": "6.8",
+    "type": "CSRF",
+    "desc": "Cross-site request forgery (CSRF) vulnerability in the customizer in WordPress before 3.4.1 allows remote attackers to hijack the authentication of unspecified victims via unknown vectors."
+  },
+  "CVE-2007-4894": {
+    "score": "7.5",
+    "type": "Execute CodeSql Injection",
+    "desc": "Multiple SQL injection vulnerabilities in Wordpress before 2.2.3 and Wordpress multi-user (MU) before 1.2.5a allow remote attackers to execute arbitrary SQL commands via the post_type parameter to the pingback.extensions.getPingbacks method in the XMLRPC interface, and other unspecified parameters related to \"early database escaping\" and missing validation of \"query string like parameters.\""
+  },
+  "CVE-2013-2199": {
+    "score": "4.3",
+    "type": "",
+    "desc": "The HTTP API in WordPress before 3.5.2 allows remote attackers to send HTTP requests to intranet servers via unspecified vectors, related to a Server-Side Request Forgery (SSRF) issue, a similar vulnerability to CVE-2013-0235."
+  },
+  "CVE-2012-4421": {
+    "score": "4.0",
+    "type": "Bypass a restriction or similar",
+    "desc": "The create_post function in wp-includes/class-wp-atom-server.php in WordPress before 3.4.2 does not perform a capability check, which allows remote authenticated users to bypass intended access restrictions and publish new posts by leveraging the Contributor role and using the Atom Publishing Protocol (aka AtomPub) feature."
+  },
+  "CVE-2012-1936": {
+    "score": "6.8",
+    "type": "CSRF",
+    "desc": "** DISPUTED ** The wp_create_nonce function in wp-includes/pluggable.php in WordPress 3.3.1 and earlier associates a nonce with a user account instead of a user session, which might make it easier for remote attackers to conduct cross-site request forgery (CSRF) attacks on specific actions and objects by sniffing the network, as demonstrated by attacks against the wp-admin/admin-ajax.php and wp-admin/user-new.php scripts.  NOTE: the vendor reportedly disputes the significance of this issue because wp_create_nonce operates as intended, even if it is arguably inconsistent with certain CSRF protection details advocated by external organizations."
+  },
+  "CVE-2012-2400": {
+    "score": "10.0",
+    "type": "",
+    "desc": "Unspecified vulnerability in wp-includes/js/swfobject.js in WordPress before 3.3.2 has unknown impact and attack vectors."
+  },
+  "CVE-2010-5295": {
+    "score": "4.3",
+    "type": "Cross Site Scripting",
+    "desc": "Cross-site scripting (XSS) vulnerability in wp-admin/plugins.php in WordPress before 3.0.2 might allow remote attackers to inject arbitrary web script or HTML via a plugin's author field, which is not properly handled during a Delete Plugin action."
+  },
+  "CVE-2008-2146": {
+    "score": "7.5",
+    "type": "Bypass a restriction or similar",
+    "desc": "wp-includes/vars.php in Wordpress before 2.2.3 does not properly extract the current path from the PATH_INFO ($PHP_SELF), which allows remote attackers to bypass intended access restrictions for certain pages."
+  },
+  "CVE-2012-4422": {
+    "score": "3.5",
+    "type": "",
+    "desc": "wp-admin/plugins.php in WordPress before 3.4.2, when the multisite feature is enabled, does not check for network-administrator privileges before performing a network-wide activation of an installed plugin, which might allow remote authenticated users to make unintended plugin changes by leveraging the Administrator role."
+  },
+  "CVE-2010-5106": {
+    "score": "6.5",
+    "type": "Bypass a restriction or similar",
+    "desc": "The XML-RPC remote publishing interface in xmlrpc.php in WordPress before 3.0.3 does not properly check capabilities, which allows remote authenticated users to bypass intended access restrictions, and publish, edit, or delete posts, by leveraging the Author or Contributor role."
+  },
+  "CVE-2012-3385": {
+    "score": "5.0",
+    "type": "Obtain Information",
+    "desc": "WordPress before 3.4.1 does not properly restrict access to post contents such as private or draft posts, which allows remote authors or contributors to obtain sensitive information via unknown vectors."
+  },
+  "CVE-2007-6013": {
+    "score": "6.8",
+    "type": "Bypass a restriction or similar",
+    "desc": "Wordpress 1.5 through 2.3.1 uses cookie values based on the MD5 hash of a password MD5 hash, which allows attackers to bypass authentication by obtaining the MD5 hash from the user database, then generating the authentication cookie from that hash."
+  },
+  "CVE-2011-3129": {
+    "score": "9.3",
+    "type": "",
+    "desc": "The file upload functionality in WordPress 3.1 before 3.1.3 and 3.2 before Beta 2, when running \"on hosts with dangerous security settings,\" has unknown impact and attack vectors, possibly related to dangerous filenames."
+  },
+  "CVE-2012-6633": {
+    "score": "4.3",
+    "type": "Cross Site Scripting",
+    "desc": "Cross-site scripting (XSS) vulnerability in wp-includes/default-filters.php in WordPress before 3.3.3 allows remote attackers to inject arbitrary web script or HTML via an editable slug field."
+  },
+  "CVE-2007-4893": {
+    "score": "4.3",
+    "type": "Cross Site Scripting",
+    "desc": "wp-admin/admin-functions.php in Wordpress before 2.2.3 and Wordpress multi-user (MU) before 1.2.5a does not properly verify the unfiltered_html privilege, which allows remote attackers to conduct cross-site scripting (XSS) attacks via modified data to (1) post.php or (2) page.php with a no_filter field."
+  },
+  "CVE-2008-5113": {
+    "score": "4.0",
+    "type": "Denial Of ServiceCSRF",
+    "desc": "WordPress 2.6.3 relies on the REQUEST superglobal array in certain dangerous situations, which makes it easier for remote attackers to conduct delayed and persistent cross-site request forgery (CSRF) attacks via crafted cookies, as demonstrated by attacks that (1) delete user accounts or (2) cause a denial of service (loss of application access).  NOTE: this issue relies on the presence of an independent vulnerability that allows cookie injection."
+  },
+  "CVE-2014-5205": {
+    "score": "6.8",
+    "type": "Bypass a restriction or similarCSRF",
+    "desc": "wp-includes/pluggable.php in WordPress before 3.9.2 does not use delimiters during concatenation of action values and uid values in CSRF tokens, which makes it easier for remote attackers to bypass a CSRF protection mechanism via a brute-force attack."
+  },
+  "CVE-2014-9032": {
+    "score": "4.3",
+    "type": "Cross Site Scripting",
+    "desc": "Cross-site scripting (XSS) vulnerability in the media-playlists feature in WordPress before 3.9.x before 3.9.3 and 4.x before 4.0.1 allows remote attackers to inject arbitrary web script or HTML via unspecified vectors."
+  },
+  "CVE-2019-17671": {
+    "score": "5.0",
+    "type": "Obtain Information",
+    "desc": "In WordPress before 5.2.4, unauthenticated viewing of certain content is possible because the static query property is mishandled."
+  },
+  "CVE-2008-4106": {
+    "score": "5.1",
+    "type": "",
+    "desc": "WordPress before 2.6.2 does not properly handle MySQL warnings about insertion of username strings that exceed the maximum column width of the user_login column, and does not properly handle space characters when comparing usernames, which allows remote attackers to change an arbitrary user's password to a random value by registering a similar username and then requesting a password reset, related to a \"SQL column truncation vulnerability.\" NOTE: the attacker can discover the random password by also exploiting CVE-2008-4107."
+  },
+  "CVE-2019-16218": {
+    "score": "4.3",
+    "type": "Cross Site Scripting",
+    "desc": "WordPress before 5.2.3 allows XSS in stored comments."
+  },
+  "CVE-2008-0191": {
+    "score": "5.0",
+    "type": "Obtain Information",
+    "desc": "WordPress 2.2.x and 2.3.x allows remote attackers to obtain sensitive information via an invalid p parameter in an rss2 action to the default URI, which reveals the full path and the SQL database structure."
+  },
+  "CVE-2011-3128": {
+    "score": "5.0",
+    "type": "Obtain Information",
+    "desc": "WordPress 3.1 before 3.1.3 and 3.2 before Beta 2 treats unattached attachments as published, which might allow remote attackers to obtain sensitive data via vectors related to wp-includes/post.php."
+  },
+  "CVE-2019-16221": {
+    "score": "4.3",
+    "type": "Cross Site Scripting",
+    "desc": "WordPress before 5.2.3 allows reflected XSS in the dashboard."
+  },
+  "CVE-2011-3125": {
+    "score": "10.0",
+    "type": "",
+    "desc": "Unspecified vulnerability in WordPress 3.1 before 3.1.3 and 3.2 before Beta 2 has unknown impact and attack vectors related to \"Various security hardening.\""
+  },
+  "CVE-2012-2401": {
+    "score": "5.0",
+    "type": "Bypass a restriction or similar",
+    "desc": "Plupload before 1.5.4, as used in wp-includes/js/plupload/ in WordPress before 3.3.2 and other products, enables scripting regardless of the domain from which the SWF content was loaded, which allows remote attackers to bypass the Same Origin Policy via crafted content."
+  },
+  "CVE-2009-2853": {
+    "score": "10.0",
+    "type": "Gain privileges",
+    "desc": "Wordpress before 2.8.3 allows remote attackers to gain privileges via a direct request to (1) admin-footer.php, (2) edit-category-form.php, (3) edit-form-advanced.php, (4) edit-form-comment.php, (5) edit-link-category-form.php, (6) edit-link-form.php, (7) edit-page-form.php, and (8) edit-tag-form.php in wp-admin/."
+  },
+  "CVE-2008-5278": {
+    "score": "4.3",
+    "type": "Cross Site Scripting",
+    "desc": "Cross-site scripting (XSS) vulnerability in the self_link function in in the RSS Feed Generator (wp-includes/feed.php) for WordPress before 2.6.5 allows remote attackers to inject arbitrary web script or HTML via the Host header (HTTP_HOST variable)."
+  },
+  "CVE-2019-16219": {
+    "score": "4.3",
+    "type": "Cross Site Scripting",
+    "desc": "WordPress before 5.2.3 allows XSS in shortcode previews."
+  },
+  "CVE-2017-6514": {
+    "score": "5.0",
+    "type": "Obtain Information",
+    "desc": "WordPress 4.7.2 mishandles listings of post authors, which allows remote attackers to obtain sensitive information (Path Disclosure) via a /wp-json/oembed/1.0/embed?url= request, related to the \"author_name\":\" substring."
+  },
+  "CVE-2011-3130": {
+    "score": "7.5",
+    "type": "Sql Injection",
+    "desc": "wp-includes/taxonomy.php in WordPress 3.1 before 3.1.3 and 3.2 before Beta 2 has unknown impact and attack vectors related to \"Taxonomy query hardening,\" possibly involving SQL injection."
+  },
+  "CVE-2011-3127": {
+    "score": "5.8",
+    "type": "",
+    "desc": "WordPress 3.1 before 3.1.3 and 3.2 before Beta 2 does not prevent rendering for (1) admin or (2) login pages inside a frame in a third-party HTML document, which makes it easier for remote attackers to conduct clickjacking attacks via a crafted web site."
+  },
+  "CVE-2007-0233": {
+    "score": "7.5",
+    "type": "Execute Code",
+    "desc": "wp-trackback.php in WordPress 2.0.6 and earlier does not properly unset variables when the input data includes a numeric parameter with a value matching an alphanumeric parameter's hash value, which allows remote attackers to execute arbitrary SQL commands via the tb_id parameter.  NOTE: it could be argued that this vulnerability is due to a bug in the unset PHP command (CVE-2006-3017) and the proper fix should be in PHP; if so, then this should not be treated as a vulnerability in WordPress."
+  },
+  "CVE-2007-1049": {
+    "score": "4.3",
+    "type": "Cross Site Scripting",
+    "desc": "Cross-site scripting (XSS) vulnerability in the wp_explain_nonce function in the nonce AYS functionality (wp-includes/functions.php) for WordPress 2.0 before 2.0.9 and 2.1 before 2.1.1 allows remote attackers to inject arbitrary web script or HTML via the file parameter to wp-admin/templates.php, and possibly other vectors involving the action variable."
+  },
+  "CVE-2006-1263": {
+    "score": "4.3",
+    "type": "Cross Site Scripting",
+    "desc": "Multiple \"unannounced\" cross-site scripting (XSS) vulnerabilities in WordPress before 2.0.2 allow remote attackers to inject arbitrary web script or HTML via unknown attack vectors."
+  },
+  "CVE-2019-16220": {
+    "score": "5.8",
+    "type": "",
+    "desc": "In WordPress before 5.2.3, validation and sanitization of a URL in wp_validate_redirect in wp-includes/pluggable.php could lead to an open redirect."
+  },
+  "CVE-2019-17673": {
+    "score": "5.0",
+    "type": "",
+    "desc": "WordPress before 5.2.4 is vulnerable to poisoning of the cache of JSON GET requests because certain requests lack a Vary: Origin header."
+  },
+  "CVE-2011-3122": {
+    "score": "10.0",
+    "type": "",
+    "desc": "Unspecified vulnerability in WordPress 3.1 before 3.1.3 and 3.2 before Beta 2 has unknown impact and attack vectors related to \"Media security.\""
+  },
+  "CVE-2007-1897": {
+    "score": "6.5",
+    "type": "Execute CodeSql Injection",
+    "desc": "SQL injection vulnerability in xmlrpc (xmlrpc.php) in WordPress 2.1.2, and probably earlier, allows remote authenticated users to execute arbitrary SQL commands via a string parameter value in an XML RPC mt.setPostCategories method call, related to the post_id variable."
+  },
+  "CVE-2006-3389": {
+    "score": "5.0",
+    "type": "Obtain Information",
+    "desc": "index.php in WordPress 2.0.3 allows remote attackers to obtain sensitive information, such as SQL table prefixes, via an invalid paged parameter, which displays the information in an SQL error message.  NOTE: this issue has been disputed by a third party who states that the issue does not leak any target-specific information."
+  },
+  "CVE-2013-7233": {
+    "score": "6.8",
+    "type": "CSRF",
+    "desc": "Cross-site request forgery (CSRF) vulnerability in the retrospam component in wp-admin/options-discussion.php in WordPress 2.0.11 and earlier allows remote attackers to hijack the authentication of administrators for requests that move comments to the moderation list."
+  },
+  "CVE-2007-1622": {
+    "score": "4.3",
+    "type": "Cross Site Scripting",
+    "desc": "Cross-site scripting (XSS) vulnerability in wp-admin/vars.php in WordPress before 2.0.10 RC2, and before 2.1.3 RC2 in the 2.1 series, allows remote authenticated users with theme privileges to inject arbitrary web script or HTML via the PATH_INFO in the administration interface, related to loose regular expression processing of PHP_SELF."
+  },
+  "CVE-2003-1599": {
+    "score": "7.5",
+    "type": "Execute CodeFile Inclusion",
+    "desc": "PHP remote file inclusion vulnerability in wp-links/links.all.php in WordPress 0.70 allows remote attackers to execute arbitrary PHP code via a URL in the $abspath variable."
+  },
+  "CVE-2006-6808": {
+    "score": "6.8",
+    "type": "Cross Site Scripting",
+    "desc": "Cross-site scripting (XSS) vulnerability in wp-admin/templates.php in WordPress 2.0.5 allows remote attackers to inject arbitrary web script or HTML via the file parameter.  NOTE: some sources have reported this as a vulnerability in the get_file_description function in wp-admin/admin-functions.php."
+  },
+  "CVE-2006-1796": {
+    "score": "6.8",
+    "type": "Cross Site Scripting",
+    "desc": "Cross-site scripting (XSS) vulnerability in the paging links functionality in template-functions-links.php in Wordpress 1.5.2, and possibly other versions before 2.0.1, allows remote attackers to inject arbitrary web script or HTML to Internet Explorer users via the request URI ($_SERVER['REQUEST_URI'])."
+  },
+  "CVE-2006-0985": {
+    "score": "4.3",
+    "type": "Cross Site Scripting",
+    "desc": "Multiple cross-site scripting (XSS) vulnerabilities in the \"post comment\" functionality of WordPress 2.0.1 and earlier allow remote attackers to inject arbitrary web script or HTML via the (1) name, (2) website, and (3) comment parameters."
+  },
+  "CVE-2005-4463": {
+    "score": "5.0",
+    "type": "Obtain Information",
+    "desc": "WordPress before 1.5.2 allows remote attackers to obtain sensitive information via a direct request to (1) wp-includes/vars.php, (2) wp-content/plugins/hello.php, (3) wp-admin/upgrade-functions.php, (4) wp-admin/edit-form.php, (5) wp-settings.php, and (6) wp-admin/edit-form-comment.php, which leaks the path in an error message related to undefined functions or failed includes.  NOTE: the wp-admin/menu-header.php vector is already covered by CVE-2005-2110. NOTE: the vars.php, edit-form.php, wp-settings.php, and edit-form-comment.php vectors were also reported to affect WordPress 2.0.1."
+  },
+  "CVE-2005-2110": {
+    "score": "5.0",
+    "type": "Obtain Information",
+    "desc": "WordPress 1.5.1.2 and earlier allows remote attackers to obtain sensitive information via (1) a direct request to menu-header.php or a \"1\" value in the feed parameter to (2) wp-atom.php, (3) wp-rss.php, or (4) wp-rss2.php, which reveal the path in an error message.  NOTE: vector [1] was later reported to also affect WordPress 2.0.1."
+  },
+  "CVE-2006-5705": {
+    "score": "6.0",
+    "type": "Directory traversal",
+    "desc": "Multiple directory traversal vulnerabilities in plugins/wp-db-backup.php in WordPress before 2.0.5 allow remote authenticated users to read or overwrite arbitrary files via directory traversal sequences in the (1) backup and (2) fragment parameters in a GET request."
+  },
+  "CVE-2011-3818": {
+    "score": "5.0",
+    "type": "Obtain Information",
+    "desc": "WordPress 2.9.2 and 3.0.4 allows remote attackers to obtain sensitive information via a direct request to a .php file, which reveals the installation path in an error message, as demonstrated by wp-admin/includes/user.php and certain other files."
+  },
+  "CVE-2005-2612": {
+    "score": "7.5",
+    "type": "Execute Code",
+    "desc": "Direct code injection vulnerability in WordPress 1.5.1.3 and earlier allows remote attackers to execute arbitrary PHP code via the cache_lastpostdate[server] cookie."
+  },
+  "CVE-2006-0986": {
+    "score": "5.0",
+    "type": "Obtain Information",
+    "desc": "WordPress 2.0.1 and earlier allows remote attackers to obtain sensitive information via a direct request to (1) default-filters.php, (2) template-loader.php, (3) rss-functions.php, (4) locale.php, (5) wp-db.php, and (6) kses.php in the wp-includes/ directory; and (7) edit-form-advanced.php, (8) admin-functions.php, (9) edit-link-form.php, (10) edit-page-form.php, (11) admin-footer.php, and (12) menu.php in the wp-admin directory; and possibly (13) list directory contents of the wp-includes directory.  NOTE: the vars.php, edit-form.php, wp-settings.php, and edit-form-comment.php vectors are already covered by CVE-2005-4463.  The menu-header.php vector is already covered by CVE-2005-2110.  Other vectors might be covered by CVE-2005-1688.  NOTE: if the typical installation of WordPress does not list any site-specific files to wp-includes, then vector [13] is not an exposure."
+  }
+}

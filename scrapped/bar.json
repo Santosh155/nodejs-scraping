@@ -1,0 +1,1992 @@
+{
+  "CVE-2021-42013": {
+    "score": "7.5",
+    "type": "Execute CodeDirectory traversal",
+    "desc": "It was found that the fix for CVE-2021-41773 in Apache HTTP Server 2.4.50 was insufficient. An attacker could use a path traversal attack to map URLs to files outside the directories configured by Alias-like directives. If files outside of these directories are not protected by the usual default configuration \"require all denied\", these requests can succeed. If CGI scripts are also enabled for these aliased pathes, this could allow for remote code execution. This issue only affects Apache 2.4.49 and Apache 2.4.50 and not earlier versions."
+  },
+  "CVE-2021-41773": {
+    "score": "4.3",
+    "type": "Execute CodeDirectory traversal",
+    "desc": "A flaw was found in a change made to path normalization in Apache HTTP Server 2.4.49. An attacker could use a path traversal attack to map URLs to files outside the directories configured by Alias-like directives. If files outside of these directories are not protected by the usual default configuration \"require all denied\", these requests can succeed. If CGI scripts are also enabled for these aliased pathes, this could allow for remote code execution. This issue is known to be exploited in the wild. This issue only affects Apache 2.4.49 and not earlier versions. The fix in Apache HTTP Server 2.4.50 was found to be incomplete, see CVE-2021-42013."
+  },
+  "CVE-2021-41524": {
+    "score": "5.0",
+    "type": "",
+    "desc": "While fuzzing the 2.4.49 httpd, a new null pointer dereference was detected during HTTP/2 request processing, allowing an external source to DoS the server. This requires a specially crafted request. The vulnerability was recently introduced in version 2.4.49. No exploit is known to the project."
+  },
+  "CVE-2021-31618": {
+    "score": "5.0",
+    "type": "",
+    "desc": "Apache HTTP Server protocol handler for the HTTP/2 protocol checks received request headers against the size limitations as configured for the server and used for the HTTP/1 protocol as well. On violation of these restrictions and HTTP response is sent to the client with a status code indicating why the request was rejected. This rejection response was not fully initialised in the HTTP/2 protocol handler if the offending header was the very first one received or appeared in a a footer. This led to a NULL pointer dereference on initialised memory, crashing reliably the child process. Since such a triggering HTTP/2 request is easy to craft and submit, this can be exploited to DoS the server. This issue affected mod_http2 1.15.17 and Apache HTTP Server version 2.4.47 only. Apache HTTP Server 2.4.47 was never released."
+  },
+  "CVE-2019-10097": {
+    "score": "6.0",
+    "type": "Overflow",
+    "desc": "In Apache HTTP Server 2.4.32-2.4.39, when mod_remoteip was configured to use a trusted intermediary proxy server using the \"PROXY\" protocol, a specially crafted PROXY header could trigger a stack buffer overflow or NULL pointer deference. This vulnerability could only be triggered by a trusted proxy and not by untrusted HTTP clients."
+  },
+  "CVE-2019-0215": {
+    "score": "6.0",
+    "type": "Bypass a restriction or similar",
+    "desc": "In Apache HTTP Server 2.4 releases 2.4.37 and 2.4.38, a bug in mod_ssl when using per-location client certificate verification with TLSv1.3 allowed a client to bypass configured access control restrictions."
+  },
+  "CVE-2018-17189": {
+    "score": "5.0",
+    "type": "",
+    "desc": "In Apache HTTP server versions 2.4.37 and prior, by sending request bodies in a slow loris way to plain resources, the h2 stream for that request unnecessarily occupied a server thread cleaning up that incoming data. This affects only HTTP/2 (mod_http2) connections."
+  },
+  "CVE-2018-8011": {
+    "score": "5.0",
+    "type": "",
+    "desc": "By specially crafting HTTP requests, the mod_md challenge handler would dereference a NULL pointer and cause the child process to segfault. This could be used to DoS the server. Fixed in Apache HTTP Server 2.4.34 (Affected 2.4.33)."
+  },
+  "CVE-2018-1333": {
+    "score": "5.0",
+    "type": "Denial Of Service",
+    "desc": "By specially crafting HTTP/2 requests, workers would be allocated 60 seconds longer than necessary, leading to worker exhaustion and a denial of service. Fixed in Apache HTTP Server 2.4.34 (Affected 2.4.18-2.4.30,2.4.33)."
+  },
+  "CVE-2017-15710": {
+    "score": "5.0",
+    "type": "Denial Of Service",
+    "desc": "In Apache httpd 2.0.23 to 2.0.65, 2.2.0 to 2.2.34, and 2.4.0 to 2.4.29, mod_authnz_ldap, if configured with AuthLDAPCharsetConfig, uses the Accept-Language header value to lookup the right charset encoding when verifying the user's credentials. If the header value is not present in the charset conversion table, a fallback mechanism is used to truncate it to a two characters value to allow a quick retry (for example, 'en-US' is truncated to 'en'). A header value of less than two characters forces an out of bound write of one NUL byte to a memory location that is not part of the string. In the worst case, quite unlikely, the process would crash which could be used as a Denial of Service attack. In the more likely case, this memory is already reserved for future use and the issue has no effect at all."
+  },
+  "CVE-2017-9798": {
+    "score": "5.0",
+    "type": "",
+    "desc": "Apache httpd allows remote attackers to read secret data from process memory if the Limit directive can be set in a user's .htaccess file, or if httpd.conf has certain misconfigurations, aka Optionsbleed. This affects the Apache HTTP Server through 2.2.34 and 2.4.x through 2.4.27. The attacker sends an unauthenticated OPTIONS HTTP request when attempting to read secret data. This is a use-after-free issue and thus secret data is not always sent, and the specific data depends on many factors including configuration. Exploitation with .htaccess can be blocked with a patch to the ap_limit_section function in server/core.c."
+  },
+  "CVE-2017-9789": {
+    "score": "5.0",
+    "type": "",
+    "desc": "When under stress, closing many connections, the HTTP/2 handling code in Apache httpd 2.4.26 would sometimes access memory after it has been freed, resulting in potentially erratic behaviour."
+  },
+  "CVE-2017-7668": {
+    "score": "7.5",
+    "type": "",
+    "desc": "The HTTP strict parsing changes added in Apache httpd 2.2.32 and 2.4.24 introduced a bug in token list parsing, which allows ap_find_token() to search past the end of its input string. By maliciously crafting a sequence of request headers, an attacker may be able to cause a segmentation fault, or to force ap_find_token() to return an incorrect value."
+  },
+  "CVE-2017-7659": {
+    "score": "5.0",
+    "type": "",
+    "desc": "A maliciously constructed HTTP/2 request could cause mod_http2 in Apache HTTP Server 2.4.24, 2.4.25 to dereference a NULL pointer and crash the server process."
+  },
+  "CVE-2017-3169": {
+    "score": "7.5",
+    "type": "",
+    "desc": "In Apache httpd 2.2.x before 2.2.33 and 2.4.x before 2.4.26, mod_ssl may dereference a NULL pointer when third-party modules call ap_hook_process_connection() during an HTTP request to an HTTPS port."
+  },
+  "CVE-2016-8743": {
+    "score": "5.0",
+    "type": "Http response splitting",
+    "desc": "Apache HTTP Server, in all releases prior to 2.2.32 and 2.4.25, was liberal in the whitespace accepted from requests and sent in response lines and headers. Accepting these different behaviors represented a security concern when httpd participates in any chain of proxies or interacts with back-end application servers, either through mod_proxy or using conventional CGI mechanisms, and may result in request smuggling, response splitting and cache pollution."
+  },
+  "CVE-2016-8740": {
+    "score": "5.0",
+    "type": "Denial Of Service",
+    "desc": "The mod_http2 module in the Apache HTTP Server 2.4.17 through 2.4.23, when the Protocols configuration includes h2 or h2c, does not restrict request-header length, which allows remote attackers to cause a denial of service (memory consumption) via crafted CONTINUATION frames in an HTTP/2 request."
+  },
+  "CVE-2016-4975": {
+    "score": "4.3",
+    "type": "Http response splitting",
+    "desc": "Possible CRLF injection allowing HTTP response splitting attacks for sites which use mod_userdir. This issue was mitigated by changes made in 2.4.25 and 2.2.32 which prohibit CR or LF injection into the \"Location\" or other outbound header key or value. Fixed in Apache HTTP Server 2.4.25 (Affected 2.4.1-2.4.23). Fixed in Apache HTTP Server 2.2.32 (Affected 2.2.0-2.2.31)."
+  },
+  "CVE-2016-2161": {
+    "score": "5.0",
+    "type": "",
+    "desc": "In Apache HTTP Server versions 2.4.0 to 2.4.23, malicious input to mod_auth_digest can cause the server to crash, and each instance continues to crash even for subsequently valid requests."
+  },
+  "CVE-2016-0736": {
+    "score": "5.0",
+    "type": "",
+    "desc": "In Apache HTTP Server versions 2.4.0 to 2.4.23, mod_session_crypto was encrypting its data/cookie using the configured ciphers with possibly either CBC or ECB modes of operation (AES256-CBC by default), hence no selectable or builtin authenticated encryption. This made it vulnerable to padding oracle attacks, particularly with CBC."
+  },
+  "CVE-2016-4979": {
+    "score": "5.0",
+    "type": "Bypass a restriction or similar",
+    "desc": "The Apache HTTP Server 2.4.18 through 2.4.20, when mod_http2 and mod_ssl are enabled, does not properly recognize the \"SSLVerifyClient require\" directive for HTTP/2 request authorization, which allows remote attackers to bypass intended access restrictions by leveraging the ability to send multiple requests over a single connection and aborting a renegotiation."
+  },
+  "CVE-2016-1546": {
+    "score": "4.3",
+    "type": "Denial Of Service",
+    "desc": "The Apache HTTP Server 2.4.17 and 2.4.18, when mod_http2 is enabled, does not limit the number of simultaneous stream workers for a single HTTP/2 connection, which allows remote attackers to cause a denial of service (stream-processing outage) via modified flow-control windows."
+  },
+  "CVE-2015-3185": {
+    "score": "4.3",
+    "type": "Bypass a restriction or similar",
+    "desc": "The ap_some_auth_required function in server/request.c in the Apache HTTP Server 2.4.x before 2.4.14 does not consider that a Require directive may be associated with an authorization setting rather than an authentication setting, which allows remote attackers to bypass intended access restrictions in opportunistic circumstances by leveraging the presence of a module that relies on the 2.2 API behavior."
+  },
+  "CVE-2015-0253": {
+    "score": "5.0",
+    "type": "Denial Of Service",
+    "desc": "The read_request_line function in server/protocol.c in the Apache HTTP Server 2.4.12 does not initialize the protocol structure member, which allows remote attackers to cause a denial of service (NULL pointer dereference and process crash) by sending a request that lacks a method to an installation that enables the INCLUDES filter and has an ErrorDocument 400 directive specifying a local URI."
+  },
+  "CVE-2014-8109": {
+    "score": "4.3",
+    "type": "Bypass a restriction or similar",
+    "desc": "mod_lua.c in the mod_lua module in the Apache HTTP Server 2.3.x and 2.4.x through 2.4.10 does not support an httpd configuration in which the same Lua authorization provider is used with different arguments within different contexts, which allows remote attackers to bypass intended access restrictions in opportunistic circumstances by leveraging multiple Require directives, as demonstrated by a configuration that specifies authorization for one group to access a certain directory, and authorization for a second group to access a second directory."
+  },
+  "CVE-2014-3583": {
+    "score": "5.0",
+    "type": "Denial Of ServiceOverflow",
+    "desc": "The handle_headers function in mod_proxy_fcgi.c in the mod_proxy_fcgi module in the Apache HTTP Server 2.4.10 allows remote FastCGI servers to cause a denial of service (buffer over-read and daemon crash) via long response headers."
+  },
+  "CVE-2014-0117": {
+    "score": "4.3",
+    "type": "Denial Of Service",
+    "desc": "The mod_proxy module in the Apache HTTP Server 2.4.x before 2.4.10, when a reverse proxy is enabled, allows remote attackers to cause a denial of service (child-process crash) via a crafted HTTP Connection header."
+  },
+  "CVE-2014-0231": {
+    "score": "5.0",
+    "type": "Denial Of Service",
+    "desc": "The mod_cgid module in the Apache HTTP Server before 2.4.10 does not have a timeout mechanism, which allows remote attackers to cause a denial of service (process hang) via a request to a CGI script that does not read from its stdin file descriptor."
+  },
+  "CVE-2014-0226": {
+    "score": "6.8",
+    "type": "Denial Of ServiceExecute CodeOverflowObtain Information",
+    "desc": "Race condition in the mod_status module in the Apache HTTP Server before 2.4.10 allows remote attackers to cause a denial of service (heap-based buffer overflow), or possibly obtain sensitive credential information or execute arbitrary code, via a crafted request that triggers improper scoreboard handling within the status_handler function in modules/generators/mod_status.c and the lua_ap_scoreboard_worker function in modules/lua/lua_request.c."
+  },
+  "CVE-2014-0118": {
+    "score": "4.3",
+    "type": "Denial Of Service",
+    "desc": "The deflate_in_filter function in mod_deflate.c in the mod_deflate module in the Apache HTTP Server before 2.4.10, when request body decompression is enabled, allows remote attackers to cause a denial of service (resource consumption) via crafted request data that decompresses to a much larger size."
+  },
+  "CVE-2014-0098": {
+    "score": "5.0",
+    "type": "Denial Of Service",
+    "desc": "The log_cookie function in mod_log_config.c in the mod_log_config module in the Apache HTTP Server before 2.4.8 allows remote attackers to cause a denial of service (segmentation fault and daemon crash) via a crafted cookie that is not properly handled during truncation."
+  },
+  "CVE-2013-6438": {
+    "score": "5.0",
+    "type": "Denial Of Service",
+    "desc": "The dav_xml_get_cdata function in main/util.c in the mod_dav module in the Apache HTTP Server before 2.4.8 does not properly remove whitespace characters from CDATA sections, which allows remote attackers to cause a denial of service (daemon crash) via a crafted DAV WRITE request."
+  },
+  "CVE-2013-4352": {
+    "score": "4.3",
+    "type": "Denial Of Service",
+    "desc": "The cache_invalidate function in modules/cache/cache_storage.c in the mod_cache module in the Apache HTTP Server 2.4.6, when a caching forward proxy is enabled, allows remote HTTP servers to cause a denial of service (NULL pointer dereference and daemon crash) via vectors that trigger a missing hostname value."
+  },
+  "CVE-2013-2249": {
+    "score": "7.5",
+    "type": "",
+    "desc": "mod_session_dbd.c in the mod_session_dbd module in the Apache HTTP Server before 2.4.5 proceeds with save operations for a session without considering the dirty flag and the requirement for a new session ID, which has unspecified impact and remote attack vectors."
+  },
+  "CVE-2012-4558": {
+    "score": "4.3",
+    "type": "Cross Site Scripting",
+    "desc": "Multiple cross-site scripting (XSS) vulnerabilities in the balancer_handler function in the manager interface in mod_proxy_balancer.c in the mod_proxy_balancer module in the Apache HTTP Server 2.2.x before 2.2.24-dev and 2.4.x before 2.4.4 allow remote attackers to inject arbitrary web script or HTML via a crafted string."
+  },
+  "CVE-2012-3499": {
+    "score": "4.3",
+    "type": "Cross Site Scripting",
+    "desc": "Multiple cross-site scripting (XSS) vulnerabilities in the Apache HTTP Server 2.2.x before 2.2.24-dev and 2.4.x before 2.4.4 allow remote attackers to inject arbitrary web script or HTML via vectors involving hostnames and URIs in the (1) mod_imagemap, (2) mod_info, (3) mod_ldap, (4) mod_proxy_ftp, and (5) mod_status modules."
+  },
+  "CVE-2012-3502": {
+    "score": "4.3",
+    "type": "Obtain Information",
+    "desc": "The proxy functionality in (1) mod_proxy_ajp.c in the mod_proxy_ajp module and (2) mod_proxy_http.c in the mod_proxy_http module in the Apache HTTP Server 2.4.x before 2.4.3 does not properly determine the situations that require closing a back-end connection, which allows remote attackers to obtain sensitive information in opportunistic circumstances by reading a response that was intended for a different client."
+  },
+  "CVE-2012-2687": {
+    "score": "2.6",
+    "type": "Cross Site Scripting",
+    "desc": "Multiple cross-site scripting (XSS) vulnerabilities in the make_variant_list function in mod_negotiation.c in the mod_negotiation module in the Apache HTTP Server 2.4.x before 2.4.3, when the MultiViews option is enabled, allow remote attackers to inject arbitrary web script or HTML via a crafted filename that is not properly handled during construction of a variant list."
+  },
+  "CVE-2012-0883": {
+    "score": "6.9",
+    "type": "Gain privileges",
+    "desc": "envvars (aka envvars-std) in the Apache HTTP Server before 2.4.2 places a zero-length directory name in the LD_LIBRARY_PATH, which allows local users to gain privileges via a Trojan horse DSO in the current working directory during execution of apachectl."
+  },
+  "CVE-2012-1181": {
+    "score": "5.0",
+    "type": "Denial Of ServiceOverflow",
+    "desc": "fcgid_spawn_ctl.c in the mod_fcgid module 2.3.6 for the Apache HTTP Server does not recognize the FcgidMaxProcessesPerClass directive for a virtual host, which makes it easier for remote attackers to cause a denial of service (memory consumption) via a series of HTTP requests that triggers a process count higher than the intended limit."
+  },
+  "CVE-2009-1890": {
+    "score": "7.1",
+    "type": "Denial Of Service",
+    "desc": "The stream_reqbody_cl function in mod_proxy_http.c in the mod_proxy module in the Apache HTTP Server before 2.3.3, when a reverse proxy is configured, does not properly handle an amount of streamed data that exceeds the Content-Length value, which allows remote attackers to cause a denial of service (CPU consumption) via crafted requests."
+  },
+  "CVE-2007-3847": {
+    "score": "5.0",
+    "type": "Denial Of Service",
+    "desc": "The date handling code in modules/proxy/proxy_util.c (mod_proxy) in Apache 2.3.0, when using a threaded MPM, allows remote origin servers to cause a denial of service (caching forward proxy process crash) via crafted date headers that trigger a buffer over-read."
+  },
+  "CVE-2013-1862": {
+    "score": "5.1",
+    "type": "Execute Code",
+    "desc": "mod_rewrite.c in the mod_rewrite module in the Apache HTTP Server 2.2.x before 2.2.25 writes data to a log file without sanitizing non-printable characters, which might allow remote attackers to execute arbitrary commands via an HTTP request containing an escape sequence for a terminal emulator."
+  },
+  "CVE-2013-1896": {
+    "score": "4.3",
+    "type": "Denial Of Service",
+    "desc": "mod_dav.c in the Apache HTTP Server before 2.2.25 does not properly determine whether DAV is enabled for a URI, which allows remote attackers to cause a denial of service (segmentation fault) via a MERGE request in which the URI is configured for handling by the mod_dav_svn module, but a certain href attribute in XML data refers to a non-DAV URI."
+  },
+  "CVE-2013-5704": {
+    "score": "5.0",
+    "type": "Bypass a restriction or similar",
+    "desc": "The mod_headers module in the Apache HTTP Server 2.2.22 allows remote attackers to bypass \"RequestHeader unset\" directives by placing a header in the trailer portion of data sent with chunked transfer coding.  NOTE: the vendor states \"this is not a security issue in httpd as such.\""
+  },
+  "CVE-2012-4557": {
+    "score": "5.0",
+    "type": "Denial Of Service",
+    "desc": "The mod_proxy_ajp module in the Apache HTTP Server 2.2.12 through 2.2.21 places a worker node into an error state upon detection of a long request-processing time, which allows remote attackers to cause a denial of service (worker consumption) via an expensive request."
+  },
+  "CVE-2012-0053": {
+    "score": "4.3",
+    "type": "Obtain Information",
+    "desc": "protocol.c in the Apache HTTP Server 2.2.x through 2.2.21 does not properly restrict header information during construction of Bad Request (aka 400) error documents, which allows remote attackers to obtain the values of HTTPOnly cookies via vectors involving a (1) long or (2) malformed header in conjunction with crafted web script."
+  },
+  "CVE-2012-0021": {
+    "score": "2.6",
+    "type": "Denial Of Service",
+    "desc": "The log_cookie function in mod_log_config.c in the mod_log_config module in the Apache HTTP Server 2.2.17 through 2.2.21, when a threaded MPM is used, does not properly handle a %{}C format string, which allows remote attackers to cause a denial of service (daemon crash) via a cookie that lacks both a name and a value."
+  },
+  "CVE-2011-4415": {
+    "score": "1.2",
+    "type": "Denial Of Service",
+    "desc": "The ap_pregsub function in server/util.c in the Apache HTTP Server 2.0.x through 2.0.64 and 2.2.x through 2.2.21, when the mod_setenvif module is enabled, does not restrict the size of values of environment variables, which allows local users to cause a denial of service (memory consumption or NULL pointer dereference) via a .htaccess file with a crafted SetEnvIf directive, in conjunction with a crafted HTTP request header, related to (1) the \"len +=\" statement and (2) the apr_pcalloc function call, a different vulnerability than CVE-2011-3607."
+  },
+  "CVE-2011-4317": {
+    "score": "4.3",
+    "type": "",
+    "desc": "The mod_proxy module in the Apache HTTP Server 1.3.x through 1.3.42, 2.0.x through 2.0.64, and 2.2.x through 2.2.21, when the Revision 1179239 patch is in place, does not properly interact with use of (1) RewriteRule and (2) ProxyPassMatch pattern matches for configuration of a reverse proxy, which allows remote attackers to send requests to intranet servers via a malformed URI containing an @ (at sign) character and a : (colon) character in invalid positions.  NOTE: this vulnerability exists because of an incomplete fix for CVE-2011-3368."
+  },
+  "CVE-2011-3607": {
+    "score": "4.4",
+    "type": "OverflowGain privileges",
+    "desc": "Integer overflow in the ap_pregsub function in server/util.c in the Apache HTTP Server 2.0.x through 2.0.64 and 2.2.x through 2.2.21, when the mod_setenvif module is enabled, allows local users to gain privileges via a .htaccess file with a crafted SetEnvIf directive, in conjunction with a crafted HTTP request header, leading to a heap-based buffer overflow."
+  },
+  "CVE-2011-3368": {
+    "score": "5.0",
+    "type": "",
+    "desc": "The mod_proxy module in the Apache HTTP Server 1.3.x through 1.3.42, 2.0.x through 2.0.64, and 2.2.x through 2.2.21 does not properly interact with use of (1) RewriteRule and (2) ProxyPassMatch pattern matches for configuration of a reverse proxy, which allows remote attackers to send requests to intranet servers via a malformed URI containing an initial @ (at sign) character."
+  },
+  "CVE-2012-0031": {
+    "score": "4.6",
+    "type": "Denial Of Service",
+    "desc": "scoreboard.c in the Apache HTTP Server 2.2.21 and earlier might allow local users to cause a denial of service (daemon crash during shutdown) or possibly have unspecified other impact by modifying a certain type field within a scoreboard shared memory segment, leading to an invalid call to the free function."
+  },
+  "CVE-2011-3192": {
+    "score": "7.8",
+    "type": "Denial Of Service",
+    "desc": "The byterange filter in the Apache HTTP Server 1.3.x, 2.0.x through 2.0.64, and 2.2.x through 2.2.19 allows remote attackers to cause a denial of service (memory and CPU consumption) via a Range header that expresses multiple overlapping ranges, as exploited in the wild in August 2011, a different vulnerability than CVE-2007-0086."
+  },
+  "CVE-2011-3348": {
+    "score": "4.3",
+    "type": "Denial Of Service",
+    "desc": "The mod_proxy_ajp module in the Apache HTTP Server before 2.2.21, when used with mod_proxy_balancer in certain configurations, allows remote attackers to cause a denial of service (temporary \"error state\" in the backend server) via a malformed HTTP request."
+  },
+  "CVE-2011-1928": {
+    "score": "4.3",
+    "type": "Denial Of Service",
+    "desc": "The fnmatch implementation in apr_fnmatch.c in the Apache Portable Runtime (APR) library 1.4.3 and 1.4.4, and the Apache HTTP Server 2.2.18, allows remote attackers to cause a denial of service (infinite loop) via a URI that does not match unspecified types of wildcard patterns, as demonstrated by attacks against mod_autoindex in httpd when a /*/WEB-INF/ configuration pattern is used.  NOTE: this issue exists because of an incorrect fix for CVE-2011-0419."
+  },
+  "CVE-2011-3639": {
+    "score": "4.3",
+    "type": "",
+    "desc": "The mod_proxy module in the Apache HTTP Server 2.0.x through 2.0.64 and 2.2.x before 2.2.18, when the Revision 1179239 patch is in place, does not properly interact with use of (1) RewriteRule and (2) ProxyPassMatch pattern matches for configuration of a reverse proxy, which allows remote attackers to send requests to intranet servers by using the HTTP/0.9 protocol with a malformed URI containing an initial @ (at sign) character.  NOTE: this vulnerability exists because of an incomplete fix for CVE-2011-3368."
+  },
+  "CVE-2011-0419": {
+    "score": "4.3",
+    "type": "Denial Of Service",
+    "desc": "Stack consumption vulnerability in the fnmatch implementation in apr_fnmatch.c in the Apache Portable Runtime (APR) library before 1.4.3 and the Apache HTTP Server before 2.2.18, and in fnmatch.c in libc in NetBSD 5.1, OpenBSD 4.8, FreeBSD, Apple Mac OS X 10.6, Oracle Solaris 10, and Android, allows context-dependent attackers to cause a denial of service (CPU and memory consumption) via *? sequences in the first argument, as demonstrated by attacks against mod_autoindex in httpd."
+  },
+  "CVE-2010-1452": {
+    "score": "5.0",
+    "type": "Denial Of Service",
+    "desc": "The (1) mod_cache and (2) mod_dav modules in the Apache HTTP Server 2.2.x before 2.2.16 allow remote attackers to cause a denial of service (process crash) via a request that lacks a path."
+  },
+  "CVE-2017-12171": {
+    "score": "6.4",
+    "type": "",
+    "desc": "A regression was found in the Red Hat Enterprise Linux 6.9 version of httpd 2.2.15-60, causing comments in the \"Allow\" and \"Deny\" configuration lines to be parsed incorrectly. A web administrator could unintentionally allow any client to access a restricted HTTP resource."
+  },
+  "CVE-2010-0434": {
+    "score": "4.3",
+    "type": "Obtain Information",
+    "desc": "The ap_read_request function in server/protocol.c in the Apache HTTP Server 2.2.x before 2.2.15, when a multithreaded MPM is used, does not properly handle headers in subrequests in certain circumstances involving a parent request that has a body, which might allow remote attackers to obtain sensitive information via a crafted request that triggers access to memory locations associated with an earlier request."
+  },
+  "CVE-2010-0408": {
+    "score": "5.0",
+    "type": "Denial Of Service",
+    "desc": "The ap_proxy_ajp_request function in mod_proxy_ajp.c in mod_proxy_ajp in the Apache HTTP Server 2.2.x before 2.2.15 does not properly handle certain situations in which a client sends no request body, which allows remote attackers to cause a denial of service (backend server outage) via a crafted request, related to use of a 500 error code instead of the appropriate 400 error code."
+  },
+  "CVE-2009-3094": {
+    "score": "2.6",
+    "type": "Denial Of Service",
+    "desc": "The ap_proxy_ftp_handler function in modules/proxy/proxy_ftp.c in the mod_proxy_ftp module in the Apache HTTP Server 2.0.63 and 2.2.13 allows remote FTP servers to cause a denial of service (NULL pointer dereference and child process crash) via a malformed reply to an EPSV command."
+  },
+  "CVE-2007-6750": {
+    "score": "5.0",
+    "type": "Denial Of Service",
+    "desc": "The Apache HTTP Server 1.x and 2.x allows remote attackers to cause a denial of service (daemon outage) via partial HTTP requests, as demonstrated by Slowloris, related to the lack of the mod_reqtimeout module in versions before 2.2.15."
+  },
+  "CVE-2009-1891": {
+    "score": "7.1",
+    "type": "Denial Of Service",
+    "desc": "The mod_deflate module in Apache httpd 2.2.11 and earlier compresses large files until completion even after the associated network connection is closed, which allows remote attackers to cause a denial of service (CPU consumption)."
+  },
+  "CVE-2009-1195": {
+    "score": "4.9",
+    "type": "Gain privileges",
+    "desc": "The Apache HTTP Server 2.2.11 and earlier 2.2 versions does not properly handle Options=IncludesNOEXEC in the AllowOverride directive, which allows local users to gain privileges by configuring (1) Options Includes, (2) Options +Includes, or (3) Options +IncludesNOEXEC in a .htaccess file, and then inserting an exec element in a .shtml file."
+  },
+  "CVE-2008-2939": {
+    "score": "4.3",
+    "type": "Cross Site Scripting",
+    "desc": "Cross-site scripting (XSS) vulnerability in proxy_ftp.c in the mod_proxy_ftp module in Apache 2.0.63 and earlier, and mod_proxy_ftp.c in the mod_proxy_ftp module in Apache 2.2.9 and earlier 2.2 versions, allows remote attackers to inject arbitrary web script or HTML via a wildcard in the last directory component in the pathname in an FTP URI."
+  },
+  "CVE-2008-2364": {
+    "score": "5.0",
+    "type": "Denial Of Service",
+    "desc": "The ap_proxy_http_process_response function in mod_proxy_http.c in the mod_proxy module in the Apache HTTP Server 2.0.63 and 2.2.8 does not limit the number of forwarded interim responses, which allows remote HTTP servers to cause a denial of service (memory consumption) via a large number of interim responses."
+  },
+  "CVE-2008-0455": {
+    "score": "4.3",
+    "type": "Cross Site Scripting",
+    "desc": "Cross-site scripting (XSS) vulnerability in the mod_negotiation module in the Apache HTTP Server 2.2.6 and earlier in the 2.2.x series, 2.0.61 and earlier in the 2.0.x series, and 1.3.39 and earlier in the 1.3.x series allows remote authenticated users to inject arbitrary web script or HTML by uploading a file with a name containing XSS sequences and a file extension, which leads to injection within a (1) \"406 Not Acceptable\" or (2) \"300 Multiple Choices\" HTTP response when the extension is omitted in a request for the file."
+  },
+  "CVE-2007-6514": {
+    "score": "4.3",
+    "type": "Obtain Information",
+    "desc": "Apache HTTP Server, when running on Linux with a document root on a Windows share mounted using smbfs, allows remote attackers to obtain unprocessed content such as source files for .php programs via a trailing \"\\\" (backslash), which is not handled by the intended AddType directive."
+  },
+  "CVE-2007-6422": {
+    "score": "4.0",
+    "type": "Denial Of Service",
+    "desc": "The balancer_handler function in mod_proxy_balancer in the Apache HTTP Server 2.2.0 through 2.2.6, when a threaded Multi-Processing Module is used, allows remote authenticated users to cause a denial of service (child process crash) via an invalid bb variable."
+  },
+  "CVE-2007-6421": {
+    "score": "3.5",
+    "type": "Cross Site Scripting",
+    "desc": "Cross-site scripting (XSS) vulnerability in balancer-manager in mod_proxy_balancer in the Apache HTTP Server 2.2.0 through 2.2.6 allows remote attackers to inject arbitrary web script or HTML via the (1) ss, (2) wr, or (3) rr parameters, or (4) the URL."
+  },
+  "CVE-2007-6420": {
+    "score": "4.3",
+    "type": "Gain privilegesCSRF",
+    "desc": "Cross-site request forgery (CSRF) vulnerability in the balancer-manager in mod_proxy_balancer for Apache HTTP Server 2.2.x allows remote attackers to gain privileges via unspecified vectors."
+  },
+  "CVE-2007-6388": {
+    "score": "4.3",
+    "type": "Cross Site Scripting",
+    "desc": "Cross-site scripting (XSS) vulnerability in mod_status in the Apache HTTP Server 2.2.0 through 2.2.6, 2.0.35 through 2.0.61, and 1.3.2 through 1.3.39, when the server-status page is enabled, allows remote attackers to inject arbitrary web script or HTML via unspecified vectors."
+  },
+  "CVE-2007-5000": {
+    "score": "4.3",
+    "type": "Cross Site Scripting",
+    "desc": "Cross-site scripting (XSS) vulnerability in the (1) mod_imap module in the Apache HTTP Server 1.3.0 through 1.3.39 and 2.0.35 through 2.0.61 and the (2) mod_imagemap module in the Apache HTTP Server 2.2.0 through 2.2.6 allows remote attackers to inject arbitrary web script or HTML via unspecified vectors."
+  },
+  "CVE-2008-2168": {
+    "score": "4.3",
+    "type": "Cross Site Scripting",
+    "desc": "Cross-site scripting (XSS) vulnerability in Apache 2.2.6 and earlier allows remote attackers to inject arbitrary web script or HTML via UTF-7 encoded URLs that are not properly handled when displaying the 403 Forbidden error page."
+  },
+  "CVE-2007-6203": {
+    "score": "4.3",
+    "type": "Cross Site Scripting",
+    "desc": "Apache HTTP Server 2.0.x and 2.2.x does not sanitize the HTTP Method specifier header from an HTTP request when it is reflected back in a \"413 Request Entity Too Large\" error message, which might allow cross-site scripting (XSS) style attacks using web client components that can send arbitrary headers in requests, as demonstrated via an HTTP request containing an invalid Content-length value, a similar issue to CVE-2006-3918."
+  },
+  "CVE-2007-4465": {
+    "score": "4.3",
+    "type": "Cross Site Scripting",
+    "desc": "Cross-site scripting (XSS) vulnerability in mod_autoindex.c in the Apache HTTP Server before 2.2.6, when the charset on a server-generated page is not defined, allows remote attackers to inject arbitrary web script or HTML via the P parameter using the UTF-7 charset.  NOTE: it could be argued that this issue is due to a design limitation of browsers that attempt to perform automatic content type detection."
+  },
+  "CVE-2007-3304": {
+    "score": "4.7",
+    "type": "Denial Of Service",
+    "desc": "Apache httpd 1.3.37, 2.0.59, and 2.2.4 with the Prefork MPM module, allows local users to cause a denial of service by modifying the worker_score and process_score arrays to reference an arbitrary process ID, which is sent a SIGUSR1 signal from the master process, aka \"SIGUSR1 killer.\""
+  },
+  "CVE-2007-3303": {
+    "score": "4.9",
+    "type": "Denial Of ServiceExecute Code",
+    "desc": "Apache httpd 2.0.59 and 2.2.4, with the Prefork MPM module, allows local users to cause a denial of service via certain code sequences executed in a worker process that (1) stop request processing by killing all worker processes and preventing creation of replacements or (2) hang the system by forcing the master process to fork an arbitrarily large number of worker processes.  NOTE: This might be an inherent design limitation of Apache with respect to worker processes in hosted environments."
+  },
+  "CVE-2007-1862": {
+    "score": "5.0",
+    "type": "Obtain Information",
+    "desc": "The recall_headers function in mod_mem_cache in Apache 2.2.4 does not properly copy all levels of header data, which can cause Apache to return HTTP headers containing previously used data, which could be used by remote attackers to obtain potentially sensitive information."
+  },
+  "CVE-2007-1743": {
+    "score": "4.4",
+    "type": "",
+    "desc": "suexec in Apache HTTP Server (httpd) 2.2.3 does not verify combinations of user and group IDs on the command line, which might allow local users to leverage other vulnerabilities to create arbitrary UID/GID owned files if /proc is mounted.  NOTE: the researcher, who is reliable, claims that the vendor disputes the issue because \"the attacks described rely on an insecure server configuration\" in which the user \"has write access to the document root.\"  In addition, because this is dependent on other vulnerabilities, perhaps this is resultant and should not be included in CVE."
+  },
+  "CVE-2007-1742": {
+    "score": "3.7",
+    "type": "",
+    "desc": "suexec in Apache HTTP Server (httpd) 2.2.3 uses a partial comparison for verifying whether the current directory is within the document root, which might allow local users to perform unauthorized operations on incorrect directories, as demonstrated using \"html_backup\" and \"htmleditor\" under an \"html\" directory.  NOTE: the researcher, who is reliable, claims that the vendor disputes the issue because \"the attacks described rely on an insecure server configuration\" in which the user \"has write access to the document root.\""
+  },
+  "CVE-2007-1741": {
+    "score": "6.2",
+    "type": "Execute CodeGain privileges",
+    "desc": "Multiple race conditions in suexec in Apache HTTP Server (httpd) 2.2.3 between directory and file validation, and their usage, allow local users to gain privileges and execute arbitrary code by renaming directories or performing symlink attacks. NOTE: the researcher, who is reliable, claims that the vendor disputes the issue because \"the attacks described rely on an insecure server configuration\" in which the user \"has write access to the document root.\""
+  },
+  "CVE-2006-4154": {
+    "score": "6.8",
+    "type": "Execute Code",
+    "desc": "Format string vulnerability in the mod_tcl module 1.0 for Apache 2.x allows context-dependent attackers to execute arbitrary code via format string specifiers that are not properly handled in a set_var function call in (1) tcl_cmds.c and (2) tcl_core.c."
+  },
+  "CVE-2006-3918": {
+    "score": "4.3",
+    "type": "Cross Site Scripting",
+    "desc": "http_protocol.c in (1) IBM HTTP Server 6.0 before 6.0.2.13 and 6.1 before 6.1.0.1, and (2) Apache HTTP Server 1.3 before 1.3.35, 2.0 before 2.0.58, and 2.2 before 2.2.2, does not sanitize the Expect header from an HTTP request when it is reflected back in an error message, which might allow cross-site scripting (XSS) style attacks using web client components that can send arbitrary headers in requests, as demonstrated using a Flash SWF file."
+  },
+  "CVE-2005-2700": {
+    "score": "10.0",
+    "type": "Bypass a restriction or similar",
+    "desc": "ssl_engine_kernel.c in mod_ssl before 2.8.24, when using \"SSLVerifyClient optional\" in the global virtual host configuration, does not properly enforce \"SSLVerifyClient require\" in a per-location context, which allows remote attackers to bypass intended access restrictions."
+  },
+  "CVE-2006-3747": {
+    "score": "7.6",
+    "type": "Denial Of ServiceExecute Code",
+    "desc": "Off-by-one error in the ldap scheme handling in the Rewrite module (mod_rewrite) in Apache 1.3 from 1.3.28, 2.0.46 and other versions before 2.0.59, and 2.2, when RewriteEngine is enabled, allows remote attackers to cause a denial of service (application crash) and possibly execute arbitrary code via crafted URLs that are not properly handled using certain rewrite rules."
+  },
+  "CVE-2005-3357": {
+    "score": "5.4",
+    "type": "Denial Of Service",
+    "desc": "mod_ssl in Apache 2.0 up to 2.0.55, when configured with an SSL vhost with access control and a custom error 400 error page, allows remote attackers to cause a denial of service (application crash) via a non-SSL request to an SSL port, which triggers a NULL pointer dereference."
+  },
+  "CVE-2005-3352": {
+    "score": "4.3",
+    "type": "Cross Site Scripting",
+    "desc": "Cross-site scripting (XSS) vulnerability in the mod_imap module of Apache httpd before 1.3.35-dev and Apache httpd 2.0.x before 2.0.56-dev allows remote attackers to inject arbitrary web script or HTML via the Referer when using image maps."
+  },
+  "CVE-2005-2088": {
+    "score": "4.3",
+    "type": "Cross Site ScriptingBypass a restriction or similar",
+    "desc": "The Apache HTTP server before 1.3.34, and 2.0.x before 2.0.55, when acting as an HTTP proxy, allows remote attackers to poison the web cache, bypass web application firewall protection, and conduct XSS attacks via an HTTP request with both a \"Transfer-Encoding: chunked\" header and a Content-Length header, which causes Apache to incorrectly handle and forward the body of the request in a way that causes the receiving server to process it as a separate HTTP request, aka \"HTTP Request Smuggling.\""
+  },
+  "CVE-2005-2728": {
+    "score": "5.0",
+    "type": "Denial Of Service",
+    "desc": "The byte-range filter in Apache 2.0 before 2.0.54 allows remote attackers to cause a denial of service (memory consumption) via an HTTP header with a large Range field."
+  },
+  "CVE-2005-1344": {
+    "score": "7.5",
+    "type": "Execute CodeOverflow",
+    "desc": "Buffer overflow in htdigest in Apache 2.0.52 may allow attackers to execute arbitrary code via a long realm argument.  NOTE: since htdigest is normally only locally accessible and not setuid or setgid, there are few attack vectors which would lead to an escalation of privileges, unless htdigest is executed from a CGI program.  Therefore this may not be a vulnerability."
+  },
+  "CVE-2004-0885": {
+    "score": "7.5",
+    "type": "Bypass a restriction or similar",
+    "desc": "The mod_ssl module in Apache 2.0.35 through 2.0.52, when using the \"SSLCipherSuite\" directive in directory or location context, allows remote clients to bypass intended restrictions by using any cipher suite that is allowed by the virtual host configuration."
+  },
+  "CVE-2004-0811": {
+    "score": "7.5",
+    "type": "",
+    "desc": "Unknown vulnerability in Apache 2.0.51 prevents \"the merging of the Satisfy directive,\" which could allow attackers to obtain access to restricted resources contrary to the specified authentication configuration."
+  },
+  "CVE-2004-0809": {
+    "score": "5.0",
+    "type": "Denial Of Service",
+    "desc": "The mod_dav module in Apache 2.0.50 and earlier allows remote attackers to cause a denial of service (child process crash) via a certain sequence of LOCK requests for a location that allows WebDAV authoring access."
+  },
+  "CVE-2004-0786": {
+    "score": "5.0",
+    "type": "Denial Of Service",
+    "desc": "The IPv6 URI parsing routines in the apr-util library for Apache 2.0.50 and earlier allow remote attackers to cause a denial of service (child process crash) via a certain URI, as demonstrated using the Codenomicon HTTP Test Tool."
+  },
+  "CVE-2004-0751": {
+    "score": "5.0",
+    "type": "Denial Of Service",
+    "desc": "The char_buffer_read function in the mod_ssl module for Apache 2.x, when using reverse proxying to an SSL server, allows remote attackers to cause a denial of service (segmentation fault)."
+  },
+  "CVE-2004-0748": {
+    "score": "5.0",
+    "type": "Denial Of Service",
+    "desc": "mod_ssl in Apache 2.0.50 and earlier allows remote attackers to cause a denial of service (CPU consumption) by aborting an SSL connection in a way that causes an Apache child process to enter an infinite loop."
+  },
+  "CVE-2004-0747": {
+    "score": "4.6",
+    "type": "OverflowGain privileges",
+    "desc": "Buffer overflow in Apache 2.0.50 and earlier allows local users to gain apache privileges via a .htaccess file that causes the overflow during expansion of environment variables."
+  },
+  "CVE-2004-1834": {
+    "score": "2.1",
+    "type": "",
+    "desc": "mod_disk_cache in Apache 2.0 through 2.0.49 stores client headers, including authentication information, on the hard disk, which could allow local users to gain sensitive information."
+  },
+  "CVE-2004-0493": {
+    "score": "6.4",
+    "type": "Denial Of ServiceOverflow",
+    "desc": "The ap_get_mime_headers_core function in Apache httpd 2.0.49 allows remote attackers to cause a denial of service (memory exhaustion), and possibly an integer signedness error leading to a heap-based buffer overflow on 64 bit systems, via long header lines with large numbers of space or tab characters."
+  },
+  "CVE-2004-0488": {
+    "score": "7.5",
+    "type": "Execute CodeOverflow",
+    "desc": "Stack-based buffer overflow in the ssl_util_uuencode_binary function in ssl_util.c for Apache mod_ssl, when mod_ssl is configured to trust the issuing CA, may allow remote attackers to execute arbitrary code via a client certificate with a long subject DN."
+  },
+  "CVE-2004-0263": {
+    "score": "5.0",
+    "type": "Obtain Information",
+    "desc": "PHP 4.3.4 and earlier in Apache 1.x and 2.x (mod_php) can leak global variables between virtual hosts that are handled by the same Apache child process but have different settings, which could allow remote attackers to obtain sensitive information."
+  },
+  "CVE-2004-0113": {
+    "score": "5.0",
+    "type": "Denial Of Service",
+    "desc": "Memory leak in ssl_engine_io.c for mod_ssl in Apache 2 before 2.0.49 allows remote attackers to cause a denial of service (memory consumption) via plain HTTP requests to the SSL port of an SSL-enabled server."
+  },
+  "CVE-2003-1307": {
+    "score": "4.3",
+    "type": "",
+    "desc": "** DISPUTED **  The mod_php module for the Apache HTTP Server allows local users with write access to PHP scripts to send signals to the server's process group and use the server's file descriptors, as demonstrated by sending a STOP signal, then intercepting incoming connections on the server's TCP port.  NOTE: the PHP developer has disputed this vulnerability, saying \"The opened file descriptors are opened by Apache. It is the job of Apache to protect them ... Not a bug in PHP.\""
+  },
+  "CVE-2003-0542": {
+    "score": "7.2",
+    "type": "Denial Of ServiceExecute CodeOverflow",
+    "desc": "Multiple stack-based buffer overflows in (1) mod_alias and (2) mod_rewrite for Apache before 1.3.29 allow attackers to create configuration files to cause a denial of service (crash) or execute arbitrary code via a regular expression with more than 9 captures."
+  },
+  "CVE-2003-0254": {
+    "score": "5.0",
+    "type": "Denial Of Service",
+    "desc": "Apache 2 before 2.0.47, when running on an IPv6 host, allows attackers to cause a denial of service (CPU consumption by infinite loop) when the FTP proxy server fails to create an IPv6 socket."
+  },
+  "CVE-2003-0253": {
+    "score": "5.0",
+    "type": "Denial Of Service",
+    "desc": "The prefork MPM in Apache 2 before 2.0.47 does not properly handle certain errors from accept, which could lead to a denial of service."
+  },
+  "CVE-2003-0245": {
+    "score": "5.0",
+    "type": "Denial Of ServiceExecute Code",
+    "desc": "Vulnerability in the apr_psprintf function in the Apache Portable Runtime (APR) library for Apache 2.0.37 through 2.0.45 allows remote attackers to cause a denial of service (crash) and possibly execute arbitrary code via long strings, as demonstrated using XML objects to mod_dav, and possibly other vectors."
+  },
+  "CVE-2003-0192": {
+    "score": "6.4",
+    "type": "",
+    "desc": "Apache 2 before 2.0.47, and certain versions of mod_ssl for Apache 1.3, do not properly handle \"certain sequences of per-directory renegotiations and the SSLCipherSuite directive being used to upgrade from a weak ciphersuite to a strong one,\" which could cause Apache to use the weak ciphersuite."
+  },
+  "CVE-2003-0189": {
+    "score": "5.0",
+    "type": "Denial Of Service",
+    "desc": "The authentication module for Apache 2.0.40 through 2.0.45 on Unix does not properly handle threads safely when using the crypt_r or crypt functions, which allows remote attackers to cause a denial of service (failed Basic authentication with valid usernames and passwords) when a threaded MPM is used."
+  },
+  "CVE-2003-0134": {
+    "score": "5.0",
+    "type": "Denial Of Service",
+    "desc": "Unknown vulnerability in filestat.c for Apache running on OS2, versions 2.0 through 2.0.45, allows unknown attackers to cause a denial of service via requests related to device names."
+  },
+  "CVE-2003-1581": {
+    "score": "2.6",
+    "type": "Cross Site Scripting",
+    "desc": "The Apache HTTP Server 2.0.44, when DNS resolution is enabled for client IP addresses, allows remote attackers to inject arbitrary text into log files via an HTTP request in conjunction with a crafted DNS response, as demonstrated by injecting XSS sequences, related to an \"Inverse Lookup Log Corruption (ILLC)\" issue."
+  },
+  "CVE-2003-1580": {
+    "score": "4.3",
+    "type": "",
+    "desc": "The Apache HTTP Server 2.0.44, when DNS resolution is enabled for client IP addresses, uses a logging format that does not identify whether a dotted quad represents an unresolved IP address, which allows remote attackers to spoof IP addresses via crafted DNS responses containing numerical top-level domains, as demonstrated by a forged 123.123.123.123 domain name, related to an \"Inverse Lookup Log Corruption (ILLC)\" issue."
+  },
+  "CVE-2003-0017": {
+    "score": "5.0",
+    "type": "",
+    "desc": "Apache 2.0 before 2.0.44 on Windows platforms allows remote attackers to obtain certain files via an HTTP request that ends in certain illegal characters such as \">\", which causes a different filename to be processed and served."
+  },
+  "CVE-2003-0016": {
+    "score": "7.5",
+    "type": "Denial Of ServiceExecute Code",
+    "desc": "Apache before 2.0.44, when running on unpatched Windows 9x and Me operating systems, allows remote attackers to cause a denial of service or execute arbitrary code via an HTTP request containing MS-DOS device names."
+  },
+  "CVE-2002-1156": {
+    "score": "5.0",
+    "type": "",
+    "desc": "Apache 2.0.42 allows remote attackers to view the source code of a CGI script via a POST request to a directory with both WebDAV and CGI enabled."
+  },
+  "CVE-2002-0840": {
+    "score": "6.8",
+    "type": "Cross Site Scripting",
+    "desc": "Cross-site scripting (XSS) vulnerability in the default error page of Apache 2.0 before 2.0.43, and 1.3.x up to 1.3.26, when UseCanonicalName is \"Off\" and support for wildcard DNS is present, allows remote attackers to execute script as other web page visitors via the Host: header, a different vulnerability than CAN-2002-1157."
+  },
+  "CVE-2002-1593": {
+    "score": "5.0",
+    "type": "Denial Of Service",
+    "desc": "mod_dav in Apache before 2.0.42 does not properly handle versioning hooks, which may allow remote attackers to kill a child process via a null dereference and cause a denial of service (CPU consumption) in a preforked multi-processing module."
+  },
+  "CVE-2002-1850": {
+    "score": "5.0",
+    "type": "Denial Of Service",
+    "desc": "mod_cgi in Apache 2.0.39 and 2.0.40 allows local users and possibly remote attackers to cause a denial of service (hang and memory consumption) by causing a CGI script to send a large amount of data to stderr, which results in a read/write deadlock between httpd and the CGI script."
+  },
+  "CVE-2002-0661": {
+    "score": "7.5",
+    "type": "Execute CodeDirectory traversal",
+    "desc": "Directory traversal vulnerability in Apache 2.0 through 2.0.39 on Windows, OS2, and Netware allows remote attackers to read arbitrary files and execute commands via .. (dot dot) sequences containing \\ (backslash) characters."
+  },
+  "CVE-2002-0654": {
+    "score": "5.0",
+    "type": "",
+    "desc": "Apache 2.0 through 2.0.39 on Windows, OS2, and Netware allows remote attackers to determine the full pathname of the server via (1) a request for a .var file, which leaks the pathname in the resulting error message, or (2) via an error message that occurs when a script (child process) cannot be invoked."
+  },
+  "CVE-2002-1592": {
+    "score": "5.0",
+    "type": "Obtain Information",
+    "desc": "The ap_log_rerror function in Apache 2.0 through 2.035, when a CGI application encounters an error, sends error messages to the client that include the full path for the server, which allows remote attackers to obtain sensitive information."
+  },
+  "CVE-2008-0005": {
+    "score": "4.3",
+    "type": "Cross Site Scripting",
+    "desc": "mod_proxy_ftp in Apache 2.2.x before 2.2.7-dev, 2.0.x before 2.0.62-dev, and 1.3.x before 1.3.40-dev does not define a charset, which allows remote attackers to conduct cross-site scripting (XSS) attacks using UTF-7 encoding."
+  },
+  "CVE-2005-2970": {
+    "score": "5.0",
+    "type": "Denial Of Service",
+    "desc": "Memory leak in the worker MPM (worker.c) for Apache 2, in certain circumstances, allows remote attackers to cause a denial of service (memory consumption) via aborted connections, which prevents the memory for the transaction pool from being reused for other connections."
+  },
+  "CVE-2010-0010": {
+    "score": "6.8",
+    "type": "Denial Of ServiceExecute CodeOverflow",
+    "desc": "Integer overflow in the ap_proxy_send_fb function in proxy/proxy_util.c in mod_proxy in the Apache HTTP Server before 1.3.42 on 64-bit platforms allows remote origin servers to cause a denial of service (daemon crash) or possibly execute arbitrary code via a large chunk size that triggers a heap-based buffer overflow."
+  },
+  "CVE-2004-0940": {
+    "score": "6.9",
+    "type": "Execute CodeOverflowCross Site Scripting",
+    "desc": "Buffer overflow in the get_tag function in mod_include for Apache 1.3.x to 1.3.32 allows local users who can create SSI documents to execute arbitrary code as the apache user via SSI (XSSI) documents that trigger a length calculation error."
+  },
+  "CVE-2004-1387": {
+    "score": "2.1",
+    "type": "",
+    "desc": "The check_forensic script in apache-utils package 1.3.31 allows local users to overwrite or create arbitrary files via a symlink attack on temporary files."
+  },
+  "CVE-2004-0492": {
+    "score": "10.0",
+    "type": "Denial Of ServiceExecute CodeOverflow",
+    "desc": "Heap-based buffer overflow in proxy_util.c for mod_proxy in Apache 1.3.25 to 1.3.31 allows remote attackers to cause a denial of service (process crash) and possibly execute arbitrary code via a negative Content-Length HTTP header field, which causes a large amount of data to be copied."
+  },
+  "CVE-2004-1082": {
+    "score": "7.5",
+    "type": "",
+    "desc": "mod_digest_apple for Apache 1.3.31 and 1.3.32 on Mac OS X Server does not properly verify the nonce of a client response, which allows remote attackers to replay credentials."
+  },
+  "CVE-2003-0993": {
+    "score": "7.5",
+    "type": "Bypass a restriction or similar",
+    "desc": "mod_access in Apache 1.3 before 1.3.30, when running big-endian 64-bit platforms, does not properly parse Allow/Deny rules using IP addresses without a netmask, which could allow remote attackers to bypass intended access restrictions."
+  },
+  "CVE-2003-1418": {
+    "score": "4.3",
+    "type": "Obtain Information",
+    "desc": "Apache HTTP Server 1.3.22 through 1.3.27 on OpenBSD allows remote attackers to obtain sensitive information via (1) the ETag header, which reveals the inode number, or (2) multipart MIME boundary, which reveals child process IDs (PID)."
+  },
+  "CVE-2002-2272": {
+    "score": "7.8",
+    "type": "Denial Of ServiceOverflow",
+    "desc": "Tomcat 4.0 through 4.1.12, using mod_jk 1.2.1 module on Apache 1.3 through 1.3.27, allows remote attackers to cause a denial of service (desynchronized communications) via an HTTP GET request with a Transfer-Encoding chunked field with invalid values."
+  },
+  "CVE-2002-1658": {
+    "score": "4.6",
+    "type": "Execute CodeOverflow",
+    "desc": "Buffer overflow in htdigest in Apache 1.3.26 and 1.3.27 may allow attackers to execute arbitrary code via a long user argument.  NOTE: since htdigest is normally only locally accessible and not setuid or setgid, there are few attack vectors which would lead to an escalation of privileges, unless htdigest is executed from a CGI program. Therefore this may not be a vulnerability."
+  },
+  "CVE-2002-1233": {
+    "score": "2.6",
+    "type": "",
+    "desc": "A regression error in the Debian distributions of the apache-ssl package (before 1.3.9 on Debian 2.2, and before 1.3.26 on Debian 3.0), for Apache 1.3.27 and earlier, allows local users to read or modify the Apache password file via a symlink attack on temporary files when the administrator runs (1) htpasswd or (2) htdigest, a re-introduction of a vulnerability that was originally identified and addressed by CVE-2001-0131."
+  },
+  "CVE-2001-1342": {
+    "score": "5.0",
+    "type": "Denial Of Service",
+    "desc": "Apache before 1.3.20 on Windows and OS/2 systems allows remote attackers to cause a denial of service (GPF) via an HTTP request for a URI that contains a large number of / (slash) or other characters, which causes certain functions to dereference a null pointer."
+  },
+  "CVE-2002-2103": {
+    "score": "5.0",
+    "type": "",
+    "desc": "Apache before 1.3.24, when writing to the log file, records a spoofed hostname from the reverse lookup of an IP address, even when a double-reverse lookup fails, which allows remote attackers to hide the original source of activities."
+  },
+  "CVE-2002-2029": {
+    "score": "7.5",
+    "type": "",
+    "desc": "PHP, when installed on Windows with Apache and ScriptAlias for /php/ set to c:/php/, allows remote attackers to read arbitrary files and possibly execute arbitrary programs via an HTTP request for php.exe with a filename in the query string."
+  },
+  "CVE-2000-0505": {
+    "score": "5.0",
+    "type": "",
+    "desc": "The Apache 1.3.x HTTP server for Windows platforms allows remote attackers to list directory contents by requesting a URL containing a large number of / characters."
+  },
+  "CVE-2002-0843": {
+    "score": "7.5",
+    "type": "Denial Of ServiceExecute CodeOverflow",
+    "desc": "Buffer overflows in the ApacheBench benchmark support program (ab.c) in Apache before 1.3.27, and Apache 2.x before 2.0.43, allow a malicious web server to cause a denial of service and possibly execute arbitrary code via a long response."
+  },
+  "CVE-2001-1449": {
+    "score": "7.5",
+    "type": "",
+    "desc": "The default installation of Apache before 1.3.19 on Mandrake Linux 7.1 through 8.0 and Linux Corporate Server 1.0.1 allows remote attackers to list the directory index of arbitrary web directories."
+  },
+  "CVE-2001-0925": {
+    "score": "5.0",
+    "type": "Directory traversal",
+    "desc": "The default installation of Apache before 1.3.19 allows remote attackers to list directories instead of the multiview index.html file via an HTTP request for a path that contains many / (slash) characters, which causes the path to be mishandled by (1) mod_negotiation, (2) mod_dir, or (3) mod_autoindex."
+  },
+  "CVE-2000-1205": {
+    "score": "4.3",
+    "type": "Execute CodeCross Site Scripting",
+    "desc": "Cross site scripting vulnerabilities in Apache 1.3.0 through 1.3.11 allow remote attackers to execute script as other web site visitors via (1) the printenv CGI (printenv.pl), which does not encode its output, (2) pages generated by the ap_send_error_response function such as a default 404, which does not add an explicit charset, or (3) various messages that are generated by certain Apache modules or core code.  NOTE: the printenv issue might still exist for web browsers that can render text/plain content types as HTML, such as Internet Explorer, but CVE regards this as a design limitation of those browsers, not Apache.  The printenv.pl/acuparam vector, discloser on 20070724, is one such variant."
+  },
+  "CVE-2000-1204": {
+    "score": "5.0",
+    "type": "",
+    "desc": "Vulnerability in the mod_vhost_alias virtual hosting module for Apache 1.3.9, 1.3.11 and 1.3.12 allows remote attackers to obtain the source code for CGI programs if the cgi-bin directory is under the document root."
+  },
+  "CVE-2000-1206": {
+    "score": "5.0",
+    "type": "",
+    "desc": "Vulnerability in Apache httpd before 1.3.11, when configured for mass virtual hosting using mod_rewrite, or mod_vhost_alias in Apache 1.3.9, allows remote attackers to retrieve arbitrary files."
+  },
+  "CVE-2004-0173": {
+    "score": "5.0",
+    "type": "Directory traversal",
+    "desc": "Directory traversal vulnerability in Apache 1.3.29 and earlier, and Apache 2.0.48 and earlier, when running on Cygwin, allows remote attackers to read arbitrary files via a URL containing \"..%5C\" (dot dot encoded backslash) sequences."
+  },
+  "CVE-2001-0042": {
+    "score": "5.0",
+    "type": "",
+    "desc": "PHP 3.x (PHP3) on Apache 1.3.6 allows remote attackers to read arbitrary files via a modified .. (dot dot) attack containing \"%5c\" (encoded backslash) sequences."
+  },
+  "CVE-1999-0926": {
+    "score": "10.0",
+    "type": "Denial Of Service",
+    "desc": "Apache allows remote attackers to conduct a denial of service via a large number of MIME headers."
+  },
+  "CVE-1999-0107": {
+    "score": "5.0",
+    "type": "Denial Of ServiceOverflow",
+    "desc": "Buffer overflow in Apache 1.2.5 and earlier allows a remote attacker to cause a denial of service with a large number of GET requests containing a large number of / characters."
+  },
+  "CVE-2000-0913": {
+    "score": "5.0",
+    "type": "",
+    "desc": "mod_rewrite in Apache 1.3.12 and earlier allows remote attackers to read arbitrary files if a RewriteRule directive is expanded to include a filename whose name contains a regular expression."
+  },
+  "CVE-1999-0071": {
+    "score": "7.5",
+    "type": "Overflow",
+    "desc": "Apache httpd cookie buffer overflow for versions 1.1.1 and earlier."
+  },
+  "CVE-1999-0045": {
+    "score": "7.5",
+    "type": "",
+    "desc": "List of arbitrary files on Web host via nph-test-cgi script."
+  },
+  "CVE-1999-0067": {
+    "score": "10.0",
+    "type": "Execute Code",
+    "desc": "phf CGI program allows remote command execution through shell metacharacters."
+  },
+  "CVE-2007-0450": {
+    "score": "5.0",
+    "type": "Directory traversal",
+    "desc": "Directory traversal vulnerability in Apache HTTP Server and Tomcat 5.x before 5.5.22 and 6.x before 6.0.10, when using certain proxy modules (mod_proxy, mod_rewrite, mod_jk), allows remote attackers to read arbitrary files via a .. (dot dot) sequence with combinations of (1) \"/\" (slash), (2) \"\\\" (backslash), and (3) URL-encoded backslash (%5C) characters in the URL, which are valid separators in Tomcat but not in Apache."
+  },
+  "CVE-2007-0086": {
+    "score": "7.8",
+    "type": "Denial Of Service",
+    "desc": "** DISPUTED **  The Apache HTTP Server, when accessed through a TCP connection with a large window size, allows remote attackers to cause a denial of service (network bandwidth consumption) via a Range header that specifies multiple copies of the same fragment.  NOTE: the severity of this issue has been disputed by third parties, who state that the large window size required by the attack is not normally supported or configured by the server, or that a DDoS-style attack would accomplish the same goal."
+  },
+  "CVE-1999-1412": {
+    "score": "5.0",
+    "type": "Denial Of Service",
+    "desc": "A possible interaction between Apple MacOS X release 1.0 and Apache HTTP server allows remote attackers to cause a denial of service (crash) via a flood of HTTP GET requests to CGI programs, which generates a large number of processes."
+  },
+  "CVE-1999-1237": {
+    "score": "10.0",
+    "type": "Execute CodeOverflow",
+    "desc": "Multiple buffer overflows in smbvalid/smbval SMB authentication library, as used in Apache::AuthenSmb and possibly other modules, allows remote attackers to execute arbitrary commands via (1) a long username, (2) a long password, and (3) other unspecified methods."
+  },
+  "CVE-1999-0236": {
+    "score": "5.0",
+    "type": "Obtain Information",
+    "desc": "ScriptAlias directory in NCSA and Apache httpd allowed attackers to read CGI programs."
+  },
+  "CVE-2009-3898": {
+    "score": "4.9",
+    "type": "Directory traversal",
+    "desc": "Directory traversal vulnerability in src/http/modules/ngx_http_dav_module.c in nginx (aka Engine X) before 0.7.63, and 0.8.x before 0.8.17, allows remote authenticated users to create or overwrite arbitrary files via a .. (dot dot) in the Destination HTTP header for the WebDAV (1) COPY or (2) MOVE method."
+  },
+  "CVE-2009-3896": {
+    "score": "5.0",
+    "type": "Denial Of ServiceOverflow",
+    "desc": "src/http/ngx_http_parse.c in nginx (aka Engine X) 0.1.0 through 0.4.14, 0.5.x before 0.5.38, 0.6.x before 0.6.39, 0.7.x before 0.7.62, and 0.8.x before 0.8.14 allows remote attackers to cause a denial of service (NULL pointer dereference and worker process crash) via a long URI."
+  },
+  "CVE-2012-5533": {
+    "score": "5.0",
+    "type": "Denial Of Service",
+    "desc": "The http_request_split_value function in request.c in lighttpd before 1.4.32 allows remote attackers to cause a denial of service (infinite loop) via a request with a header containing an empty token, as demonstrated using the \"Connection: TE,,Keep-Alive\" header."
+  },
+  "CVE-2010-0295": {
+    "score": "5.0",
+    "type": "Denial Of Service",
+    "desc": "lighttpd before 1.4.26, and 1.5.x, allocates a buffer for each read operation that occurs for a request, which allows remote attackers to cause a denial of service (memory consumption) by breaking a request into small pieces that are sent at a slow rate."
+  },
+  "CVE-2008-4298": {
+    "score": "5.0",
+    "type": "Denial Of Service",
+    "desc": "Memory leak in the http_request_parse function in request.c in lighttpd before 1.4.20 allows remote attackers to cause a denial of service (memory consumption) via a large number of requests with duplicate request headers."
+  },
+  "CVE-2008-1111": {
+    "score": "5.0",
+    "type": "Obtain Information",
+    "desc": "mod_cgi in lighttpd 1.4.18 sends the source code of CGI scripts instead of a 500 error when a fork failure occurs, which might allow remote attackers to obtain sensitive information."
+  },
+  "CVE-2008-0983": {
+    "score": "5.0",
+    "type": "Denial Of Service",
+    "desc": "lighttpd 1.4.18, and possibly other versions before 1.5.0, does not properly calculate the size of a file descriptor array, which allows remote attackers to cause a denial of service (crash) via a large number of connections, which triggers an out-of-bounds access."
+  },
+  "CVE-2007-1870": {
+    "score": "7.8",
+    "type": "Denial Of Service",
+    "desc": "lighttpd before 1.4.14 allows attackers to cause a denial of service (crash) via a request to a file whose mtime is 0, which results in a NULL pointer dereference."
+  },
+  "CVE-2007-1869": {
+    "score": "5.0",
+    "type": "Denial Of Service",
+    "desc": "lighttpd 1.4.12 and 1.4.13 allows remote attackers to cause a denial of service (cpu and resource consumption) by disconnecting while lighttpd is parsing CRLF sequences, which triggers an infinite loop and file descriptor consumption."
+  },
+  "CVE-2006-0814": {
+    "score": "5.0",
+    "type": "",
+    "desc": "response.c in Lighttpd 1.4.10 and possibly previous versions, when run on Windows, allows remote attackers to read arbitrary source code via requests that contain trailing (1) \".\" (dot) and (2) space characters, which are ignored by Windows, as demonstrated by PHP files."
+  },
+  "CVE-2006-0760": {
+    "score": "2.6",
+    "type": "Bypass a restriction or similarObtain Information",
+    "desc": "LightTPD 1.4.8 and earlier, when the web root is on a case-insensitive filesystem, allows remote attackers to bypass URL checks and obtain sensitive information via file extensions with unexpected capitalization, as demonstrated by a request for index.PHP when the configuration invokes the PHP interpreter only for \".php\" names."
+  },
+  "CVE-2005-0453": {
+    "score": "5.0",
+    "type": "",
+    "desc": "The buffer_urldecode function in Lighttpd 1.3.7 and earlier does not properly handle control characters, which allows remote attackers to obtain the source code for CGI and FastCGI scripts via a URL with a %00 (null) character after the file extension."
+  },
+  "CVE-2022-22707": {
+    "score": "4.3",
+    "type": "Denial Of ServiceOverflow",
+    "desc": "In lighttpd 1.4.46 through 1.4.63, the mod_extforward_Forwarded function of the mod_extforward plugin has a stack-based buffer overflow (4 bytes representing -1), as demonstrated by remote denial of service (daemon crash) in a non-default configuration. The non-default configuration requires handling of the Forwarded header in a somewhat unusual manner. Also, a 32-bit system is much more likely to be affected than a 64-bit system."
+  },
+  "CVE-2019-11072": {
+    "score": "7.5",
+    "type": "Denial Of ServiceOverflow",
+    "desc": "** DISPUTED ** lighttpd before 1.4.54 has a signed integer overflow, which might allow remote attackers to cause a denial of service (application crash) or possibly have unspecified other impact via a malicious HTTP GET request, as demonstrated by mishandling of /%2F? in burl_normalize_2F_to_slash_fix in burl.c. NOTE: The developer states \"The feature which can be abused to cause the crash is a new feature in lighttpd 1.4.50, and is not enabled by default. It must be explicitly configured in the config file (e.g. lighttpd.conf). Certain input will trigger an abort() in lighttpd when that feature is enabled. lighttpd detects the underflow or realloc() will fail (in both 32-bit and 64-bit executables), also detected in lighttpd. Either triggers an explicit abort() by lighttpd. This is not exploitable beyond triggering the explicit abort() with subsequent application exit.\""
+  },
+  "CVE-2018-19052": {
+    "score": "5.0",
+    "type": "Directory traversal",
+    "desc": "An issue was discovered in mod_alias_physical_handler in mod_alias.c in lighttpd before 1.4.50. There is potential ../ path traversal of a single directory above an alias target, with a specific mod_alias configuration where the matched alias lacks a trailing '/' character, but the alias target filesystem path does have a trailing '/' character."
+  },
+  "CVE-2015-3200": {
+    "score": "5.0",
+    "type": "",
+    "desc": "mod_auth in lighttpd before 1.4.36 allows remote attackers to inject arbitrary log entries via a basic HTTP authentication string without a colon character, as demonstrated by a string containing a NULL and new line character."
+  },
+  "CVE-2014-2324": {
+    "score": "5.0",
+    "type": "Directory traversal",
+    "desc": "Multiple directory traversal vulnerabilities in (1) mod_evhost and (2) mod_simple_vhost in lighttpd before 1.4.35 allow remote attackers to read arbitrary files via a .. (dot dot) in the host name, related to request_check_hostname."
+  },
+  "CVE-2014-2323": {
+    "score": "7.5",
+    "type": "Execute CodeSql Injection",
+    "desc": "SQL injection vulnerability in mod_mysql_vhost.c in lighttpd before 1.4.35 allows remote attackers to execute arbitrary SQL commands via the host name, related to request_check_hostname."
+  },
+  "CVE-2013-4560": {
+    "score": "5.0",
+    "type": "Denial Of Service",
+    "desc": "Use-after-free vulnerability in lighttpd before 1.4.33 allows remote attackers to cause a denial of service (segmentation fault and crash) via unspecified vectors that trigger FAMMonitorDirectory failures."
+  },
+  "CVE-2013-4559": {
+    "score": "7.6",
+    "type": "Gain privileges",
+    "desc": "lighttpd before 1.4.33 does not check the return value of the (1) setuid, (2) setgid, or (3) setgroups functions, which might cause lighttpd to run as root if it is restarted and allows remote attackers to gain privileges, as demonstrated by multiple calls to the clone function that cause setuid to fail when the user process limit is reached."
+  },
+  "CVE-2013-4508": {
+    "score": "4.3",
+    "type": "Obtain Information",
+    "desc": "lighttpd before 1.4.34, when SNI is enabled, configures weak SSL ciphers, which makes it easier for remote attackers to hijack sessions by inserting packets into the client-server data stream or obtain sensitive information by sniffing the network."
+  },
+  "CVE-2011-4362": {
+    "score": "5.0",
+    "type": "Denial Of Service",
+    "desc": "Integer signedness error in the base64_decode function in the HTTP authentication functionality (http_auth.c) in lighttpd 1.4 before 1.4.30 and 1.5 before SVN revision 2806 allows remote attackers to cause a denial of service (segmentation fault) via crafted base64 input that triggers an out-of-bounds read with a negative index."
+  },
+  "CVE-2008-4360": {
+    "score": "7.5",
+    "type": "Bypass a restriction or similarObtain Information",
+    "desc": "mod_userdir in lighttpd before 1.4.20, when a case-insensitive operating system or filesystem is used, performs case-sensitive comparisons on filename components in configuration options, which might allow remote attackers to bypass intended access restrictions, as demonstrated by a request for a .PHP file when there is a configuration rule for .php files."
+  },
+  "CVE-2008-4359": {
+    "score": "7.5",
+    "type": "Bypass a restriction or similarObtain Information",
+    "desc": "lighttpd before 1.4.20 compares URIs to patterns in the (1) url.redirect and (2) url.rewrite configuration settings before performing URL decoding, which might allow remote attackers to bypass intended access restrictions, and obtain sensitive information or possibly modify data."
+  },
+  "CVE-2008-1531": {
+    "score": "4.3",
+    "type": "Denial Of Service",
+    "desc": "The connection_state_machine function (connections.c) in lighttpd 1.4.19 and earlier, and 1.5.x before 1.5.0, allows remote attackers to cause a denial of service (active SSL connection loss) by triggering an SSL error, such as disconnecting before a download has finished, which causes all active SSL connections to be lost."
+  },
+  "CVE-2008-1270": {
+    "score": "5.0",
+    "type": "Obtain Information",
+    "desc": "mod_userdir in lighttpd 1.4.18 and earlier, when userdir.path is not set, uses a default of $HOME, which might allow remote attackers to read arbitrary files, as demonstrated by accessing the ~nobody directory."
+  },
+  "CVE-2007-4727": {
+    "score": "6.8",
+    "type": "Execute CodeOverflow",
+    "desc": "Buffer overflow in the fcgi_env_add function in mod_proxy_backend_fastcgi.c in the mod_fastcgi extension in lighttpd before 1.4.18 allows remote attackers to overwrite arbitrary CGI variables and execute arbitrary code via an HTTP request with a long content length, as demonstrated by overwriting the SCRIPT_FILENAME variable, aka a \"header overflow.\""
+  },
+  "CVE-2007-3950": {
+    "score": "4.3",
+    "type": "Denial Of Service",
+    "desc": "lighttpd 1.4.15, when run on 32 bit platforms, allows remote attackers to cause a denial of service (daemon crash) via unspecified vectors involving the use of incompatible format specifiers in certain debugging messages in the (1) mod_scgi, (2) mod_fastcgi, and (3) mod_webdav modules."
+  },
+  "CVE-2007-3949": {
+    "score": "8.3",
+    "type": "Bypass a restriction or similar",
+    "desc": "mod_access.c in lighttpd 1.4.15 ignores trailing / (slash) characters in the URL, which allows remote attackers to bypass url.access-deny settings."
+  },
+  "CVE-2007-3948": {
+    "score": "4.3",
+    "type": "Denial Of Service",
+    "desc": "connections.c in lighttpd before 1.4.16 might accept more connections than the configured maximum, which allows remote attackers to cause a denial of service (failed assertion) via a large number of connection attempts."
+  },
+  "CVE-2007-3947": {
+    "score": "5.8",
+    "type": "Denial Of Service",
+    "desc": "request.c in lighttpd 1.4.15 allows remote attackers to cause a denial of service (daemon crash) by sending an HTTP request with duplicate headers, as demonstrated by a request containing two Location header lines, which results in a segmentation fault."
+  },
+  "CVE-2007-3946": {
+    "score": "6.4",
+    "type": "Denial Of Service",
+    "desc": "mod_auth (http_auth.c) in lighttpd before 1.4.16 allows remote attackers to cause a denial of service (daemon crash) via unspecified vectors involving (1) a memory leak, (2) use of md5-sess without a cnonce, (3) base64 encoded strings, and (4) trailing whitespace in the Auth-Digest header."
+  },
+  "CVE-2013-6357": {
+    "score": "6.8",
+    "type": "CSRF",
+    "desc": "** DISPUTED ** Cross-site request forgery (CSRF) vulnerability in the Manager application in Apache Tomcat 5.5.25 and earlier allows remote attackers to hijack the authentication of administrators for requests that manipulate application deployment via the POST method, as demonstrated by a /manager/html/undeploy?path= URI.  NOTE: the vendor disputes the significance of this report, stating that \"the Apache Tomcat Security team has not accepted any reports of CSRF attacks against the Manager application ... as they require a reckless system administrator.\""
+  },
+  "CVE-2013-4590": {
+    "score": "4.3",
+    "type": "Obtain Information",
+    "desc": "Apache Tomcat before 6.0.39, 7.x before 7.0.50, and 8.x before 8.0.0-RC10 allows attackers to obtain \"Tomcat internals\" information by leveraging the presence of an untrusted web application with a context.xml, web.xml, *.jspx, *.tagx, or *.tld XML document containing an external entity declaration in conjunction with an entity reference, related to an XML External Entity (XXE) issue."
+  },
+  "CVE-2013-4322": {
+    "score": "4.3",
+    "type": "Denial Of Service",
+    "desc": "Apache Tomcat before 6.0.39, 7.x before 7.0.50, and 8.x before 8.0.0-RC10 processes chunked transfer coding without properly handling (1) a large total amount of chunked data or (2) whitespace characters in an HTTP header value within a trailer field, which allows remote attackers to cause a denial of service by streaming data.  NOTE: this vulnerability exists because of an incomplete fix for CVE-2012-3544."
+  },
+  "CVE-2013-4286": {
+    "score": "5.8",
+    "type": "",
+    "desc": "Apache Tomcat before 6.0.39, 7.x before 7.0.47, and 8.x before 8.0.0-RC3, when an HTTP connector or AJP connector is used, does not properly handle certain inconsistent HTTP request headers, which allows remote attackers to trigger incorrect identification of a request's length and conduct request-smuggling attacks via (1) multiple Content-Length headers or (2) a Content-Length header and a \"Transfer-Encoding: chunked\" header.  NOTE: this vulnerability exists because of an incomplete fix for CVE-2005-2090."
+  },
+  "CVE-2014-0119": {
+    "score": "4.3",
+    "type": "",
+    "desc": "Apache Tomcat before 6.0.40, 7.x before 7.0.54, and 8.x before 8.0.6 does not properly constrain the class loader that accesses the XML parser used with an XSLT stylesheet, which allows remote attackers to (1) read arbitrary files via a crafted web application that provides an XML external entity declaration in conjunction with an entity reference, related to an XML External Entity (XXE) issue, or (2) read files associated with different web applications on a single Tomcat instance via a crafted web application."
+  },
+  "CVE-2014-0099": {
+    "score": "4.3",
+    "type": "Overflow",
+    "desc": "Integer overflow in java/org/apache/tomcat/util/buf/Ascii.java in Apache Tomcat before 6.0.40, 7.x before 7.0.53, and 8.x before 8.0.4, when operated behind a reverse proxy, allows remote attackers to conduct HTTP request smuggling attacks via a crafted Content-Length HTTP header."
+  },
+  "CVE-2014-0096": {
+    "score": "4.3",
+    "type": "Bypass a restriction or similar",
+    "desc": "java/org/apache/catalina/servlets/DefaultServlet.java in the default servlet in Apache Tomcat before 6.0.40, 7.x before 7.0.53, and 8.x before 8.0.4 does not properly restrict XSLT stylesheets, which allows remote attackers to bypass security-manager restrictions and read arbitrary files via a crafted web application that provides an XML external entity declaration in conjunction with an entity reference, related to an XML External Entity (XXE) issue."
+  },
+  "CVE-2014-0075": {
+    "score": "5.0",
+    "type": "Denial Of ServiceOverflow",
+    "desc": "Integer overflow in the parseChunkHeader function in java/org/apache/coyote/http11/filters/ChunkedInputFilter.java in Apache Tomcat before 6.0.40, 7.x before 7.0.53, and 8.x before 8.0.4 allows remote attackers to cause a denial of service (resource consumption) via a malformed chunk size in chunked transfer coding of a request during the streaming of data."
+  },
+  "CVE-2022-23181": {
+    "score": "4.4",
+    "type": "",
+    "desc": "The fix for bug CVE-2020-9484 introduced a time of check, time of use vulnerability into Apache Tomcat 10.1.0-M1 to 10.1.0-M8, 10.0.0-M5 to 10.0.14, 9.0.35 to 9.0.56 and 8.5.55 to 8.5.73 that allowed a local attacker to perform actions with the privileges of the user that the Tomcat process is using. This issue is only exploitable when Tomcat is configured to persist sessions using the FileStore."
+  },
+  "CVE-2021-30639": {
+    "score": "5.0",
+    "type": "Denial Of Service",
+    "desc": "A vulnerability in Apache Tomcat allows an attacker to remotely trigger a denial of service. An error introduced as part of a change to improve error handling during non-blocking I/O meant that the error flag associated with the Request object was not reset between requests. This meant that once a non-blocking I/O error occurred, all future requests handled by that request object would fail. Users were able to trigger non-blocking I/O errors, e.g. by dropping a connection, thereby creating the possibility of triggering a DoS. Applications that do not use non-blocking I/O are not exposed to this vulnerability. This issue affects Apache Tomcat 10.0.3 to 10.0.4; 9.0.44; 8.5.64."
+  },
+  "CVE-2021-42340": {
+    "score": "5.0",
+    "type": "Denial Of Service",
+    "desc": "The fix for bug 63362 present in Apache Tomcat 10.1.0-M1 to 10.1.0-M5, 10.0.0-M1 to 10.0.11, 9.0.40 to 9.0.53 and 8.5.60 to 8.5.71 introduced a memory leak. The object introduced to collect metrics for HTTP upgrade connections was not released for WebSocket connections once the connection was closed. This created a memory leak that, over time, could lead to a denial of service via an OutOfMemoryError."
+  },
+  "CVE-2021-25329": {
+    "score": "4.4",
+    "type": "",
+    "desc": "The fix for CVE-2020-9484 was incomplete. When using Apache Tomcat 10.0.0-M1 to 10.0.0, 9.0.0.M1 to 9.0.41, 8.5.0 to 8.5.61 or 7.0.0. to 7.0.107 with a configuration edge case that was highly unlikely to be used, the Tomcat instance was still vulnerable to CVE-2020-9494. Note that both the previously published prerequisites for CVE-2020-9484 and the previously published mitigations for CVE-2020-9484 also apply to this issue."
+  },
+  "CVE-2021-25122": {
+    "score": "5.0",
+    "type": "",
+    "desc": "When responding to new h2c connection requests, Apache Tomcat versions 10.0.0-M1 to 10.0.0, 9.0.0.M1 to 9.0.41 and 8.5.0 to 8.5.61 could duplicate request headers and a limited amount of request body from one request to another meaning user A and user B could both see the results of user A's request."
+  },
+  "CVE-2020-17527": {
+    "score": "5.0",
+    "type": "Obtain Information",
+    "desc": "While investigating bug 64830 it was discovered that Apache Tomcat 10.0.0-M1 to 10.0.0-M9, 9.0.0-M1 to 9.0.39 and 8.5.0 to 8.5.59 could re-use an HTTP request header value from the previous stream received on an HTTP/2 connection for the request associated with the subsequent stream. While this would most likely lead to an error and the closure of the HTTP/2 connection, it is possible that information could leak between requests."
+  },
+  "CVE-2020-13943": {
+    "score": "4.0",
+    "type": "",
+    "desc": "If an HTTP/2 client connecting to Apache Tomcat 10.0.0-M1 to 10.0.0-M7, 9.0.0.M1 to 9.0.37 or 8.5.0 to 8.5.57 exceeded the agreed maximum number of concurrent streams for a connection (in violation of the HTTP/2 protocol), it was possible that a subsequent request made on that connection could contain HTTP headers - including HTTP/2 pseudo headers - from a previous request rather than the intended headers. This could lead to users seeing responses for unexpected resources."
+  },
+  "CVE-2018-1305": {
+    "score": "4.0",
+    "type": "",
+    "desc": "Security constraints defined by annotations of Servlets in Apache Tomcat 9.0.0.M1 to 9.0.4, 8.5.0 to 8.5.27, 8.0.0.RC1 to 8.0.49 and 7.0.0 to 7.0.84 were only applied once a Servlet had been loaded. Because security constraints defined in this way apply to the URL pattern and any URLs below that point, it was possible - depending on the order Servlets were loaded - for some security constraints not to be applied. This could have exposed resources to users who were not authorised to access them."
+  },
+  "CVE-2017-15706": {
+    "score": "5.0",
+    "type": "",
+    "desc": "As part of the fix for bug 61201, the documentation for Apache Tomcat 9.0.0.M22 to 9.0.1, 8.5.16 to 8.5.23, 8.0.45 to 8.0.47 and 7.0.79 to 7.0.82 included an updated description of the search algorithm used by the CGI Servlet to identify which script to execute. The update was not correct. As a result, some scripts may have failed to execute as expected and other scripts may have been executed unexpectedly. Note that the behaviour of the CGI servlet has remained unchanged in this regard. It is only the documentation of the behaviour that was wrong and has been corrected."
+  },
+  "CVE-2019-10072": {
+    "score": "5.0",
+    "type": "",
+    "desc": "The fix for CVE-2019-0199 was incomplete and did not address HTTP/2 connection window exhaustion on write in Apache Tomcat versions 9.0.0.M1 to 9.0.19 and 8.5.0 to 8.5.40 . By not sending WINDOW_UPDATE messages for the connection window (stream 0) clients were able to cause server-side threads to block eventually leading to thread exhaustion and a DoS."
+  },
+  "CVE-2019-0221": {
+    "score": "4.3",
+    "type": "Cross Site Scripting",
+    "desc": "The SSI printenv command in Apache Tomcat 9.0.0.M1 to 9.0.0.17, 8.5.0 to 8.5.39 and 7.0.0 to 7.0.93 echoes user provided data without escaping and is, therefore, vulnerable to XSS. SSI is disabled by default. The printenv command is intended for debugging and is unlikely to be present in a production website."
+  },
+  "CVE-2018-11784": {
+    "score": "4.3",
+    "type": "",
+    "desc": "When the default servlet in Apache Tomcat versions 9.0.0.M1 to 9.0.11, 8.5.0 to 8.5.33 and 7.0.23 to 7.0.90 returned a redirect to a directory (e.g. redirecting to '/foo/' when the user requested '/foo') a specially crafted URL could be used to cause the redirect to be generated to any URI of the attackers choice."
+  },
+  "CVE-2018-8037": {
+    "score": "4.3",
+    "type": "",
+    "desc": "If an async request was completed by the application at the same time as the container triggered the async timeout, a race condition existed that could result in a user seeing a response intended for a different user. An additional issue was present in the NIO and NIO2 connectors that did not correctly track the closure of the connection when an async request was completed by the application and timed out by the container at the same time. This could also result in a user seeing a response intended for another user. Versions Affected: Apache Tomcat 9.0.0.M9 to 9.0.9 and 8.5.5 to 8.5.31."
+  },
+  "CVE-2018-8034": {
+    "score": "5.0",
+    "type": "",
+    "desc": "The host name verification when using TLS with the WebSocket client was missing. It is now enabled by default. Versions Affected: Apache Tomcat 9.0.0.M1 to 9.0.9, 8.5.0 to 8.5.31, 8.0.0.RC1 to 8.0.52, and 7.0.35 to 7.0.88."
+  },
+  "CVE-2018-1336": {
+    "score": "5.0",
+    "type": "Denial Of ServiceOverflow",
+    "desc": "An improper handing of overflow in the UTF-8 decoder with supplementary characters can lead to an infinite loop in the decoder causing a Denial of Service. Versions Affected: Apache Tomcat 9.0.0.M9 to 9.0.7, 8.5.0 to 8.5.30, 8.0.0.RC1 to 8.0.51, and 7.0.28 to 7.0.86."
+  },
+  "CVE-2018-1304": {
+    "score": "4.3",
+    "type": "",
+    "desc": "The URL pattern of \"\" (the empty string) which exactly maps to the context root was not correctly handled in Apache Tomcat 9.0.0.M1 to 9.0.4, 8.5.0 to 8.5.27, 8.0.0.RC1 to 8.0.49 and 7.0.0 to 7.0.84 when used as part of a security constraint definition. This caused the constraint to be ignored. It was, therefore, possible for unauthorised users to gain access to web application resources that should have been protected. Only security constraints with a URL pattern of the empty string were affected."
+  },
+  "CVE-2017-12617": {
+    "score": "6.8",
+    "type": "Execute Code",
+    "desc": "When running Apache Tomcat versions 9.0.0.M1 to 9.0.0, 8.5.0 to 8.5.22, 8.0.0.RC1 to 8.0.46 and 7.0.0 to 7.0.81 with HTTP PUTs enabled (e.g. via setting the readonly initialisation parameter of the Default servlet to false) it was possible to upload a JSP file to the server via a specially crafted request. This JSP could then be requested and any code it contained would be executed by the server."
+  },
+  "CVE-2017-7675": {
+    "score": "5.0",
+    "type": "Directory traversalBypass a restriction or similar",
+    "desc": "The HTTP/2 implementation in Apache Tomcat 9.0.0.M1 to 9.0.0.M21 and 8.5.0 to 8.5.15 bypassed a number of security checks that prevented directory traversal attacks. It was therefore possible to bypass security constraints using a specially crafted URL."
+  },
+  "CVE-2017-7674": {
+    "score": "4.3",
+    "type": "",
+    "desc": "The CORS Filter in Apache Tomcat 9.0.0.M1 to 9.0.0.M21, 8.5.0 to 8.5.15, 8.0.0.RC1 to 8.0.44 and 7.0.41 to 7.0.78 did not add an HTTP Vary header indicating that the response varies depending on Origin. This permitted client and server side cache poisoning in some circumstances."
+  },
+  "CVE-2017-5664": {
+    "score": "5.0",
+    "type": "",
+    "desc": "The error page mechanism of the Java Servlet Specification requires that, when an error occurs and an error page is configured for the error that occurred, the original request and response are forwarded to the error page. This means that the request is presented to the error page with the original HTTP method. If the error page is a static file, expected behaviour is to serve content of the file as if processing a GET request, regardless of the actual HTTP method. The Default Servlet in Apache Tomcat 9.0.0.M1 to 9.0.0.M20, 8.5.0 to 8.5.14, 8.0.0.RC1 to 8.0.43 and 7.0.0 to 7.0.77 did not do this. Depending on the original request this could lead to unexpected and undesirable results for static error pages including, if the DefaultServlet is configured to permit writes, the replacement or removal of the custom error page. Notes for other user provided error pages: (1) Unless explicitly coded otherwise, JSPs ignore the HTTP method. JSPs used as error pages must must ensure that they handle any error dispatch as a GET request, regardless of the actual method. (2) By default, the response generated by a Servlet does depend on the HTTP method. Custom Servlets used as error pages must ensure that they handle any error dispatch as a GET request, regardless of the actual method."
+  },
+  "CVE-2017-5651": {
+    "score": "7.5",
+    "type": "",
+    "desc": "In Apache Tomcat 9.0.0.M1 to 9.0.0.M18 and 8.5.0 to 8.5.12, the refactoring of the HTTP connectors introduced a regression in the send file processing. If the send file processing completed quickly, it was possible for the Processor to be added to the processor cache twice. This could result in the same Processor being used for multiple requests which in turn could lead to unexpected errors and/or response mix-up."
+  },
+  "CVE-2017-5650": {
+    "score": "5.0",
+    "type": "",
+    "desc": "In Apache Tomcat 9.0.0.M1 to 9.0.0.M18 and 8.5.0 to 8.5.12, the handling of an HTTP/2 GOAWAY frame for a connection did not close streams associated with that connection that were currently waiting for a WINDOW_UPDATE before allowing the application to write more data. These waiting streams each consumed a thread. A malicious client could therefore construct a series of HTTP/2 requests that would consume all available processing threads."
+  },
+  "CVE-2017-5647": {
+    "score": "5.0",
+    "type": "Obtain Information",
+    "desc": "A bug in the handling of the pipelined requests in Apache Tomcat 9.0.0.M1 to 9.0.0.M18, 8.5.0 to 8.5.12, 8.0.0.RC1 to 8.0.42, 7.0.0 to 7.0.76, and 6.0.0 to 6.0.52, when send file was used, results in the pipelined request being lost when send file processing of the previous request completed. This could result in responses appearing to be sent for the wrong request. For example, a user agent that sent requests A, B and C could see the correct response for request A, the response for request C for request B and no response for request C."
+  },
+  "CVE-2017-5648": {
+    "score": "6.4",
+    "type": "",
+    "desc": "While investigating bug 60718, it was noticed that some calls to application listeners in Apache Tomcat 9.0.0.M1 to 9.0.0.M17, 8.5.0 to 8.5.11, 8.0.0.RC1 to 8.0.41, and 7.0.0 to 7.0.75 did not use the appropriate facade object. When running an untrusted application under a SecurityManager, it was therefore possible for that untrusted application to retain a reference to the request or response object and thereby access and/or modify information associated with another web application."
+  },
+  "CVE-2016-8747": {
+    "score": "5.0",
+    "type": "Obtain Information",
+    "desc": "An information disclosure issue was discovered in Apache Tomcat 8.5.7 to 8.5.9 and 9.0.0.M11 to 9.0.0.M15 in reverse-proxy configurations. Http11InputBuffer.java allows remote attackers to read data that was intended to be associated with a different request."
+  },
+  "CVE-2016-8745": {
+    "score": "5.0",
+    "type": "Obtain Information",
+    "desc": "A bug in the error handling of the send file code for the NIO HTTP connector in Apache Tomcat 9.0.0.M1 to 9.0.0.M13, 8.5.0 to 8.5.8, 8.0.0.RC1 to 8.0.39, 7.0.0 to 7.0.73 and 6.0.16 to 6.0.48 resulted in the current Processor object being added to the Processor cache multiple times. This in turn meant that the same Processor could be used for concurrent requests. Sharing a Processor can result in information leakage between requests including, not not limited to, session ID and the response body. The bug was first noticed in 8.5.x onwards where it appears the refactoring of the Connector code for 8.5.x onwards made it more likely that the bug was observed. Initially it was thought that the 8.5.x refactoring introduced the bug but further investigation has shown that the bug is present in all currently supported Tomcat versions."
+  },
+  "CVE-2016-8735": {
+    "score": "7.5",
+    "type": "Execute Code",
+    "desc": "Remote code execution is possible with Apache Tomcat before 6.0.48, 7.x before 7.0.73, 8.x before 8.0.39, 8.5.x before 8.5.7, and 9.x before 9.0.0.M12 if JmxRemoteLifecycleListener is used and an attacker can reach JMX ports. The issue exists because this listener wasn't updated for consistency with the CVE-2016-3427 Oracle patch that affected credential types."
+  },
+  "CVE-2016-6817": {
+    "score": "5.0",
+    "type": "Denial Of ServiceOverflow",
+    "desc": "The HTTP/2 header parser in Apache Tomcat 9.0.0.M1 to 9.0.0.M11 and 8.5.0 to 8.5.6 entered an infinite loop if a header was received that was larger than the available buffer. This made a denial of service attack possible."
+  },
+  "CVE-2016-6816": {
+    "score": "6.8",
+    "type": "Cross Site ScriptingObtain Information",
+    "desc": "The code in Apache Tomcat 9.0.0.M1 to 9.0.0.M11, 8.5.0 to 8.5.6, 8.0.0.RC1 to 8.0.38, 7.0.0 to 7.0.72, and 6.0.0 to 6.0.47 that parsed the HTTP request line permitted invalid characters. This could be exploited, in conjunction with a proxy that also permitted the invalid characters but with a different interpretation, to inject data into the HTTP response. By manipulating the HTTP response the attacker could poison a web-cache, perform an XSS attack and/or obtain sensitive information from requests other then their own."
+  },
+  "CVE-2016-6797": {
+    "score": "5.0",
+    "type": "",
+    "desc": "The ResourceLinkFactory implementation in Apache Tomcat 9.0.0.M1 to 9.0.0.M9, 8.5.0 to 8.5.4, 8.0.0.RC1 to 8.0.36, 7.0.0 to 7.0.70 and 6.0.0 to 6.0.45 did not limit web application access to global JNDI resources to those resources explicitly linked to the web application. Therefore, it was possible for a web application to access any global JNDI resource whether an explicit ResourceLink had been configured or not."
+  },
+  "CVE-2016-6796": {
+    "score": "5.0",
+    "type": "Bypass a restriction or similar",
+    "desc": "A malicious web application running on Apache Tomcat 9.0.0.M1 to 9.0.0.M9, 8.5.0 to 8.5.4, 8.0.0.RC1 to 8.0.36, 7.0.0 to 7.0.70 and 6.0.0 to 6.0.45 was able to bypass a configured SecurityManager via manipulation of the configuration parameters for the JSP Servlet."
+  },
+  "CVE-2016-6794": {
+    "score": "5.0",
+    "type": "Bypass a restriction or similarObtain Information",
+    "desc": "When a SecurityManager is configured, a web application's ability to read system properties should be controlled by the SecurityManager. In Apache Tomcat 9.0.0.M1 to 9.0.0.M9, 8.5.0 to 8.5.4, 8.0.0.RC1 to 8.0.36, 7.0.0 to 7.0.70, 6.0.0 to 6.0.45 the system property replacement feature for configuration files could be used by a malicious web application to bypass the SecurityManager and read system properties that should not be visible."
+  },
+  "CVE-2016-5018": {
+    "score": "5.0",
+    "type": "Bypass a restriction or similar",
+    "desc": "In Apache Tomcat 9.0.0.M1 to 9.0.0.M9, 8.5.0 to 8.5.4, 8.0.0.RC1 to 8.0.36, 7.0.0 to 7.0.70 and 6.0.0 to 6.0.45 a malicious web application was able to bypass a configured SecurityManager via a Tomcat utility method that was accessible to web applications."
+  },
+  "CVE-2016-0762": {
+    "score": "4.3",
+    "type": "",
+    "desc": "The Realm implementations in Apache Tomcat versions 9.0.0.M1 to 9.0.0.M9, 8.5.0 to 8.5.4, 8.0.0.RC1 to 8.0.36, 7.0.0 to 7.0.70 and 6.0.0 to 6.0.45 did not process the supplied password if the supplied user name did not exist. This made a timing attack possible to determine valid user names. Note that the default configuration includes the LockOutRealm which makes exploitation of this vulnerability harder."
+  },
+  "CVE-2016-3092": {
+    "score": "7.8",
+    "type": "Denial Of Service",
+    "desc": "The MultipartStream class in Apache Commons Fileupload before 1.3.2, as used in Apache Tomcat 7.x before 7.0.70, 8.x before 8.0.36, 8.5.x before 8.5.3, and 9.x before 9.0.0.M7 and other products, allows remote attackers to cause a denial of service (CPU consumption) via a long boundary string."
+  },
+  "CVE-2016-0763": {
+    "score": "6.5",
+    "type": "Denial Of ServiceBypass a restriction or similar",
+    "desc": "The setGlobalContext method in org/apache/naming/factory/ResourceLinkFactory.java in Apache Tomcat 7.x before 7.0.68, 8.x before 8.0.31, and 9.x before 9.0.0.M3 does not consider whether ResourceLinkFactory.setGlobalContext callers are authorized, which allows remote authenticated users to bypass intended SecurityManager restrictions and read or write to arbitrary application data, or cause a denial of service (application disruption), via a web application that sets a crafted global context."
+  },
+  "CVE-2016-0714": {
+    "score": "6.5",
+    "type": "Execute CodeBypass a restriction or similar",
+    "desc": "The session-persistence implementation in Apache Tomcat 6.x before 6.0.45, 7.x before 7.0.68, 8.x before 8.0.31, and 9.x before 9.0.0.M2 mishandles session attributes, which allows remote authenticated users to bypass intended SecurityManager restrictions and execute arbitrary code in a privileged context via a web application that places a crafted object in a session."
+  },
+  "CVE-2016-0706": {
+    "score": "4.0",
+    "type": "Bypass a restriction or similarObtain Information",
+    "desc": "Apache Tomcat 6.x before 6.0.45, 7.x before 7.0.68, 8.x before 8.0.31, and 9.x before 9.0.0.M2 does not place org.apache.catalina.manager.StatusManagerServlet on the org/apache/catalina/core/RestrictedServlets.properties list, which allows remote authenticated users to bypass intended SecurityManager restrictions and read arbitrary HTTP requests, and consequently discover session ID values, via a crafted web application."
+  },
+  "CVE-2015-5351": {
+    "score": "6.8",
+    "type": "Bypass a restriction or similarCSRF",
+    "desc": "The (1) Manager and (2) Host Manager applications in Apache Tomcat 7.x before 7.0.68, 8.x before 8.0.31, and 9.x before 9.0.0.M2 establish sessions and send CSRF tokens for arbitrary new requests, which allows remote attackers to bypass a CSRF protection mechanism by using a token."
+  },
+  "CVE-2015-5346": {
+    "score": "6.8",
+    "type": "",
+    "desc": "Session fixation vulnerability in Apache Tomcat 7.x before 7.0.66, 8.x before 8.0.30, and 9.x before 9.0.0.M2, when different session settings are used for deployments of multiple versions of the same web application, might allow remote attackers to hijack web sessions by leveraging use of a requestedSessionSSL field for an unintended request, related to CoyoteAdapter.java and Request.java."
+  },
+  "CVE-2015-5345": {
+    "score": "5.0",
+    "type": "Directory traversal",
+    "desc": "The Mapper component in Apache Tomcat 6.x before 6.0.45, 7.x before 7.0.68, 8.x before 8.0.30, and 9.x before 9.0.0.M2 processes redirects before considering security constraints and Filters, which allows remote attackers to determine the existence of a directory via a URL that lacks a trailing / (slash) character."
+  },
+  "CVE-2015-5174": {
+    "score": "4.0",
+    "type": "Directory traversalBypass a restriction or similar",
+    "desc": "Directory traversal vulnerability in RequestUtil.java in Apache Tomcat 6.x before 6.0.45, 7.x before 7.0.65, and 8.x before 8.0.27 allows remote authenticated users to bypass intended SecurityManager restrictions and list a parent directory via a /.. (slash dot dot) in a pathname used by a web application in a getResource, getResourceAsStream, or getResourcePaths call, as demonstrated by the $CATALINA_BASE/webapps directory."
+  },
+  "CVE-2014-7810": {
+    "score": "5.0",
+    "type": "Bypass a restriction or similar",
+    "desc": "The Expression Language (EL) implementation in Apache Tomcat 6.x before 6.0.44, 7.x before 7.0.58, and 8.x before 8.0.16 does not properly consider the possibility of an accessible interface implemented by an inaccessible class, which allows attackers to bypass a SecurityManager protection mechanism via a web application that leverages use of incorrect privileges during EL evaluation."
+  },
+  "CVE-2014-0230": {
+    "score": "7.8",
+    "type": "Denial Of Service",
+    "desc": "Apache Tomcat 6.x before 6.0.44, 7.x before 7.0.55, and 8.x before 8.0.9 does not properly handle cases where an HTTP response occurs before finishing the reading of an entire request body, which allows remote attackers to cause a denial of service (thread consumption) via a series of aborted upload attempts."
+  },
+  "CVE-2014-0227": {
+    "score": "6.4",
+    "type": "Denial Of Service",
+    "desc": "java/org/apache/coyote/http11/filters/ChunkedInputFilter.java in Apache Tomcat 6.x before 6.0.42, 7.x before 7.0.55, and 8.x before 8.0.9 does not properly handle attempts to continue reading data after an error has occurred, which allows remote attackers to conduct HTTP request smuggling attacks or cause a denial of service (resource consumption) by streaming data with malformed chunked transfer coding."
+  },
+  "CVE-2014-0095": {
+    "score": "5.0",
+    "type": "Denial Of Service",
+    "desc": "java/org/apache/coyote/ajp/AbstractAjpProcessor.java in Apache Tomcat 8.x before 8.0.4 allows remote attackers to cause a denial of service (thread consumption) by using a \"Content-Length: 0\" AJP request to trigger a hang in request processing."
+  },
+  "CVE-2014-0050": {
+    "score": "7.5",
+    "type": "Denial Of ServiceBypass a restriction or similar",
+    "desc": "MultipartStream.java in Apache Commons FileUpload before 1.3.1, as used in Apache Tomcat, JBoss Web, and other products, allows remote attackers to cause a denial of service (infinite loop and CPU consumption) via a crafted Content-Type header that bypasses a loop's intended exit conditions."
+  },
+  "CVE-2016-9775": {
+    "score": "7.2",
+    "type": "Gain privileges",
+    "desc": "The postrm script in the tomcat6 package before 6.0.45+dfsg-1~deb7u3 on Debian wheezy, before 6.0.45+dfsg-1~deb8u1 on Debian jessie, before 6.0.35-1ubuntu3.9 on Ubuntu 12.04 LTS and on Ubuntu 14.04 LTS; the tomcat7 package before 7.0.28-4+deb7u7 on Debian wheezy, before 7.0.56-3+deb8u6 on Debian jessie, before 7.0.52-1ubuntu0.8 on Ubuntu 14.04 LTS, and on Ubuntu 12.04 LTS, 16.04 LTS, and 16.10; and the tomcat8 package before 8.0.14-1+deb8u5 on Debian jessie, before 8.0.32-1ubuntu1.3 on Ubuntu 16.04 LTS, before 8.0.37-1ubuntu0.1 on Ubuntu 16.10, and before 8.0.38-2ubuntu1 on Ubuntu 17.04 might allow local users with access to the tomcat account to gain root privileges via a setgid program in the Catalina directory, as demonstrated by /etc/tomcat8/Catalina/attack."
+  },
+  "CVE-2016-9774": {
+    "score": "7.2",
+    "type": "Gain privilegesObtain Information",
+    "desc": "The postinst script in the tomcat6 package before 6.0.45+dfsg-1~deb7u4 on Debian wheezy, before 6.0.35-1ubuntu3.9 on Ubuntu 12.04 LTS and on Ubuntu 14.04 LTS; the tomcat7 package before 7.0.28-4+deb7u8 on Debian wheezy, before 7.0.56-3+deb8u6 on Debian jessie, before 7.0.52-1ubuntu0.8 on Ubuntu 14.04 LTS, and on Ubuntu 12.04 LTS, 16.04 LTS, and 16.10; and the tomcat8 package before 8.0.14-1+deb8u5 on Debian jessie, before 8.0.32-1ubuntu1.3 on Ubuntu 16.04 LTS, before 8.0.37-1ubuntu0.1 on Ubuntu 16.10, and before 8.0.38-2ubuntu1 on Ubuntu 17.04 might allow local users with access to the tomcat account to obtain sensitive information or gain root privileges via a symlink attack on the Catalina localhost directory."
+  },
+  "CVE-2017-12616": {
+    "score": "5.0",
+    "type": "Bypass a restriction or similarObtain Information",
+    "desc": "When using a VirtualDirContext with Apache Tomcat 7.0.0 to 7.0.80 it was possible to bypass security constraints and/or view the source code of JSPs for resources served by the VirtualDirContext using a specially crafted request."
+  },
+  "CVE-2013-0346": {
+    "score": "2.1",
+    "type": "Obtain Information",
+    "desc": "** DISPUTED ** Apache Tomcat 7.x uses world-readable permissions for the log directory and its files, which might allow local users to obtain sensitive information by reading a file.  NOTE: One Tomcat distributor has stated \"The tomcat log directory does not contain any sensitive information.\""
+  },
+  "CVE-2013-4444": {
+    "score": "6.8",
+    "type": "Execute Code",
+    "desc": "Unrestricted file upload vulnerability in Apache Tomcat 7.x before 7.0.40, in certain situations involving outdated java.io.File code and a custom JMX configuration, allows remote attackers to execute arbitrary code by uploading and accessing a JSP file."
+  },
+  "CVE-2013-2071": {
+    "score": "2.6",
+    "type": "Obtain Information",
+    "desc": "java/org/apache/catalina/core/AsyncContextImpl.java in Apache Tomcat 7.x before 7.0.40 does not properly handle the throwing of a RuntimeException in an AsyncListener in an application, which allows context-dependent attackers to obtain sensitive request information intended for other applications in opportunistic circumstances via an application that records the requests that it processes."
+  },
+  "CVE-2013-2067": {
+    "score": "6.8",
+    "type": "",
+    "desc": "java/org/apache/catalina/authenticator/FormAuthenticator.java in the form authentication feature in Apache Tomcat 6.0.21 through 6.0.36 and 7.x before 7.0.33 does not properly handle the relationships between authentication requirements and sessions, which allows remote attackers to inject a request into a session by sending this request during completion of the login form, a variant of a session fixation attack."
+  },
+  "CVE-2012-4431": {
+    "score": "4.3",
+    "type": "Bypass a restriction or similarCSRF",
+    "desc": "org/apache/catalina/filters/CsrfPreventionFilter.java in Apache Tomcat 6.x before 6.0.36 and 7.x before 7.0.32 allows remote attackers to bypass the cross-site request forgery (CSRF) protection mechanism via a request that lacks a session identifier."
+  },
+  "CVE-2012-5887": {
+    "score": "5.0",
+    "type": "Bypass a restriction or similar",
+    "desc": "The HTTP Digest Access Authentication implementation in Apache Tomcat 5.5.x before 5.5.36, 6.x before 6.0.36, and 7.x before 7.0.30 does not properly check for stale nonce values in conjunction with enforcement of proper credentials, which makes it easier for remote attackers to bypass intended access restrictions by sniffing the network for valid requests."
+  },
+  "CVE-2012-5886": {
+    "score": "5.0",
+    "type": "Bypass a restriction or similar",
+    "desc": "The HTTP Digest Access Authentication implementation in Apache Tomcat 5.5.x before 5.5.36, 6.x before 6.0.36, and 7.x before 7.0.30 caches information about the authenticated user within the session state, which makes it easier for remote attackers to bypass authentication via vectors related to the session ID."
+  },
+  "CVE-2012-5885": {
+    "score": "5.0",
+    "type": "Bypass a restriction or similar",
+    "desc": "The replay-countermeasure functionality in the HTTP Digest Access Authentication implementation in Apache Tomcat 5.5.x before 5.5.36, 6.x before 6.0.36, and 7.x before 7.0.30 tracks cnonce (aka client nonce) values instead of nonce (aka server nonce) and nc (aka nonce-count) values, which makes it easier for remote attackers to bypass intended access restrictions by sniffing the network for valid requests, a different vulnerability than CVE-2011-1184."
+  },
+  "CVE-2012-3546": {
+    "score": "4.3",
+    "type": "Bypass a restriction or similar",
+    "desc": "org/apache/catalina/realm/RealmBase.java in Apache Tomcat 6.x before 6.0.36 and 7.x before 7.0.30, when FORM authentication is used, allows remote attackers to bypass security-constraint checks by leveraging a previous setUserPrincipal call and then placing /j_security_check at the end of a URI."
+  },
+  "CVE-2012-3544": {
+    "score": "5.0",
+    "type": "Denial Of Service",
+    "desc": "Apache Tomcat 6.x before 6.0.37 and 7.x before 7.0.30 does not properly handle chunk extensions in chunked transfer coding, which allows remote attackers to cause a denial of service by streaming data."
+  },
+  "CVE-2012-4534": {
+    "score": "2.6",
+    "type": "Denial Of Service",
+    "desc": "org/apache/tomcat/util/net/NioEndpoint.java in Apache Tomcat 6.x before 6.0.36 and 7.x before 7.0.28, when the NIO connector is used in conjunction with sendfile and HTTPS, allows remote attackers to cause a denial of service (infinite loop) by terminating the connection during the reading of a response."
+  },
+  "CVE-2012-2733": {
+    "score": "5.0",
+    "type": "Denial Of Service",
+    "desc": "java/org/apache/coyote/http11/InternalNioInputBuffer.java in the HTTP NIO connector in Apache Tomcat 6.x before 6.0.36 and 7.x before 7.0.28 does not properly restrict the request-header size, which allows remote attackers to cause a denial of service (memory consumption) via a large amount of header data."
+  },
+  "CVE-2012-0022": {
+    "score": "5.0",
+    "type": "Denial Of Service",
+    "desc": "Apache Tomcat 5.5.x before 5.5.35, 6.x before 6.0.34, and 7.x before 7.0.23 uses an inefficient approach for handling parameters, which allows remote attackers to cause a denial of service (CPU consumption) via a request that contains many parameters and parameter values, a different vulnerability than CVE-2011-4858."
+  },
+  "CVE-2011-4858": {
+    "score": "5.0",
+    "type": "Denial Of Service",
+    "desc": "Apache Tomcat before 5.5.35, 6.x before 6.0.35, and 7.x before 7.0.23 computes hash values for form parameters without restricting the ability to trigger hash collisions predictably, which allows remote attackers to cause a denial of service (CPU consumption) by sending many crafted parameters."
+  },
+  "CVE-2011-3376": {
+    "score": "4.4",
+    "type": "Gain privileges",
+    "desc": "org/apache/catalina/core/DefaultInstanceManager.java in Apache Tomcat 7.x before 7.0.22 does not properly restrict ContainerServlets in the Manager application, which allows local users to gain privileges by using an untrusted web application to access the Manager application's functionality."
+  },
+  "CVE-2011-3375": {
+    "score": "5.0",
+    "type": "Obtain Information",
+    "desc": "Apache Tomcat 6.0.30 through 6.0.33 and 7.x before 7.0.22 does not properly perform certain caching and recycling operations involving request objects, which allows remote attackers to obtain unintended read access to IP address and HTTP header information in opportunistic circumstances by reading TCP data."
+  },
+  "CVE-2011-3190": {
+    "score": "7.5",
+    "type": "Bypass a restriction or similarObtain Information",
+    "desc": "Certain AJP protocol connector implementations in Apache Tomcat 7.0.0 through 7.0.20, 6.0.0 through 6.0.33, 5.5.0 through 5.5.33, and possibly other versions allow remote attackers to spoof AJP requests, bypass authentication, and obtain sensitive information by causing the connector to interpret a request body as a new request."
+  },
+  "CVE-2011-2526": {
+    "score": "4.4",
+    "type": "Denial Of ServiceBypass a restriction or similar",
+    "desc": "Apache Tomcat 5.5.x before 5.5.34, 6.x before 6.0.33, and 7.x before 7.0.19, when sendfile is enabled for the HTTP APR or HTTP NIO connector, does not validate certain request attributes, which allows local users to bypass intended file access restrictions or cause a denial of service (infinite loop or JVM crash) by leveraging an untrusted web application."
+  },
+  "CVE-2011-2481": {
+    "score": "4.6",
+    "type": "",
+    "desc": "Apache Tomcat 7.0.x before 7.0.17 permits web applications to replace an XML parser used for other web applications, which allows local users to read or modify the (1) web.xml, (2) context.xml, or (3) tld files of arbitrary web applications via a crafted application that is loaded earlier than the target application.  NOTE: this vulnerability exists because of a CVE-2009-0783 regression."
+  },
+  "CVE-2011-1582": {
+    "score": "4.3",
+    "type": "Bypass a restriction or similar",
+    "desc": "Apache Tomcat 7.0.12 and 7.0.13 processes the first request to a servlet without following security constraints that have been configured through annotations, which allows remote attackers to bypass intended access restrictions via HTTP requests.  NOTE: this vulnerability exists because of an incomplete fix for CVE-2011-1088, CVE-2011-1183, and CVE-2011-1419."
+  },
+  "CVE-2011-5064": {
+    "score": "4.3",
+    "type": "Bypass a restriction or similar",
+    "desc": "DigestAuthenticator.java in the HTTP Digest Access Authentication implementation in Apache Tomcat 5.5.x before 5.5.34, 6.x before 6.0.33, and 7.x before 7.0.12 uses Catalina as the hard-coded server secret (aka private key), which makes it easier for remote attackers to bypass cryptographic protection mechanisms by leveraging knowledge of this string, a different vulnerability than CVE-2011-1184."
+  },
+  "CVE-2011-5063": {
+    "score": "4.3",
+    "type": "Bypass a restriction or similar",
+    "desc": "The HTTP Digest Access Authentication implementation in Apache Tomcat 5.5.x before 5.5.34, 6.x before 6.0.33, and 7.x before 7.0.12 does not check realm values, which might allow remote attackers to bypass intended access restrictions by leveraging the availability of a protection space with weaker authentication or authorization requirements, a different vulnerability than CVE-2011-1184."
+  },
+  "CVE-2011-5062": {
+    "score": "5.0",
+    "type": "Bypass a restriction or similar",
+    "desc": "The HTTP Digest Access Authentication implementation in Apache Tomcat 5.5.x before 5.5.34, 6.x before 6.0.33, and 7.x before 7.0.12 does not check qop values, which might allow remote attackers to bypass intended integrity-protection requirements via a qop=auth value, a different vulnerability than CVE-2011-1184."
+  },
+  "CVE-2011-2204": {
+    "score": "1.9",
+    "type": "Obtain Information",
+    "desc": "Apache Tomcat 5.5.x before 5.5.34, 6.x before 6.0.33, and 7.x before 7.0.17, when the MemoryUserDatabase is used, creates log entries containing passwords upon encountering errors in JMX user creation, which allows local users to obtain sensitive information by reading a log file."
+  },
+  "CVE-2011-1475": {
+    "score": "5.0",
+    "type": "",
+    "desc": "The HTTP BIO connector in Apache Tomcat 7.0.x before 7.0.12 does not properly handle HTTP pipelining, which allows remote attackers to read responses intended for other clients in opportunistic circumstances by examining the application data in HTTP packets, related to \"a mix-up of responses for requests from different users.\""
+  },
+  "CVE-2011-1419": {
+    "score": "5.8",
+    "type": "Bypass a restriction or similar",
+    "desc": "Apache Tomcat 7.x before 7.0.11, when web.xml has no security constraints, does not follow ServletSecurity annotations, which allows remote attackers to bypass intended access restrictions via HTTP requests to a web application.  NOTE: this vulnerability exists because of an incomplete fix for CVE-2011-1088."
+  },
+  "CVE-2011-1184": {
+    "score": "5.0",
+    "type": "Bypass a restriction or similar",
+    "desc": "The HTTP Digest Access Authentication implementation in Apache Tomcat 5.5.x before 5.5.34, 6.x before 6.0.33, and 7.x before 7.0.12 does not have the expected countermeasures against replay attacks, which makes it easier for remote attackers to bypass intended access restrictions by sniffing the network for valid requests, related to lack of checking of nonce (aka server nonce) and nc (aka nonce-count or client nonce count) values."
+  },
+  "CVE-2011-1088": {
+    "score": "5.8",
+    "type": "Bypass a restriction or similar",
+    "desc": "Apache Tomcat 7.x before 7.0.10 does not follow ServletSecurity annotations, which allows remote attackers to bypass intended access restrictions via HTTP requests to a web application."
+  },
+  "CVE-2014-0033": {
+    "score": "4.3",
+    "type": "",
+    "desc": "org/apache/catalina/connector/CoyoteAdapter.java in Apache Tomcat 6.0.33 through 6.0.37 does not consider the disableURLRewriting setting when handling a session ID in a URL, which allows remote attackers to conduct session fixation attacks via a crafted URL."
+  },
+  "CVE-2011-0534": {
+    "score": "5.0",
+    "type": "Denial Of Service",
+    "desc": "Apache Tomcat 7.0.0 through 7.0.6 and 6.0.0 through 6.0.30 does not enforce the maxHttpHeaderSize limit for requests involving the NIO HTTP connector, which allows remote attackers to cause a denial of service (OutOfMemoryError) via a crafted request."
+  },
+  "CVE-2011-0013": {
+    "score": "4.3",
+    "type": "Cross Site Scripting",
+    "desc": "Multiple cross-site scripting (XSS) vulnerabilities in the HTML Manager Interface in Apache Tomcat 5.5 before 5.5.32, 6.0 before 6.0.30, and 7.0 before 7.0.6 allow remote attackers to inject arbitrary web script or HTML, as demonstrated via the display-name tag."
+  },
+  "CVE-2010-4312": {
+    "score": "6.4",
+    "type": "",
+    "desc": "The default configuration of Apache Tomcat 6.x does not include the HTTPOnly flag in a Set-Cookie header, which makes it easier for remote attackers to hijack a session via script access to a cookie."
+  },
+  "CVE-2010-4172": {
+    "score": "4.3",
+    "type": "Cross Site Scripting",
+    "desc": "Multiple cross-site scripting (XSS) vulnerabilities in the Manager application in Apache Tomcat 6.0.12 through 6.0.29 and 7.0.0 through 7.0.4 allow remote attackers to inject arbitrary web script or HTML via the (1) orderBy or (2) sort parameter to sessionsList.jsp, or unspecified input to (3) sessionDetail.jsp or (4) java/org/apache/catalina/manager/JspHelper.java, related to use of untrusted web applications."
+  },
+  "CVE-2010-3718": {
+    "score": "1.2",
+    "type": "Directory traversal",
+    "desc": "Apache Tomcat 7.0.0 through 7.0.3, 6.0.x, and 5.5.x, when running within a SecurityManager, does not make the ServletContext attribute read-only, which allows local web applications to read or write files outside of the intended working directory, as demonstrated using a directory traversal attack."
+  },
+  "CVE-2010-2227": {
+    "score": "6.4",
+    "type": "Denial Of ServiceOverflowObtain Information",
+    "desc": "Apache Tomcat 5.5.0 through 5.5.29, 6.0.0 through 6.0.27, and 7.0.0 beta does not properly handle an invalid Transfer-Encoding header, which allows remote attackers to cause a denial of service (application outage) or obtain sensitive information via a crafted header that interferes with \"recycling of a buffer.\""
+  },
+  "CVE-2010-1157": {
+    "score": "2.6",
+    "type": "Obtain Information",
+    "desc": "Apache Tomcat 5.5.0 through 5.5.29 and 6.0.0 through 6.0.26 might allow remote attackers to discover the server's hostname or IP address by sending a request for a resource that requires (1) BASIC or (2) DIGEST authentication, and then reading the realm field in the WWW-Authenticate header in the reply."
+  },
+  "CVE-2009-3548": {
+    "score": "7.5",
+    "type": "Gain privileges",
+    "desc": "The Windows installer for Apache Tomcat 6.0.0 through 6.0.20, 5.5.0 through 5.5.28, and possibly earlier versions uses a blank default password for the administrative user, which allows remote attackers to gain privileges."
+  },
+  "CVE-2009-2902": {
+    "score": "4.3",
+    "type": "Directory traversal",
+    "desc": "Directory traversal vulnerability in Apache Tomcat 5.5.0 through 5.5.28 and 6.0.0 through 6.0.20 allows remote attackers to delete work-directory files via directory traversal sequences in a WAR filename, as demonstrated by the ...war filename."
+  },
+  "CVE-2009-2901": {
+    "score": "4.3",
+    "type": "Bypass a restriction or similar",
+    "desc": "The autodeployment process in Apache Tomcat 5.5.0 through 5.5.28 and 6.0.0 through 6.0.20, when autoDeploy is enabled, deploys appBase files that remain from a failed undeploy, which might allow remote attackers to bypass intended authentication requirements via HTTP requests."
+  },
+  "CVE-2009-2693": {
+    "score": "5.8",
+    "type": "Directory traversal",
+    "desc": "Directory traversal vulnerability in Apache Tomcat 5.5.0 through 5.5.28 and 6.0.0 through 6.0.20 allows remote attackers to create or overwrite arbitrary files via a .. (dot dot) in an entry in a WAR file, as demonstrated by a ../../bin/catalina.bat entry."
+  },
+  "CVE-2008-5515": {
+    "score": "5.0",
+    "type": "Directory traversalBypass a restriction or similar",
+    "desc": "Apache Tomcat 4.1.0 through 4.1.39, 5.5.0 through 5.5.27, 6.0.0 through 6.0.18, and possibly earlier versions normalizes the target pathname before filtering the query string when using the RequestDispatcher method, which allows remote attackers to bypass intended access restrictions and conduct directory traversal attacks via .. (dot dot) sequences and the WEB-INF directory in a Request."
+  },
+  "CVE-2009-0781": {
+    "score": "4.3",
+    "type": "Cross Site Scripting",
+    "desc": "Cross-site scripting (XSS) vulnerability in jsp/cal/cal2.jsp in the calendar application in the examples web application in Apache Tomcat 4.1.0 through 4.1.39, 5.5.0 through 5.5.27, and 6.0.0 through 6.0.18 allows remote attackers to inject arbitrary web script or HTML via the time parameter, related to \"invalid HTML.\""
+  },
+  "CVE-2009-0580": {
+    "score": "4.3",
+    "type": "Obtain Information",
+    "desc": "Apache Tomcat 4.1.0 through 4.1.39, 5.5.0 through 5.5.27, and 6.0.0 through 6.0.18, when FORM authentication is used, allows remote attackers to enumerate valid usernames via requests to /j_security_check with malformed URL encoding of passwords, related to improper error checking in the (1) MemoryRealm, (2) DataSourceRealm, and (3) JDBCRealm authentication realms, as demonstrated by a % (percent) value for the j_password parameter."
+  },
+  "CVE-2009-0033": {
+    "score": "5.0",
+    "type": "Denial Of Service",
+    "desc": "Apache Tomcat 4.1.0 through 4.1.39, 5.5.0 through 5.5.27, and 6.0.0 through 6.0.18, when the Java AJP connector and mod_jk load balancing are used, allows remote attackers to cause a denial of service (application outage) via a crafted request with invalid headers, related to temporary blocking of connectors that have encountered errors, as demonstrated by an error involving a malformed HTTP Host header."
+  },
+  "CVE-2008-2370": {
+    "score": "5.0",
+    "type": "Directory traversal",
+    "desc": "Apache Tomcat 4.1.0 through 4.1.37, 5.5.0 through 5.5.26, and 6.0.0 through 6.0.16, when a RequestDispatcher is used, performs path normalization before removing the query string from the URI, which allows remote attackers to conduct directory traversal attacks and read arbitrary files via a .. (dot dot) in a request parameter."
+  },
+  "CVE-2008-1947": {
+    "score": "4.3",
+    "type": "Cross Site Scripting",
+    "desc": "Cross-site scripting (XSS) vulnerability in Apache Tomcat 5.5.9 through 5.5.26 and 6.0.0 through 6.0.16 allows remote attackers to inject arbitrary web script or HTML via the name parameter (aka the hostname attribute) to host-manager/html/add."
+  },
+  "CVE-2008-0002": {
+    "score": "5.8",
+    "type": "Obtain Information",
+    "desc": "Apache Tomcat 6.0.0 through 6.0.15 processes parameters in the context of the wrong request when an exception occurs during parameter processing, which might allow remote attackers to obtain sensitive information, as demonstrated by disconnecting during this processing in order to trigger the exception."
+  },
+  "CVE-2007-6286": {
+    "score": "4.3",
+    "type": "",
+    "desc": "Apache Tomcat 5.5.11 through 5.5.25 and 6.0.0 through 6.0.15, when the native APR connector is used, does not properly handle an empty request to the SSL port, which allows remote attackers to trigger handling of \"a duplicate copy of one of the recent requests,\" as demonstrated by using netcat to send the empty request."
+  },
+  "CVE-2007-5342": {
+    "score": "6.4",
+    "type": "",
+    "desc": "The default catalina.policy in the JULI logging component in Apache Tomcat 5.5.9 through 5.5.25 and 6.0.0 through 6.0.15 does not restrict certain permissions for web applications, which allows attackers to modify logging configuration options and overwrite arbitrary files, as demonstrated by changing the (1) level, (2) directory, and (3) prefix attributes in the org.apache.juli.FileHandler handler."
+  },
+  "CVE-2008-5519": {
+    "score": "2.6",
+    "type": "Obtain Information",
+    "desc": "The JK Connector (aka mod_jk) 1.2.0 through 1.2.26 in Apache Tomcat allows remote attackers to obtain sensitive information via an arbitrary request from an HTTP client, in opportunistic circumstances involving (1) a request from a different client that included a Content-Length header but no POST data or (2) a rapid series of requests, related to noncompliance with the AJP protocol's requirements for requests containing Content-Length headers."
+  },
+  "CVE-2007-3386": {
+    "score": "4.3",
+    "type": "Cross Site Scripting",
+    "desc": "Cross-site scripting (XSS) vulnerability in the Host Manager Servlet for Apache Tomcat 6.0.0 to 6.0.13 and 5.5.0 to 5.5.24 allows remote attackers to inject arbitrary HTML and web script via crafted requests, as demonstrated using the aliases parameter to an html/add action."
+  },
+  "CVE-2007-3385": {
+    "score": "4.3",
+    "type": "Obtain Information",
+    "desc": "Apache Tomcat 6.0.0 to 6.0.13, 5.5.0 to 5.5.24, 5.0.0 to 5.0.30, 4.1.0 to 4.1.36, and 3.3 to 3.3.2 does not properly handle the \\\" character sequence in a cookie value, which might cause sensitive information such as session IDs to be leaked to remote attackers and enable session hijacking attacks."
+  },
+  "CVE-2007-3382": {
+    "score": "4.3",
+    "type": "Obtain Information",
+    "desc": "Apache Tomcat 6.0.0 to 6.0.13, 5.5.0 to 5.5.24, 5.0.0 to 5.0.30, 4.1.0 to 4.1.36, and 3.3 to 3.3.2 treats single quotes (\"'\") as delimiters in cookies, which might cause sensitive information such as session IDs to be leaked and allow remote attackers to conduct session hijacking attacks."
+  },
+  "CVE-2007-2450": {
+    "score": "3.5",
+    "type": "Cross Site Scripting",
+    "desc": "Multiple cross-site scripting (XSS) vulnerabilities in the (1) Manager and (2) Host Manager web applications in Apache Tomcat 4.0.0 through 4.0.6, 4.1.0 through 4.1.36, 5.0.0 through 5.0.30, 5.5.0 through 5.5.24, and 6.0.0 through 6.0.13 allow remote authenticated users to inject arbitrary web script or HTML via a parameter name to manager/html/upload, and other unspecified vectors."
+  },
+  "CVE-2007-2449": {
+    "score": "4.3",
+    "type": "Cross Site Scripting",
+    "desc": "Multiple cross-site scripting (XSS) vulnerabilities in certain JSP files in the examples web application in Apache Tomcat 4.0.0 through 4.0.6, 4.1.0 through 4.1.36, 5.0.0 through 5.0.30, 5.5.0 through 5.5.24, and 6.0.0 through 6.0.13 allow remote attackers to inject arbitrary web script or HTML via the portion of the URI after the ';' character, as demonstrated by a URI containing a \"snp/snoop.jsp;\" sequence."
+  },
+  "CVE-2008-4308": {
+    "score": "2.6",
+    "type": "Obtain Information",
+    "desc": "The doRead method in Apache Tomcat 4.1.32 through 4.1.34 and 5.5.10 through 5.5.20 does not return a -1 to indicate when a certain error condition has occurred, which can cause Tomcat to send POST content from one request to a different request."
+  },
+  "CVE-2007-1858": {
+    "score": "2.6",
+    "type": "Obtain Information",
+    "desc": "The default SSL cipher configuration in Apache Tomcat 4.1.28 through 4.1.31, 5.0.0 through 5.0.30, and 5.5.0 through 5.5.17 uses certain insecure ciphers, including the anonymous cipher, which allows remote attackers to obtain sensitive information or have other, unspecified impacts."
+  },
+  "CVE-2006-7195": {
+    "score": "4.3",
+    "type": "Cross Site Scripting",
+    "desc": "Cross-site scripting (XSS) vulnerability in implicit-objects.jsp in Apache Tomcat 5.0.0 through 5.0.30 and 5.5.0 through 5.5.17 allows remote attackers to inject arbitrary web script or HTML via certain header values."
+  },
+  "CVE-2006-3835": {
+    "score": "5.0",
+    "type": "",
+    "desc": "Apache Tomcat 5 before 5.5.17 allows remote attackers to list directories via a semicolon (;) preceding a filename with a mapped extension, as demonstrated by URLs ending with /;index.jsp and /;help.do."
+  },
+  "CVE-2006-7197": {
+    "score": "7.8",
+    "type": "",
+    "desc": "The AJP connector in Apache Tomcat 5.5.15 uses an incorrect length for chunks, which can cause a buffer over-read in the ajp_process_callback in mod_jk, which allows remote attackers to read portions of sensitive memory."
+  },
+  "CVE-2006-7196": {
+    "score": "4.3",
+    "type": "Cross Site Scripting",
+    "desc": "Cross-site scripting (XSS) vulnerability in the calendar application example in Apache Tomcat 4.0.0 through 4.0.6, 4.1.0 through 4.1.31, 5.0.0 through 5.0.30, and 5.5.0 through 5.5.15 allows remote attackers to inject arbitrary web script or HTML via the time parameter to cal2.jsp and possibly unspecified other vectors.  NOTE: this may be related to CVE-2006-0254.1."
+  },
+  "CVE-2005-3510": {
+    "score": "5.0",
+    "type": "Denial Of Service",
+    "desc": "Apache Tomcat 5.5.0 to 5.5.11 allows remote attackers to cause a denial of service (CPU consumption) via a large number of simultaneous requests to list a web directory that has a large number of files."
+  },
+  "CVE-2008-3271": {
+    "score": "4.3",
+    "type": "Bypass a restriction or similarObtain Information",
+    "desc": "Apache Tomcat 5.5.0 and 4.1.0 through 4.1.31 allows remote attackers to bypass an IP address restriction and obtain sensitive information via a request that is processed concurrently with another request but in a different thread, leading to an instance-variable overwrite associated with a \"synchronization problem\" and lack of thread safety, and related to RemoteFilterValve, RemoteAddrValve, and RemoteHostValve."
+  },
+  "CVE-2007-1355": {
+    "score": "4.3",
+    "type": "Cross Site Scripting",
+    "desc": "Multiple cross-site scripting (XSS) vulnerabilities in the appdev/sample/web/hello.jsp example application in Tomcat 4.0.0 through 4.0.6, 4.1.0 through 4.1.36, 5.0.0 through 5.0.30, 5.5.0 through 5.5.23, and 6.0.0 through 6.0.10 allow remote attackers to inject arbitrary web script or HTML via the test parameter and unspecified vectors."
+  },
+  "CVE-2005-2090": {
+    "score": "4.3",
+    "type": "Cross Site ScriptingBypass a restriction or similar",
+    "desc": "Jakarta Tomcat 5.0.19 (Coyote/1.1) and Tomcat 4.1.24 (Coyote/1.0) allows remote attackers to poison the web cache, bypass web application firewall protection, and conduct XSS attacks via an HTTP request with both a \"Transfer-Encoding: chunked\" header and a Content-Length header, which causes Tomcat to incorrectly handle and forward the body of the request in a way that causes the receiving server to process it as a separate HTTP request, aka \"HTTP Request Smuggling.\""
+  },
+  "CVE-2005-4836": {
+    "score": "7.8",
+    "type": "Obtain Information",
+    "desc": "The HTTP/1.1 connector in Apache Tomcat 4.1.15 through 4.1.40 does not reject NULL bytes in a URL when allowLinking is configured, which allows remote attackers to read JSP source files and obtain sensitive information."
+  },
+  "CVE-2007-5461": {
+    "score": "3.5",
+    "type": "Directory traversal",
+    "desc": "Absolute path traversal vulnerability in Apache Tomcat 4.0.0 through 4.0.6, 4.1.0, 5.0.0, 5.5.0 through 5.5.25, and 6.0.0 through 6.0.14, under certain configurations, allows remote authenticated users to read arbitrary files via a WebDAV write request that specifies an entity with a SYSTEM tag."
+  },
+  "CVE-2007-3383": {
+    "score": "4.3",
+    "type": "Cross Site Scripting",
+    "desc": "Cross-site scripting (XSS) vulnerability in SendMailServlet in the examples web application (examples/jsp/mail/sendmail.jsp) in Apache Tomcat 4.0.0 through 4.0.6 and 4.1.0 through 4.1.36 allows remote attackers to inject arbitrary web script or HTML via the From field and possibly other fields, related to generation of error messages."
+  },
+  "CVE-2007-4724": {
+    "score": "4.3",
+    "type": "CSRF",
+    "desc": "Cross-site request forgery (CSRF) vulnerability in cal2.jsp in the calendar examples application in Apache Tomcat 4.1.31 allows remote attackers to add events as arbitrary users via the time and description parameters."
+  },
+  "CVE-2002-1394": {
+    "score": "7.5",
+    "type": "Bypass a restriction or similar",
+    "desc": "Apache Tomcat 4.0.5 and earlier, when using both the invoker servlet and the default servlet, allows remote attackers to read source code for server files or bypass certain protections, a variant of CAN-2002-1148."
+  },
+  "CVE-2002-1148": {
+    "score": "5.0",
+    "type": "",
+    "desc": "The default servlet (org.apache.catalina.servlets.DefaultServlet) in Tomcat 4.0.4 and 4.1.10 and earlier allows remote attackers to read source code for server files via a direct request to the servlet."
+  },
+  "CVE-2007-1358": {
+    "score": "2.6",
+    "type": "Cross Site Scripting",
+    "desc": "Cross-site scripting (XSS) vulnerability in certain applications using Apache Tomcat 4.0.0 through 4.0.6 and 4.1.0 through 4.1.34 allows remote attackers to inject arbitrary web script or HTML via crafted \"Accept-Language headers that do not conform to RFC 2616\"."
+  },
+  "CVE-2002-2006": {
+    "score": "5.0",
+    "type": "Obtain Information",
+    "desc": "The default installation of Apache Tomcat 4.0 through 4.1 and 3.0 through 3.3.1 allows remote attackers to obtain the installation path and other sensitive system information via the (1) SnoopServlet or (2) TroubleShooter example servlets."
+  },
+  "CVE-2002-1567": {
+    "score": "6.8",
+    "type": "Execute CodeCross Site Scripting",
+    "desc": "Cross-site scripting (XSS) vulnerability in Apache Tomcat 4.1 allows remote attackers to execute arbitrary web script and steal cookies via a URL with encoded newlines followed by a request to a .jsp file whose name contains the script."
+  },
+  "CVE-2003-0866": {
+    "score": "5.0",
+    "type": "Denial Of Service",
+    "desc": "The Catalina org.apache.catalina.connector.http package in Tomcat 4.0.x up to 4.0.3 allows remote attackers to cause a denial of service via several requests that do not follow the HTTP protocol, which causes Tomcat to reject later requests."
+  },
+  "CVE-2002-1895": {
+    "score": "5.0",
+    "type": "Denial Of Service",
+    "desc": "The servlet engine in Jakarta Apache Tomcat 3.3 and 4.0.4, when using IIS and the ajp1.3 connector, allows remote attackers to cause a denial of service (crash) via a large number of HTTP GET requests for an MS-DOS device such as AUX, LPT1, CON, or PRN."
+  },
+  "CVE-2005-4703": {
+    "score": "5.0",
+    "type": "Obtain Information",
+    "desc": "Apache Tomcat 4.0.3, when running on Windows, allows remote attackers to obtain sensitive information via a request for a file that contains an MS-DOS device name such as lpt9, which leaks the pathname in an error message, as demonstrated by lpt9.xtp using Nikto."
+  },
+  "CVE-2002-2008": {
+    "score": "5.0",
+    "type": "Obtain Information",
+    "desc": "Apache Tomcat 4.0.3 for Windows allows remote attackers to obtain the web root path via an HTTP request for a resource that does not exist, such as lpt9, which leaks the information in an error message."
+  },
+  "CVE-2002-0936": {
+    "score": "5.0",
+    "type": "Denial Of Service",
+    "desc": "The Java Server Pages (JSP) engine in Tomcat allows web page owners to cause a denial of service (engine crash) on the web server via a JSP page that calls WPrinterJob().pageSetup(null,null)."
+  },
+  "CVE-2002-0935": {
+    "score": "5.0",
+    "type": "Denial Of Service",
+    "desc": "Apache Tomcat 4.0.3, and possibly other versions before 4.1.3 beta, allows remote attackers to cause a denial of service (resource exhaustion) via a large number of requests to the server with null characters, which causes the working threads to hang."
+  },
+  "CVE-2002-0682": {
+    "score": "7.5",
+    "type": "Cross Site Scripting",
+    "desc": "Cross-site scripting vulnerability in Apache Tomcat 4.0.3 allows remote attackers to execute script as other web users via script in a URL with the /servlet/ mapping, which does not filter the script when an exception is thrown by the servlet."
+  },
+  "CVE-2002-2009": {
+    "score": "5.0",
+    "type": "",
+    "desc": "Apache Tomcat 4.0.1 allows remote attackers to obtain the web root path via HTTP requests for JSP files preceded by (1) +/, (2) >/, (3) </, and (4) %20/, which leaks the pathname in an error message."
+  },
+  "CVE-2001-0917": {
+    "score": "5.0",
+    "type": "",
+    "desc": "Jakarta Tomcat 4.0.1 allows remote attackers to reveal physical path information by requesting a long URL with a .JSP extension."
+  },
+  "CVE-2007-3384": {
+    "score": "4.3",
+    "type": "Cross Site Scripting",
+    "desc": "Multiple cross-site scripting (XSS) vulnerabilities in examples/servlet/CookieExample in Apache Tomcat 3.3 through 3.3.2 allow remote attackers to inject arbitrary web script or HTML via the (1) Name or (2) Value field, related to error messages."
+  },
+  "CVE-2005-0808": {
+    "score": "5.0",
+    "type": "Denial Of Service",
+    "desc": "Apache Tomcat before 5.x allows remote attackers to cause a denial of service (application crash) via a crafted AJP12 packet to TCP port 8007."
+  },
+  "CVE-2003-0045": {
+    "score": "5.0",
+    "type": "Denial Of Service",
+    "desc": "Jakarta Tomcat before 3.3.1a on certain Windows systems may allow remote attackers to cause a denial of service (thread hang and resource consumption) via a request for a JSP page containing an MS-DOS device name, such as aux.jsp."
+  },
+  "CVE-2003-0044": {
+    "score": "6.8",
+    "type": "Cross Site Scripting",
+    "desc": "Multiple cross-site scripting (XSS) vulnerabilities in the (1) examples and (2) ROOT web applications for Jakarta Tomcat 3.x through 3.3.1a allow remote attackers to insert arbitrary web script or HTML."
+  },
+  "CVE-2003-0043": {
+    "score": "5.0",
+    "type": "",
+    "desc": "Jakarta Tomcat before 3.3.1a, when used with JDK 1.3.1 or earlier, uses trusted privileges when processing the web.xml file, which could allow remote attackers to read portions of some files through the web.xml file."
+  },
+  "CVE-2003-0042": {
+    "score": "5.0",
+    "type": "",
+    "desc": "Jakarta Tomcat before 3.3.1a, when used with JDK 1.3.1 or earlier, allows remote attackers to list directories even with an index.html or other file present, or obtain unprocessed source code for a JSP file, via a URL containing a null character."
+  },
+  "CVE-2002-2007": {
+    "score": "5.0",
+    "type": "Obtain Information",
+    "desc": "The default installations of Apache Tomcat 3.2.3 and 3.2.4 allows remote attackers to obtain sensitive system information such as directory listings and web root path, via erroneous HTTP requests for Java Server Pages (JSP) in the (1) test/jsp, (2) samples/jsp and (3) examples/jsp directories, or the (4) test/realPath.jsp servlet, which leaks pathnames in error messages."
+  },
+  "CVE-2001-1563": {
+    "score": "7.5",
+    "type": "",
+    "desc": "Unknown vulnerability in Tomcat 3.2.1 running on HP Secure OS for Linux 1.0 allows attackers to access servlet resources.  NOTE: due to the vagueness of the vendor advisory, it is not clear whether this issue is already covered by other CVE identifiers."
+  },
+  "CVE-2001-0829": {
+    "score": "5.1",
+    "type": "Cross Site Scripting",
+    "desc": "A cross-site scripting vulnerability in Apache Tomcat 3.2.1 allows a malicious webmaster to embed Javascript in a request for a .JSP file, which causes the Javascript to be inserted into an error message."
+  },
+  "CVE-2000-0760": {
+    "score": "6.4",
+    "type": "",
+    "desc": "The Snoop servlet in Jakarta Tomcat 3.1 and 3.0 under Apache reveals sensitive system information when a remote attacker requests a nonexistent URL with a .snp extension."
+  },
+  "CVE-2000-0759": {
+    "score": "6.4",
+    "type": "",
+    "desc": "Jakarta Tomcat 3.1 under Apache reveals physical path information when a remote attacker requests a URL that does not exist, which generates an error message that includes the physical path."
+  },
+  "CVE-2000-0672": {
+    "score": "5.0",
+    "type": "",
+    "desc": "The default configuration of Jakarta Tomcat does not restrict access to the /admin context, which allows remote attackers to read arbitrary files by directly calling the administrative servlets to add a context for the root directory."
+  },
+  "CVE-2021-41079": {
+    "score": "4.3",
+    "type": "Denial Of Service",
+    "desc": "Apache Tomcat 8.5.0 to 8.5.63, 9.0.0-M1 to 9.0.43 and 10.0.0-M1 to 10.0.2 did not properly validate incoming TLS packets. When Tomcat was configured to use NIO+OpenSSL or NIO2+OpenSSL for TLS, a specially crafted packet could be used to trigger an infinite loop resulting in a denial of service."
+  },
+  "CVE-2021-33037": {
+    "score": "5.0",
+    "type": "",
+    "desc": "Apache Tomcat 10.0.0-M1 to 10.0.6, 9.0.0.M1 to 9.0.46 and 8.5.0 to 8.5.66 did not correctly parse the HTTP transfer-encoding request header in some circumstances leading to the possibility to request smuggling when used with a reverse proxy. Specifically: - Tomcat incorrectly ignored the transfer encoding header if the client declared it would only accept an HTTP/1.0 response; - Tomcat honoured the identify encoding; and - Tomcat did not ensure that, if present, the chunked encoding was the final encoding."
+  },
+  "CVE-2021-30640": {
+    "score": "5.8",
+    "type": "Bypass a restriction or similar",
+    "desc": "A vulnerability in the JNDI Realm of Apache Tomcat allows an attacker to authenticate using variations of a valid user name and/or to bypass some of the protection provided by the LockOut Realm. This issue affects Apache Tomcat 10.0.0-M1 to 10.0.5; 9.0.0.M1 to 9.0.45; 8.5.0 to 8.5.65."
+  },
+  "CVE-2021-24122": {
+    "score": "4.3",
+    "type": "Obtain Information",
+    "desc": "When serving resources from a network location using the NTFS file system, Apache Tomcat versions 10.0.0-M1 to 10.0.0-M9, 9.0.0.M1 to 9.0.39, 8.5.0 to 8.5.59 and 7.0.0 to 7.0.106 were susceptible to JSP source code disclosure in some configurations. The root cause was the unexpected behaviour of the JRE API File.getCanonicalPath() which in turn was caused by the inconsistent behaviour of the Windows API (FindFirstFileW) in some circumstances."
+  },
+  "CVE-2020-13935": {
+    "score": "5.0",
+    "type": "Denial Of Service",
+    "desc": "The payload length in a WebSocket frame was not correctly validated in Apache Tomcat 10.0.0-M1 to 10.0.0-M6, 9.0.0.M1 to 9.0.36, 8.5.0 to 8.5.56 and 7.0.27 to 7.0.104. Invalid payload lengths could trigger an infinite loop. Multiple requests with invalid payload lengths could lead to a denial of service."
+  },
+  "CVE-2020-13934": {
+    "score": "5.0",
+    "type": "Denial Of Service",
+    "desc": "An h2c direct connection to Apache Tomcat 10.0.0-M1 to 10.0.0-M6, 9.0.0.M5 to 9.0.36 and 8.5.1 to 8.5.56 did not release the HTTP/1.1 processor after the upgrade to HTTP/2. If a sufficient number of such requests were made, an OutOfMemoryException could occur leading to a denial of service."
+  },
+  "CVE-2020-11996": {
+    "score": "5.0",
+    "type": "",
+    "desc": "A specially crafted sequence of HTTP/2 requests sent to Apache Tomcat 10.0.0-M1 to 10.0.0-M5, 9.0.0.M1 to 9.0.35 and 8.5.0 to 8.5.55 could trigger high CPU usage for several seconds. If a sufficient number of such requests were made on concurrent HTTP/2 connections, the server could become unresponsive."
+  },
+  "CVE-2020-9484": {
+    "score": "4.4",
+    "type": "Execute Code",
+    "desc": "When using Apache Tomcat versions 10.0.0-M1 to 10.0.0-M4, 9.0.0.M1 to 9.0.34, 8.5.0 to 8.5.54 and 7.0.0 to 7.0.103 if a) an attacker is able to control the contents and name of a file on the server; and b) the server is configured to use the PersistenceManager with a FileStore; and c) the PersistenceManager is configured with sessionAttributeValueClassNameFilter=\"null\" (the default unless a SecurityManager is used) or a sufficiently lax filter to allow the attacker provided object to be deserialized; and d) the attacker knows the relative file path from the storage location used by FileStore to the file the attacker has control over; then, using a specifically crafted request, the attacker will be able to trigger remote code execution via deserialization of the file under their control. Note that all of conditions a) to d) must be true for the attack to succeed."
+  },
+  "CVE-2020-1938": {
+    "score": "7.5",
+    "type": "Execute Code",
+    "desc": "When using the Apache JServ Protocol (AJP), care must be taken when trusting incoming connections to Apache Tomcat. Tomcat treats AJP connections as having higher trust than, for example, a similar HTTP connection. If such connections are available to an attacker, they can be exploited in ways that may be surprising. In Apache Tomcat 9.0.0.M1 to 9.0.0.30, 8.5.0 to 8.5.50 and 7.0.0 to 7.0.99, Tomcat shipped with an AJP Connector enabled by default that listened on all configured IP addresses. It was expected (and recommended in the security guide) that this Connector would be disabled if not required. This vulnerability report identified a mechanism that allowed: - returning arbitrary files from anywhere in the web application - processing any file in the web application as a JSP Further, if the web application allowed file upload and stored those files within the web application (or the attacker was able to control the content of the web application by some other means) then this, along with the ability to process a file as a JSP, made remote code execution possible. It is important to note that mitigation is only required if an AJP port is accessible to untrusted users. Users wishing to take a defence-in-depth approach and block the vector that permits returning arbitrary files and execution as JSP may upgrade to Apache Tomcat 9.0.31, 8.5.51 or 7.0.100 or later. A number of changes were made to the default AJP Connector configuration in 9.0.31 to harden the default configuration. It is likely that users upgrading to 9.0.31, 8.5.51 or 7.0.100 or later will need to make small changes to their configurations."
+  },
+  "CVE-2020-1935": {
+    "score": "5.8",
+    "type": "",
+    "desc": "In Apache Tomcat 9.0.0.M1 to 9.0.30, 8.5.0 to 8.5.50 and 7.0.0 to 7.0.99 the HTTP header parsing code used an approach to end-of-line parsing that allowed some invalid HTTP headers to be parsed as valid. This led to a possibility of HTTP Request Smuggling if Tomcat was located behind a reverse proxy that incorrectly handled the invalid Transfer-Encoding header in a particular manner. Such a reverse proxy is considered unlikely."
+  },
+  "CVE-2019-17569": {
+    "score": "5.8",
+    "type": "",
+    "desc": "The refactoring present in Apache Tomcat 9.0.28 to 9.0.30, 8.5.48 to 8.5.50 and 7.0.98 to 7.0.99 introduced a regression. The result of the regression was that invalid Transfer-Encoding headers were incorrectly processed leading to a possibility of HTTP Request Smuggling if Tomcat was located behind a reverse proxy that incorrectly handled the invalid Transfer-Encoding header in a particular manner. Such a reverse proxy is considered unlikely."
+  },
+  "CVE-2019-17563": {
+    "score": "5.1",
+    "type": "",
+    "desc": "When using FORM authentication with Apache Tomcat 9.0.0.M1 to 9.0.29, 8.5.0 to 8.5.49 and 7.0.0 to 7.0.98 there was a narrow window where an attacker could perform a session fixation attack. The window was considered too narrow for an exploit to be practical but, erring on the side of caution, this issue has been treated as a security vulnerability."
+  },
+  "CVE-2019-12418": {
+    "score": "4.4",
+    "type": "",
+    "desc": "When Apache Tomcat 9.0.0.M1 to 9.0.28, 8.5.0 to 8.5.47, 7.0.0 and 7.0.97 is configured with the JMX Remote Lifecycle Listener, a local attacker without access to the Tomcat process or configuration files is able to manipulate the RMI registry to perform a man-in-the-middle attack to capture user names and passwords used to access the JMX interface. The attacker can then use these credentials to access the JMX interface and gain complete control over the Tomcat instance."
+  },
+  "CVE-2019-0199": {
+    "score": "5.0",
+    "type": "",
+    "desc": "The HTTP/2 implementation in Apache Tomcat 9.0.0.M1 to 9.0.14 and 8.5.0 to 8.5.37 accepted streams with excessive numbers of SETTINGS frames and also permitted clients to keep streams open without reading/writing request/response data. By keeping streams open for requests that utilised the Servlet API's blocking I/O, clients were able to cause server-side threads to block eventually leading to thread exhaustion and a DoS."
+  },
+  "CVE-2018-8014": {
+    "score": "7.5",
+    "type": "",
+    "desc": "The defaults settings for the CORS filter provided in Apache Tomcat 9.0.0.M1 to 9.0.8, 8.5.0 to 8.5.31, 8.0.0.RC1 to 8.0.52, 7.0.41 to 7.0.88 are insecure and enable 'supportsCredentials' for all origins. It is expected that users of the CORS filter will have configured it appropriately for their environment rather than using it in the default configuration. Therefore, it is expected that most users will not be impacted by this issue."
+  },
+  "CVE-2016-5388": {
+    "score": "5.1",
+    "type": "",
+    "desc": "Apache Tomcat 7.x through 7.0.70 and 8.x through 8.5.4, when the CGI Servlet is enabled, follows RFC 3875 section 4.1.18 and therefore does not protect applications from the presence of untrusted client data in the HTTP_PROXY environment variable, which might allow remote attackers to redirect an application's outbound HTTP traffic to an arbitrary proxy server via a crafted Proxy header in an HTTP request, aka an \"httpoxy\" issue. NOTE: the vendor states \"A mitigation is planned for future releases of Tomcat, tracked as CVE-2016-5388\"; in other words, this is not a CVE ID for a vulnerability."
+  },
+  "CVE-2013-2185": {
+    "score": "7.5",
+    "type": "",
+    "desc": "** DISPUTED ** The readObject method in the DiskFileItem class in Apache Tomcat and JBoss Web, as used in Red Hat JBoss Enterprise Application Platform 6.1.0 and Red Hat JBoss Portal 6.0.0, allows remote attackers to write to arbitrary files via a NULL byte in a file name in a serialized instance, a similar issue to CVE-2013-2186.  NOTE: this issue is reportedly disputed by the Apache Tomcat team, although Red Hat considers it a vulnerability. The dispute appears to regard whether it is the responsibility of applications to avoid providing untrusted data to be deserialized, or whether this class should inherently protect against this issue."
+  },
+  "CVE-2012-5568": {
+    "score": "5.0",
+    "type": "Denial Of Service",
+    "desc": "Apache Tomcat through 7.0.x allows remote attackers to cause a denial of service (daemon outage) via partial HTTP requests, as demonstrated by Slowloris."
+  },
+  "CVE-2009-0783": {
+    "score": "4.6",
+    "type": "Obtain Information",
+    "desc": "Apache Tomcat 4.1.0 through 4.1.39, 5.5.0 through 5.5.27, and 6.0.0 through 6.0.18 permits web applications to replace an XML parser used for other web applications, which allows local users to read or modify the (1) web.xml, (2) context.xml, or (3) tld files of arbitrary web applications via a crafted application that is loaded earlier than the target application."
+  },
+  "CVE-2008-2938": {
+    "score": "4.3",
+    "type": "Directory traversal",
+    "desc": "Directory traversal vulnerability in Apache Tomcat 4.1.0 through 4.1.37, 5.5.0 through 5.5.26, and 6.0.0 through 6.0.16, when allowLinking and UTF-8 are enabled, allows remote attackers to read arbitrary files via encoded directory traversal sequences in the URI, a different vulnerability than CVE-2008-2370.  NOTE: versions earlier than 6.0.18 were reported affected, but the vendor advisory lists 6.0.16 as the last affected version."
+  },
+  "CVE-2008-1232": {
+    "score": "4.3",
+    "type": "Cross Site Scripting",
+    "desc": "Cross-site scripting (XSS) vulnerability in Apache Tomcat 4.1.0 through 4.1.37, 5.5.0 through 5.5.26, and 6.0.0 through 6.0.16 allows remote attackers to inject arbitrary web script or HTML via a crafted string that is used in the message argument to the HttpServletResponse.sendError method."
+  },
+  "CVE-2008-0128": {
+    "score": "5.0",
+    "type": "",
+    "desc": "The SingleSignOn Valve (org.apache.catalina.authenticator.SingleSignOn) in Apache Tomcat before 5.5.21 does not set the secure flag for the JSESSIONIDSSO cookie in an https session, which can cause the cookie to be sent in http requests and make it easier for remote attackers to capture this cookie."
+  },
+  "CVE-2007-5333": {
+    "score": "5.0",
+    "type": "Obtain Information",
+    "desc": "Apache Tomcat 6.0.0 through 6.0.14, 5.5.0 through 5.5.25, and 4.1.0 through 4.1.36 does not properly handle (1) double quote (\") characters or (2) %5C (encoded backslash) sequences in a cookie value, which might cause sensitive information such as session IDs to be leaked to remote attackers and enable session hijacking attacks.  NOTE: this issue exists because of an incomplete fix for CVE-2007-3385."
+  },
+  "CVE-2018-21246": {
+    "score": "7.5",
+    "type": "Bypass a restriction or similar",
+    "desc": "Caddy before 0.10.13 mishandles TLS client authentication, as demonstrated by an authentication bypass caused by the lack of the StrictHostMatching mode."
+  },
+  "CVE-2018-19148": {
+    "score": "4.3",
+    "type": "Obtain Information",
+    "desc": "Caddy through 0.11.0 sends incorrect certificates for certain invalid requests, making it easier for attackers to enumerate hostnames. Specifically, when unable to match a Host header with a vhost in its configuration, it serves the X.509 certificate for a randomly selected vhost in its configuration. Repeated requests (with a nonexistent hostname in the Host header) permit full enumeration of all certificates on the server. This generally permits an attacker to easily and accurately discover the existence of and relationships among hostnames that weren't meant to be public, though this information could likely have been discovered via other methods with additional effort."
+  },
+  "CVE-2005-3695": {
+    "score": "4.3",
+    "type": "Cross Site Scripting",
+    "desc": "Cross-site scripting (XSS) vulnerability in admin/config/confMgr.php in LiteSpeed Web Server 2.1.5 allows remote attackers to inject arbitrary web script or HTML via the m parameter."
+  },
+  "CVE-2007-5654": {
+    "score": "5.0",
+    "type": "Obtain Information",
+    "desc": "LiteSpeed Web Server before 3.2.4 allows remote attackers to trigger use of an arbitrary MIME type for a file via a \"%00.\" sequence followed by a new extension, as demonstrated by reading PHP source code via requests for .php%00.txt files, aka \"Mime Type Injection.\""
+  },
+  "CVE-2022-21386": {
+    "score": "5.8",
+    "type": "",
+    "desc": "Vulnerability in the Oracle WebLogic Server product of Oracle Fusion Middleware (component: Web Container). Supported versions that are affected are 12.1.3.0.0, 12.2.1.3.0, 12.2.1.4.0 and 14.1.1.0.0. Easily exploitable vulnerability allows unauthenticated attacker with network access via HTTP to compromise Oracle WebLogic Server. Successful attacks require human interaction from a person other than the attacker and while the vulnerability is in Oracle WebLogic Server, attacks may significantly impact additional products. Successful attacks of this vulnerability can result in unauthorized update, insert or delete access to some of Oracle WebLogic Server accessible data as well as unauthorized read access to a subset of Oracle WebLogic Server accessible data. CVSS 3.1 Base Score 6.1 (Confidentiality and Integrity impacts). CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N)."
+  },
+  "CVE-2022-21371": {
+    "score": "5.0",
+    "type": "Directory traversal",
+    "desc": "Vulnerability in the Oracle WebLogic Server product of Oracle Fusion Middleware (component: Web Container). Supported versions that are affected are 12.1.3.0.0, 12.2.1.3.0, 12.2.1.4.0 and 14.1.1.0.0. Easily exploitable vulnerability allows unauthenticated attacker with network access via HTTP to compromise Oracle WebLogic Server. Successful attacks of this vulnerability can result in unauthorized access to critical data or complete access to all Oracle WebLogic Server accessible data. CVSS 3.1 Base Score 7.5 (Confidentiality impacts). CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N)."
+  },
+  "CVE-2022-21361": {
+    "score": "5.8",
+    "type": "",
+    "desc": "Vulnerability in the Oracle WebLogic Server product of Oracle Fusion Middleware (component: Sample apps). Supported versions that are affected are 12.2.1.4.0 and 14.1.1.0.0. Easily exploitable vulnerability allows unauthenticated attacker with network access via HTTP to compromise Oracle WebLogic Server. Successful attacks require human interaction from a person other than the attacker and while the vulnerability is in Oracle WebLogic Server, attacks may significantly impact additional products. Successful attacks of this vulnerability can result in unauthorized update, insert or delete access to some of Oracle WebLogic Server accessible data as well as unauthorized read access to a subset of Oracle WebLogic Server accessible data. CVSS 3.1 Base Score 6.1 (Confidentiality and Integrity impacts). CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N)."
+  },
+  "CVE-2022-21353": {
+    "score": "6.4",
+    "type": "Denial Of Service",
+    "desc": "Vulnerability in the Oracle WebLogic Server product of Oracle Fusion Middleware (component: Core). Supported versions that are affected are 12.2.1.3.0, 12.2.1.4.0 and 14.1.1.0.0. Easily exploitable vulnerability allows unauthenticated attacker with network access via T3 to compromise Oracle WebLogic Server. Successful attacks of this vulnerability can result in unauthorized update, insert or delete access to some of Oracle WebLogic Server accessible data and unauthorized ability to cause a partial denial of service (partial DOS) of Oracle WebLogic Server. CVSS 3.1 Base Score 6.5 (Integrity and Availability impacts). CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:L)."
+  },
+  "CVE-2022-21350": {
+    "score": "6.4",
+    "type": "Denial Of Service",
+    "desc": "Vulnerability in the Oracle WebLogic Server product of Oracle Fusion Middleware (component: Core). Supported versions that are affected are 12.1.3.0.0, 12.2.1.3.0, 12.2.1.4.0 and 14.1.1.0.0. Easily exploitable vulnerability allows unauthenticated attacker with network access via T3 to compromise Oracle WebLogic Server. Successful attacks of this vulnerability can result in unauthorized update, insert or delete access to some of Oracle WebLogic Server accessible data and unauthorized ability to cause a partial denial of service (partial DOS) of Oracle WebLogic Server. CVSS 3.1 Base Score 6.5 (Integrity and Availability impacts). CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:L)."
+  },
+  "CVE-2022-21347": {
+    "score": "6.4",
+    "type": "Denial Of Service",
+    "desc": "Vulnerability in the Oracle WebLogic Server product of Oracle Fusion Middleware (component: Core). Supported versions that are affected are 12.1.3.0.0, 12.2.1.3.0, 12.2.1.4.0 and 14.1.1.0.0. Easily exploitable vulnerability allows unauthenticated attacker with network access via T3 to compromise Oracle WebLogic Server. Successful attacks of this vulnerability can result in unauthorized update, insert or delete access to some of Oracle WebLogic Server accessible data and unauthorized ability to cause a partial denial of service (partial DOS) of Oracle WebLogic Server. CVSS 3.1 Base Score 6.5 (Integrity and Availability impacts). CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:L)."
+  },
+  "CVE-2022-21306": {
+    "score": "7.5",
+    "type": "",
+    "desc": "Vulnerability in the Oracle WebLogic Server product of Oracle Fusion Middleware (component: Core). Supported versions that are affected are 12.1.3.0.0, 12.2.1.3.0, 12.2.1.4.0 and 14.1.1.0.0. Easily exploitable vulnerability allows unauthenticated attacker with network access via T3 to compromise Oracle WebLogic Server. Successful attacks of this vulnerability can result in takeover of Oracle WebLogic Server. CVSS 3.1 Base Score 9.8 (Confidentiality, Integrity and Availability impacts). CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H)."
+  },
+  "CVE-2022-21292": {
+    "score": "5.0",
+    "type": "",
+    "desc": "Vulnerability in the Oracle WebLogic Server product of Oracle Fusion Middleware (component: Samples). Supported versions that are affected are 12.2.1.4.0 and 14.1.1.0.0. Easily exploitable vulnerability allows unauthenticated attacker with network access via HTTP to compromise Oracle WebLogic Server. Successful attacks of this vulnerability can result in unauthorized access to critical data or complete access to all Oracle WebLogic Server accessible data. CVSS 3.1 Base Score 7.5 (Confidentiality impacts). CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N)."
+  },
+  "CVE-2022-21262": {
+    "score": "5.8",
+    "type": "",
+    "desc": "Vulnerability in the Oracle WebLogic Server product of Oracle Fusion Middleware (component: Samples). Supported versions that are affected are 12.2.1.4.0 and 14.1.1.0.0. Easily exploitable vulnerability allows unauthenticated attacker with network access via HTTP to compromise Oracle WebLogic Server. Successful attacks require human interaction from a person other than the attacker and while the vulnerability is in Oracle WebLogic Server, attacks may significantly impact additional products. Successful attacks of this vulnerability can result in unauthorized update, insert or delete access to some of Oracle WebLogic Server accessible data as well as unauthorized read access to a subset of Oracle WebLogic Server accessible data. CVSS 3.1 Base Score 6.1 (Confidentiality and Integrity impacts). CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N)."
+  },
+  "CVE-2022-21261": {
+    "score": "5.8",
+    "type": "",
+    "desc": "Vulnerability in the Oracle WebLogic Server product of Oracle Fusion Middleware (component: Samples). Supported versions that are affected are 12.2.1.4.0 and 14.1.1.0.0. Easily exploitable vulnerability allows unauthenticated attacker with network access via HTTP to compromise Oracle WebLogic Server. Successful attacks require human interaction from a person other than the attacker and while the vulnerability is in Oracle WebLogic Server, attacks may significantly impact additional products. Successful attacks of this vulnerability can result in unauthorized update, insert or delete access to some of Oracle WebLogic Server accessible data as well as unauthorized read access to a subset of Oracle WebLogic Server accessible data. CVSS 3.1 Base Score 6.1 (Confidentiality and Integrity impacts). CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N)."
+  },
+  "CVE-2022-21260": {
+    "score": "5.8",
+    "type": "",
+    "desc": "Vulnerability in the Oracle WebLogic Server product of Oracle Fusion Middleware (component: Samples). Supported versions that are affected are 12.2.1.4.0 and 14.1.1.0.0. Easily exploitable vulnerability allows unauthenticated attacker with network access via HTTP to compromise Oracle WebLogic Server. Successful attacks require human interaction from a person other than the attacker and while the vulnerability is in Oracle WebLogic Server, attacks may significantly impact additional products. Successful attacks of this vulnerability can result in unauthorized update, insert or delete access to some of Oracle WebLogic Server accessible data as well as unauthorized read access to a subset of Oracle WebLogic Server accessible data. CVSS 3.1 Base Score 6.1 (Confidentiality and Integrity impacts). CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N)."
+  },
+  "CVE-2022-21259": {
+    "score": "5.8",
+    "type": "",
+    "desc": "Vulnerability in the Oracle WebLogic Server product of Oracle Fusion Middleware (component: Samples). Supported versions that are affected are 12.2.1.4.0 and 14.1.1.0.0. Easily exploitable vulnerability allows unauthenticated attacker with network access via HTTP to compromise Oracle WebLogic Server. Successful attacks require human interaction from a person other than the attacker and while the vulnerability is in Oracle WebLogic Server, attacks may significantly impact additional products. Successful attacks of this vulnerability can result in unauthorized update, insert or delete access to some of Oracle WebLogic Server accessible data as well as unauthorized read access to a subset of Oracle WebLogic Server accessible data. CVSS 3.1 Base Score 6.1 (Confidentiality and Integrity impacts). CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N)."
+  },
+  "CVE-2022-21258": {
+    "score": "5.8",
+    "type": "",
+    "desc": "Vulnerability in the Oracle WebLogic Server product of Oracle Fusion Middleware (component: Samples). The supported version that is affected is 14.1.1.0.0. Easily exploitable vulnerability allows unauthenticated attacker with network access via HTTP to compromise Oracle WebLogic Server. Successful attacks require human interaction from a person other than the attacker and while the vulnerability is in Oracle WebLogic Server, attacks may significantly impact additional products. Successful attacks of this vulnerability can result in unauthorized update, insert or delete access to some of Oracle WebLogic Server accessible data as well as unauthorized read access to a subset of Oracle WebLogic Server accessible data. CVSS 3.1 Base Score 6.1 (Confidentiality and Integrity impacts). CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N)."
+  },
+  "CVE-2022-21257": {
+    "score": "5.8",
+    "type": "",
+    "desc": "Vulnerability in the Oracle WebLogic Server product of Oracle Fusion Middleware (component: Samples). Supported versions that are affected are 12.2.1.4.0 and 14.1.1.0.0. Easily exploitable vulnerability allows unauthenticated attacker with network access via HTTP to compromise Oracle WebLogic Server. Successful attacks require human interaction from a person other than the attacker and while the vulnerability is in Oracle WebLogic Server, attacks may significantly impact additional products. Successful attacks of this vulnerability can result in unauthorized update, insert or delete access to some of Oracle WebLogic Server accessible data as well as unauthorized read access to a subset of Oracle WebLogic Server accessible data. CVSS 3.1 Base Score 6.1 (Confidentiality and Integrity impacts). CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N)."
+  },
+  "CVE-2022-21252": {
+    "score": "6.4",
+    "type": "",
+    "desc": "Vulnerability in the Oracle WebLogic Server product of Oracle Fusion Middleware (component: Samples). Supported versions that are affected are 12.2.1.4.0 and 14.1.1.0.0. Easily exploitable vulnerability allows unauthenticated attacker with network access via HTTP to compromise Oracle WebLogic Server. Successful attacks of this vulnerability can result in unauthorized update, insert or delete access to some of Oracle WebLogic Server accessible data as well as unauthorized read access to a subset of Oracle WebLogic Server accessible data. CVSS 3.1 Base Score 6.5 (Confidentiality and Integrity impacts). CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:N)."
+  },
+  "CVE-2021-45105": {
+    "score": "4.3",
+    "type": "Denial Of Service",
+    "desc": "Apache Log4j2 versions 2.0-alpha1 through 2.16.0 (excluding 2.12.3 and 2.3.1) did not protect from uncontrolled recursion from self-referential lookups. This allows an attacker with control over Thread Context Map data to cause a denial of service when a crafted string is interpreted. This issue was fixed in Log4j 2.17.0, 2.12.3, and 2.3.1."
+  },
+  "CVE-2021-35620": {
+    "score": "5.0",
+    "type": "",
+    "desc": "Vulnerability in the Oracle WebLogic Server product of Oracle Fusion Middleware (component: Core). Supported versions that are affected are 10.3.6.0.0, 12.1.3.0.0, 12.2.1.3.0, 12.2.1.4.0 and 14.1.1.0.0. Easily exploitable vulnerability allows unauthenticated attacker with network access via T3 to compromise Oracle WebLogic Server. Successful attacks of this vulnerability can result in unauthorized ability to cause a hang or frequently repeatable crash (complete DOS) of Oracle WebLogic Server. CVSS 3.1 Base Score 7.5 (Availability impacts). CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H)."
+  },
+  "CVE-2021-35617": {
+    "score": "7.5",
+    "type": "",
+    "desc": "Vulnerability in the Oracle WebLogic Server product of Oracle Fusion Middleware (component: Coherence Container). Supported versions that are affected are 12.1.3.0.0, 12.2.1.3.0, 12.2.1.4.0 and 14.1.1.0.0. Easily exploitable vulnerability allows unauthenticated attacker with network access via IIOP to compromise Oracle WebLogic Server. Successful attacks of this vulnerability can result in takeover of Oracle WebLogic Server. CVSS 3.1 Base Score 9.8 (Confidentiality, Integrity and Availability impacts). CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H)."
+  },
+  "CVE-2021-35552": {
+    "score": "5.0",
+    "type": "",
+    "desc": "Vulnerability in the Oracle WebLogic Server product of Oracle Fusion Middleware (component: Diagnostics). Supported versions that are affected are 12.2.1.3.0, 12.2.1.4.0 and 14.1.1.0.0. Easily exploitable vulnerability allows unauthenticated attacker with network access via HTTP to compromise Oracle WebLogic Server. Successful attacks of this vulnerability can result in unauthorized update, insert or delete access to some of Oracle WebLogic Server accessible data. CVSS 3.1 Base Score 5.3 (Integrity impacts). CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N)."
+  },
+  "CVE-2021-29425": {
+    "score": "5.8",
+    "type": "Directory traversal",
+    "desc": "In Apache Commons IO before 2.7, When invoking the method FileNameUtils.normalize with an improper input string, like \"//../foo\", or \"\\\\..\\foo\", the result would be the same value, thus possibly providing access to files in the parent directory, but not further above (thus \"limited\" path traversal), if the calling code would use the result to construct a path value."
+  },
+  "CVE-2021-27568": {
+    "score": "6.4",
+    "type": "",
+    "desc": "An issue was discovered in netplex json-smart-v1 through 2015-10-23 and json-smart-v2 through 2.4. An exception is thrown from a function, but it is not caught, as demonstrated by NumberFormatException. When it is not caught, it may cause programs using the library to crash or expose sensitive information."
+  },
+  "CVE-2021-21350": {
+    "score": "7.5",
+    "type": "Execute Code",
+    "desc": "XStream is a Java library to serialize objects to XML and back again. In XStream before version 1.4.16, there is a vulnerability which may allow a remote attacker to execute arbitrary code only by manipulating the processed input stream. No user is affected, who followed the recommendation to setup XStream's security framework with a whitelist limited to the minimal required types. If you rely on XStream's default blacklist of the Security Framework, you will have to use at least version 1.4.16."
+  },
+  "CVE-2021-21347": {
+    "score": "7.5",
+    "type": "Execute Code",
+    "desc": "XStream is a Java library to serialize objects to XML and back again. In XStream before version 1.4.16, there is a vulnerability which may allow a remote attacker to load and execute arbitrary code from a remote host only by manipulating the processed input stream. No user is affected, who followed the recommendation to setup XStream's security framework with a whitelist limited to the minimal required types. If you rely on XStream's default blacklist of the Security Framework, you will have to use at least version 1.4.16."
+  },
+  "CVE-2021-4104": {
+    "score": "6.0",
+    "type": "Execute Code",
+    "desc": "JMSAppender in Log4j 1.2 is vulnerable to deserialization of untrusted data when the attacker has write access to the Log4j configuration. The attacker can provide TopicBindingName and TopicConnectionFactoryBindingName configurations causing JMSAppender to perform JNDI requests that result in remote code execution in a similar fashion to CVE-2021-44228. Note this issue only affects Log4j 1.2 when specifically configured to use JMSAppender, which is not the default. Apache Log4j 1.2 reached end of life in August 2015. Users should upgrade to Log4j 2 as it addresses numerous other issues from the previous versions."
+  },
+  "CVE-2021-2403": {
+    "score": "5.0",
+    "type": "",
+    "desc": "Vulnerability in the Oracle WebLogic Server product of Oracle Fusion Middleware (component: Core). Supported versions that are affected are 10.3.6.0.0, 12.1.3.0.0, 12.2.1.3.0, 12.2.1.4.0 and 14.1.1.0.0. Easily exploitable vulnerability allows unauthenticated attacker with network access via HTTP to compromise Oracle WebLogic Server. Successful attacks of this vulnerability can result in unauthorized read access to a subset of Oracle WebLogic Server accessible data. CVSS 3.1 Base Score 5.3 (Confidentiality impacts). CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N)."
+  },
+  "CVE-2021-2397": {
+    "score": "7.5",
+    "type": "",
+    "desc": "Vulnerability in the Oracle WebLogic Server product of Oracle Fusion Middleware (component: Core). Supported versions that are affected are 10.3.6.0.0, 12.1.3.0.0, 12.2.1.3.0, 12.2.1.4.0 and 14.1.1.0.0. Easily exploitable vulnerability allows unauthenticated attacker with network access via T3, IIOP to compromise Oracle WebLogic Server. Successful attacks of this vulnerability can result in takeover of Oracle WebLogic Server. CVSS 3.1 Base Score 9.8 (Confidentiality, Integrity and Availability impacts). CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H)."
+  },
+  "CVE-2021-2394": {
+    "score": "10.0",
+    "type": "",
+    "desc": "Vulnerability in the Oracle WebLogic Server product of Oracle Fusion Middleware (component: Core). Supported versions that are affected are 10.3.6.0.0, 12.1.3.0.0, 12.2.1.3.0, 12.2.1.4.0 and 14.1.1.0.0. Easily exploitable vulnerability allows unauthenticated attacker with network access via T3, IIOP to compromise Oracle WebLogic Server. Successful attacks of this vulnerability can result in takeover of Oracle WebLogic Server. CVSS 3.1 Base Score 9.8 (Confidentiality, Integrity and Availability impacts). CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H)."
+  }
+}
